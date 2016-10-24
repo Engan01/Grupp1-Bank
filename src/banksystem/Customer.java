@@ -16,7 +16,7 @@ public class Customer {
         return name;
     }
 
-    public long getpNr() {
+    public long getPnr() {
         return pNr;
     }
     
