@@ -1,14 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="banksystem.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <GridPane layoutX="-3.0" layoutY="210.0" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="196.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="485.0" minHeight="10.0" prefHeight="461.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane prefHeight="467.0" prefWidth="641.0" GridPane.rowIndex="1">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="0.0" prefWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="175.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.0" minWidth="10.0" prefWidth="185.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="364.0" minWidth="10.0" prefWidth="322.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="289.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ListView prefHeight="383.0" prefWidth="177.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                  <Label text="Customers: " GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Avenir Roman" size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="-8.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="ExportButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="111.0" text="Export to file" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="70.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Avenir Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <HBox prefHeight="220.0" prefWidth="198.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                     <children>
+                        <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="105.0" text="Add customer">
+                           <HBox.margin>
+                              <Insets left="10.0" top="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="Delete customer">
+                           <HBox.margin>
+                              <Insets left="-105.0" top="72.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TextArea prefHeight="299.0" prefWidth="314.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </TextArea>
+                  <HBox prefHeight="82.0" prefWidth="324.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <children>
+                        <Button mnemonicParsing="false" text="View profile">
+                           <HBox.margin>
+                              <Insets left="220.0" top="8.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <GridPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="ssnField" promptText="Enter social security No.">
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="searchButton" mnemonicParsing="false" text="Search" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="clearSearchButton" alignment="CENTER" mnemonicParsing="false" text="Clear search" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label text="Customer details:" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
     </children>
 </AnchorPane>
