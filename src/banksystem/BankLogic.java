@@ -19,5 +19,15 @@ public class BankLogic {
             instance = new BankLogic();
         return instance;
     }
+    
+    public String[] getCustomers(){ // metod för att returnera samtliga namn på alla kunder i en lista
+        String[] customers = new String[customersList.size()];
+        for(Customer c : customersList){
+            int i = 0;
+            customers[i] = c.getName();
+            i++;
+        }
+        return customers; // returnar en string list med alla namn
+    }
 
 }
