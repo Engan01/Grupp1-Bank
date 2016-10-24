@@ -7,10 +7,12 @@ import java.util.ArrayList;
  
 public class BankLogic {
     
-    private ArrayList<Customer> customers = new ArrayList<>();
+    private ArrayList<Customer> customersList = new ArrayList<>();
     
     private static BankLogic instance;
     private BankLogic(){}
+    
+    
     
     public static BankLogic getInstance(){
         if(instance == null)
