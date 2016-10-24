@@ -51,5 +51,19 @@ public class BankLogic {
         }
         return false; // om kunden inte finns returneras false
     }
+    
+    public String[] getCustemer(long pNr){
+        String[] lista;
+        for(Customer c : customersList){
+            long p = c.getPnr();
+            if(p == pNr){
+                
+                break;
+            }
+            
+        }
+        
+        
+    }
 
 }
