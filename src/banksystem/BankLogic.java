@@ -29,5 +29,27 @@ public class BankLogic {
         }
         return customers; // returnar en string list med alla namn
     }
+    
+    public boolean addCustomer(String name, long pNr){ // metod för att lägga till kund
+        
+        boolean b = searchCustomer(pNr); // kontrollerar om kunden redan existerar
+        
+        if(b) // om kunden existerar returnas false
+            return false;
+        
+        customersList.add(new Customer(name, pNr)); // om kunden ej finns skapas en ny kund
+        return true;
+        
+    }
+    
+    public boolean searchCustomer(long pNr){ // metod för att söka efter kunder med personnumer
+       
+        for(Customer c : customersList){ // löper igenom lista med kunder
+            long p = c.getPnr(); 
+            if(pNr == p) //om personnumret finns returneras true
+                return true;
+        }
+        return false; // om kunden inte finns returneras false
+    }
 
 }
