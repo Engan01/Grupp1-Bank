@@ -107,9 +107,6 @@
                            <font>
                               <Font name="Helvetica Neue Light" size="12.0" />
                            </font>
-                           <GridPane.margin>
-                              <Insets top="-15.0" />
-                           </GridPane.margin>
                         </TextField>
                         <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="WHITE" GridPane.columnIndex="1">
                            <font>
@@ -139,7 +136,6 @@
                   </GridPane>
                </children>
             </GridPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a5d7a4" height="63.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: 0;" width="707.0" />
          </children>
       </GridPane>
     </children>
