@@ -41,10 +41,10 @@ public class FXMLDocumentController implements Initializable {
     private TextArea customerDetailList;
 
     @FXML
-    private Button addCustomerButton;
+    private Button addCustomerButton, deleteCustomerButton;
 
     @FXML
-    private Button deleteCustomerButton, viewProfileButton;
+    private Button viewProfileButton;
 
     @FXML
     private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
@@ -64,14 +64,13 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
-  
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
 
         Stage stage;
         Parent root;
-
+        
         stage = new Stage();
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp1.fxml"));
         stage.setScene(new Scene(root));
@@ -106,14 +105,26 @@ public class FXMLDocumentController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(addCustomerButton.getScene().getWindow());
+        stage.initOwner(deleteCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-
-
     
+        @FXML
+    private void confirmPop2(ActionEvent event) {
 
-    
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+
+    @FXML
+    private void cancelPop2(ActionEvent event) {
+
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
 
@@ -139,24 +150,10 @@ public class FXMLDocumentController implements Initializable {
       //te
     }
 
-    @FXML
-    private void confirmPop2(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
-
-    @FXML
-    private void cancelPop2(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         b = BankLogic.getInstance();
         
         
@@ -169,12 +166,16 @@ public class FXMLDocumentController implements Initializable {
         b.addCustomer("Hans haraldsson", nr);
         nr = 198905643978L;
         b.addCustomer("Harry haraldsson", nr);
+        //
+        
         oList = FXCollections.observableArrayList();
+        
         ArrayList<Customer> tC = b.getCustomerList();
         for (Customer c : tC) {
             String s = c.getName() + " " + c.getPnr();
             oList.add(s);
         }
+        
         customersList.setItems(oList);
 
     }
