@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="423.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="banksystem.FXMLDocumentController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLDocumentController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,12 +30,12 @@
       <TextField fx:id="labelSsn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="3.0" mnemonicParsing="false" onAction="#confirmButton" text="Confirm" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="3.0" mnemonicParsing="false" onAction="#confirmPop1" text="Confirm" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button layoutX="65.0" layoutY="3.0" mnemonicParsing="false" onAction="#confirmButton" text="Cancel" />
+            <Button layoutX="65.0" layoutY="3.0" mnemonicParsing="false" onAction="#cancelPop1" text="Cancel" />
          </children>
       </AnchorPane>
    </children>
