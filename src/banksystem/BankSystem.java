@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 public class BankSystem extends Application {
     
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -30,7 +32,7 @@ public class BankSystem extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {   
         launch(args);
     }
     
