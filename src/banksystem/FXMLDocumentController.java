@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,7 +23,10 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private Label label;
+    private TextField ssnField;
+    
+    @FXML
+    private ListView customersList,customerDetailList;
     
     @FXML
     private Button addCustomerButton, deleteCustomerButton,searchButton,

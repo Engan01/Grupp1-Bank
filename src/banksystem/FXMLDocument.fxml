@@ -38,7 +38,7 @@
                   <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                  <ListView fx:id="customersList" prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
                   <Label text="Customers: " textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="Helvetica Neue Bold" size="13.0" />
@@ -75,7 +75,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TextArea prefHeight="289.0" prefWidth="281.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextArea fx:id="customerDetailList" prefHeight="289.0" prefWidth="281.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin>
