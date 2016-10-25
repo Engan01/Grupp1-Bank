@@ -1,11 +1,15 @@
 package banksystem;
 
 // @author Anton
+
+import java.util.ArrayList;
+
  
 public class Customer {
     
     private String name;
     private long pNr;
+    private ArrayList<Account> accounts = new ArrayList<>();
     
     public Customer(String name, long pNr){
         this.name = name;
@@ -18,6 +22,14 @@ public class Customer {
 
     public long getPnr() {
         return pNr;
+    }
+    
+    public int getNumberOfAccounts(){
+        return accounts.size();
+    } 
+    
+    public ArrayList<Account> getAccountList(){
+        return accounts;
     }
     
 }
