@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,25 +32,22 @@ public class FXMLDocumentController implements Initializable {
     private BankLogic b;
 
     private ObservableList<String> oList;
-
+    
     @FXML
     private TextField ssnField;
-
+    
     @FXML
     private Label statusLabel;
-
+    
     @FXML
     private ListView customersList;
+    
+    @FXML
+    private Button addCustomerButton;
 
     @FXML
-    private TextArea customerDetailList;
-
-    @FXML
-    private Button addCustomerButton, deleteCustomerButton;
-
-    @FXML
-    private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
-
+    private Button deleteCustomerButton;
+    
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
 
@@ -75,7 +71,6 @@ public class FXMLDocumentController implements Initializable {
             statusLabel.setText("This customer doesn't exist in the system!");
         }
     }
-
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
         
@@ -89,23 +84,6 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-
-    @FXML
-    private void confirmPop1(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
-
-    @FXML
-    private void cancelPop1(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
-
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
 
@@ -119,7 +97,6 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(deleteCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-
     @FXML
     private void confirmPop2(ActionEvent event) {
 
@@ -127,7 +104,6 @@ public class FXMLDocumentController implements Initializable {
         stg.close();
 
     }
-
     @FXML
     private void cancelPop2(ActionEvent event) {
 
@@ -135,7 +111,6 @@ public class FXMLDocumentController implements Initializable {
         stg.close();
 
     }
-
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
 
