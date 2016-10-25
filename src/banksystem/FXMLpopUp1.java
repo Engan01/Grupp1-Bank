@@ -16,6 +16,8 @@ import javafx.stage.Stage;
  */
 public class FXMLpopUp1 implements Initializable {
     
+    private Singelton s;
+    
  
     @FXML
     private TextField labelNamePop1;
@@ -25,14 +27,20 @@ public class FXMLpopUp1 implements Initializable {
 
     @FXML
     private void confirmPop1(ActionEvent event) {
+        s.setN(labelNamePop1.getText());
+        s.setB(Boolean.TRUE);
+        String s1 = labelSsnPop1.getText();
+        s1 = s1.replaceAll("-", "").trim();
+        long l = Long.parseLong(s1);
+        s.setL(l);
         
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
-
     }
 
     @FXML
     private void cancelPop1(ActionEvent event) {
+        s.setB(Boolean.FALSE);
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
@@ -41,7 +49,8 @@ public class FXMLpopUp1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        s = Singelton.getInstance();
+
     }
 
 }

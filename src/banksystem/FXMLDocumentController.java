@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable {
 
     private BankLogic b;
+    private Singelton s;
 
     private ObservableList<String> oList;
     
@@ -72,7 +73,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     @FXML
-    private void addCustomer(ActionEvent event) throws IOException {
+    private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
         
         Stage stage;
         Parent root;
@@ -83,7 +84,21 @@ public class FXMLDocumentController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
+        
+        boolean b1 = s.getB();
+        if(b1){
+            String n = s.getN();
+            long l = s.getL();
+            b.addCustomer(n,l);
+            
+            s.setB(Boolean.FALSE);
+            s.setL(null);
+            s.setN(null);
+        }
+        setListView();
+        
     }
+    
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
 
@@ -140,17 +155,8 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        s = Singelton.getInstance();
 
-        // test - ta bort när vi är färdiga
-        long nr = 198905643943L;
-        b.addCustomer("Kalle karlsson", nr);
-        nr = 198905643843L;
-        b.addCustomer("Peter haraldsson", nr);
-        nr = 198967643943L;
-        b.addCustomer("Hans haraldsson", nr);
-        nr = 198905643978L;
-        b.addCustomer("Harry haraldsson", nr);
-        // ta bort
 
         setListView(); // fyller lista med kunder
 
