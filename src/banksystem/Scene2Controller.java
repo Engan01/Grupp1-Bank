@@ -3,6 +3,7 @@ package banksystem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -25,9 +27,9 @@ public class Scene2Controller implements Initializable {
     
     @FXML
     private Label name;
-//    
-//    @FXML
-//    private Button editName;
+    
+    @FXML
+    private Button editName;
 //    
 //    @FXML
 //    private Label ssn;
@@ -80,16 +82,28 @@ public class Scene2Controller implements Initializable {
 //    @FXML
 //    private Label transferStatus;
 //    
-//    @FXML
-//    private Button back;
+    @FXML
+    private Button back;
     
     
     
     @FXML
-    public void editName(ActionEvent e){
+    public void editName(ActionEvent e) throws IOException{
         
         
         // popup-kod för att ändra namn
+        
+        
+        Stage stage;
+        Parent root;
+
+        stage = new Stage();
+        root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(editName.getScene().getWindow());
+        stage.showAndWait();
+        
         
     }
     
