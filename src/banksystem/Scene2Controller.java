@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +32,7 @@ public class Scene2Controller implements Initializable {
     private Label name;
     
     @FXML
-    private Button editName;
+    private Button editNameButton;
 //    
 //    @FXML
 //    private Label ssn;
@@ -97,27 +98,45 @@ public class Scene2Controller implements Initializable {
     @FXML
     private Button back;
     
+    @FXML
+    private Button confirmPop3, cancelPop3;
+    
     
     
     @FXML
     public void editName(ActionEvent e) throws IOException{
-        
-        
+
         // popup-kod för att ändra namn
-        
-        
+       
         Stage stage;
         Parent root;
 
         stage = new Stage();
-        root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
+        root = FXMLLoader.load(getClass().getResource("FXMLpopUp3.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(editName.getScene().getWindow());
+        stage.initOwner(editNameButton.getScene().getWindow());
         stage.showAndWait();
-        
-        
+      
     }
+    
+        @FXML
+    private void confirmPop3(ActionEvent event) {
+
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+    
+        @FXML
+    private void cancelPop3(ActionEvent event) {
+
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+    
+    
     
     @FXML
     public void addAccount(){
