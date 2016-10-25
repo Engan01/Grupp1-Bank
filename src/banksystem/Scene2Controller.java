@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
-    private ObservableList<String> accountObservableList;
+    private ObservableList<String> accountObservableList = FXCollections.observableArrayList();
     private BankLogic b;
     
 //    @FXML
@@ -195,10 +195,14 @@ public class Scene2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         b = BankLogic.getInstance();
-        accountObservableList = FXCollections.observableArrayList();
+        
+        SavingAccount s1 = new SavingAccount(1002, 5000, 0.07);
+        CreditAccount c1 = new CreditAccount(2014, 4000, 0.05);
         
         
-        accountObservableList.add("Test");
+        accountObservableList.add(s1.getClass().getName());
+        accountObservableList.add(c1.getClass().getName());
+        
         accountList.setItems(accountObservableList);
         
     }    
