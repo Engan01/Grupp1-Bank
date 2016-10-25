@@ -52,7 +52,7 @@
                   <AnchorPane prefHeight="11.0" prefWidth="243.0">
                      <children>
                         <Button fx:id="deleteCustomer" layoutX="135.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete account" />
-                        <Button fx:id="addCustomer" layoutY="7.0" mnemonicParsing="false" onAction="#addAccount" text="+" />
+                        <Button fx:id="addAccountButton" layoutY="7.0" mnemonicParsing="false" onAction="#addAccountEvent" text="+" />
                      </children>
                   </AnchorPane>
                </children>
