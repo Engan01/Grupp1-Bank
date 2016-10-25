@@ -81,7 +81,17 @@ public class Scene2Controller implements Initializable {
 //    
 //    @FXML
 //    private Label transferStatus;
-//    
+    
+    @FXML
+    private Label withdrawPop5;
+    
+    @FXML
+    private Label interestRatePop5;
+    
+    @FXML
+    private Label totalAmountPop5;
+    
+  
     @FXML
     private Button back;
     

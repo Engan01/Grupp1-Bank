@@ -39,10 +39,21 @@ public class FXMLDocumentController implements Initializable {
     private Button addCustomerButton;
     
     @FXML
-    private Button deleteCustomerButton;
+    private Button deleteCustomerButton, viewProfileButton;
 
     @FXML
     private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
+    
+    @FXML
+    public void viewProfile(ActionEvent event) throws IOException{
+        
+        Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        Scene s1 = new Scene(root);
+        Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stg.setScene(s1);
+        stg.show(); 
+        
+    }
     
   
 
