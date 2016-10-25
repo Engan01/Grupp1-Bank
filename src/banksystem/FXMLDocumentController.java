@@ -23,7 +23,9 @@ import javafx.stage.Stage;
  */
 
 public class FXMLDocumentController implements Initializable {
-//test
+    
+    private BankLogic b;
+
     @FXML
     private TextField ssnField;
 
@@ -106,7 +108,15 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Hej!");
+        b = BankLogic.getInstance();
+        long nr = 198905643943L;
+        b.addCustomer("Kalle karlsson", nr);
+        nr = 198905643843L;
+        b.addCustomer("Peter haraldsson", nr);
+        nr = 198967643943L;
+        b.addCustomer("Hans haraldsson", nr);
+        nr = 198905643978L;
+        b.addCustomer("Harry haraldsson", nr);
 
     }
 
