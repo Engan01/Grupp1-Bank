@@ -57,7 +57,8 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-
+    
+    
     @FXML
     private void confirmPop1(ActionEvent event) {
 
@@ -87,7 +88,17 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-
+    
+     @FXML
+    private void viewProfile(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+         
+         Scene s= new Scene(root);
+         Stage stg=(Stage)((Node)event.getSource()).getScene().getWindow();
+         stg.setScene(s);
+         stg.show();
+    }
+    
     @FXML
     private void confirmPop2(ActionEvent event) {
 
