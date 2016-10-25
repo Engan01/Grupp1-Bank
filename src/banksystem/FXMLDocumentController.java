@@ -122,6 +122,7 @@ public class FXMLDocumentController implements Initializable {
             //metod i bankLogic för att ta bort kund (skicka long pNr)
         }
         setListView();
+        s.setB(Boolean.FALSE);
         
     }
 
