@@ -27,14 +27,18 @@ public class FXMLDocumentController implements Initializable {
     private TextField ssnField;
 
     @FXML
-    private ListView customersList, customerDetailList;
+    private ListView customersList; 
+    
+//    @FXML
+//    private TextArea customerDetailList;
 
     @FXML
-    private Button addCustomerButton, deleteCustomerButton, searchButton,
-            clearSearchButton, ExportButton, viewProfileButton;
+    private Button addCustomerButton;
 
     @FXML
     private Button confirmPop1, cancelPop1;
+    
+  
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {

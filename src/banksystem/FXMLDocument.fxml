@@ -38,7 +38,7 @@
                   <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView fx:id="customersList" prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                  <ListView prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
                   <Label text="Customers: " textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="Helvetica Neue Bold" size="13.0" />
@@ -47,7 +47,7 @@
                         <Insets bottom="-8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="ExportButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="111.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Export to file" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="111.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Export to file" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="70.0" />
                      </GridPane.margin>
@@ -65,7 +65,7 @@
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Delete customer" textFill="#baf47c">
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Delete customer" textFill="#baf47c">
                            <HBox.margin>
                               <Insets left="-118.0" top="72.0" />
                            </HBox.margin>
@@ -82,7 +82,7 @@
                   </TextArea>
                   <HBox prefHeight="82.0" prefWidth="324.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <children>
-                        <Button fx:id="viewProfileButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="View profile" textFill="#baf47c">
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="View profile" textFill="#baf47c">
                            <HBox.margin>
                               <Insets left="210.0" top="8.0" />
                            </HBox.margin>
@@ -108,7 +108,7 @@
                               <Font name="Helvetica Neue Light" size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
                            <font>
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
@@ -116,7 +116,7 @@
                               <Insets left="15.0" top="-10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="clearSearchButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="15.0" top="-20.0" />
                            </GridPane.margin>

@@ -26,8 +26,8 @@
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="Name:" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="283.0" text="SSN: (YYYYMMDD-xxxx)" GridPane.rowIndex="1" />
-      <TextField fx:id="labelName" GridPane.columnIndex="1" />
-      <TextField fx:id="labelSsn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="labelNamePop1" GridPane.columnIndex="1" />
+      <TextField fx:id="labelSsnPop1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="3.0" mnemonicParsing="false" onAction="#confirmPop1" text="Confirm" />
