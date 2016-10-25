@@ -23,6 +23,8 @@ import javafx.stage.Stage;
  * @author asanilssonenglund
  */
 public class Scene2Controller implements Initializable {
+    
+    private BankLogic b;
 
     
     @FXML
@@ -160,7 +162,7 @@ public class Scene2Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        b = BankLogic.getInstance();
     }    
     
 }

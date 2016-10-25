@@ -120,6 +120,9 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        
+        
+        // test - ta bort när vi är färdiga
         long nr = 198905643943L;
         b.addCustomer("Kalle karlsson", nr);
         nr = 198905643843L;
