@@ -1,9 +1,9 @@
 package banksystem;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,9 +32,11 @@ public class FXMLDocumentController implements Initializable {
 
     private BankLogic b;
 
+    private ObservableList<String> oList;
+
     @FXML
     private TextField ssnField;
-    
+
     @FXML
     private Label statusLabel;
 
@@ -48,45 +50,38 @@ public class FXMLDocumentController implements Initializable {
     private Button addCustomerButton, deleteCustomerButton;
 
     @FXML
-    private Button viewProfileButton;
-
-    @FXML
     private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
 
     @FXML
-    public static ObservableList<String> oList;
-    
-    
-    @FXML
-    public void viewProfile(ActionEvent event) throws IOException{
-        
+    public void viewProfile(ActionEvent event) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
         Scene s1 = new Scene(root);
         Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stg.setScene(s1);
         stg.show();
-        
+
     }
+
     // search method
     @FXML
-    public void search(ActionEvent event) throws IOException{
-        String str=ssnField.getText();
-        Boolean ok=b.searchCustomer(Long.parseLong(str));
-        
-        if (ok)
-        {
+    public void search(ActionEvent event) throws IOException {
+        String str = ssnField.getText();
+        Boolean ok = b.searchCustomer(Long.parseLong(str));
+
+        if (ok) {
             b.getCustomer(Long.parseLong(str));
-        }
-        else {
+        } else {
             statusLabel.setText("This customer doesn't exist in the system!");
         }
     }
+
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
-
+        
         Stage stage;
         Parent root;
-        
+
         stage = new Stage();
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp1.fxml"));
         stage.setScene(new Scene(root));
@@ -124,8 +119,8 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(deleteCustomerButton.getScene().getWindow());
         stage.showAndWait();
     }
-    
-        @FXML
+
+    @FXML
     private void confirmPop2(ActionEvent event) {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -147,12 +142,13 @@ public class FXMLDocumentController implements Initializable {
         BufferedWriter writer = null;
         try {
             ArrayList<Customer> lista1 = b.getCustomerList();
-            writer = new BufferedWriter(new FileWriter("customerpage.txt"));
-            for(Customer c : lista1){
-             writer.write(c.toString() + "\n");
- 
+            String userHomeFolder = System.getProperty("user.home");
+            File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
+            writer = new BufferedWriter(new FileWriter(textFile));
+            for (Customer c : lista1) {
+                writer.write(c.toString() + "\n");
+
             }
-           
 
         } catch (IOException e) {
         } finally {
@@ -163,16 +159,13 @@ public class FXMLDocumentController implements Initializable {
             } catch (IOException e) {
             }
         }
-     
-    }
 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         b = BankLogic.getInstance();
-        
-        
+
         // test - ta bort när vi är färdiga
         long nr = 198905643943L;
         b.addCustomer("Kalle karlsson", nr);
@@ -182,18 +175,22 @@ public class FXMLDocumentController implements Initializable {
         b.addCustomer("Hans haraldsson", nr);
         nr = 198905643978L;
         b.addCustomer("Harry haraldsson", nr);
-        //
-        
+        // ta bort
+
+        setListView(); // fyller lista med kunder
+
+    }
+
+    public void setListView() {  // metod för att lägga samtliga kunders namn i listView
         oList = FXCollections.observableArrayList();
-        
+
         ArrayList<Customer> tC = b.getCustomerList();
         for (Customer c : tC) {
             String s = c.getName() + " " + c.getPnr();
             oList.add(s);
         }
-        
-        customersList.setItems(oList);
 
+        customersList.setItems(oList);
     }
 
 }

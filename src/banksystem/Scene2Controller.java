@@ -148,7 +148,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
-
+        
         Stage stage;
         Parent root;
 
@@ -228,7 +228,7 @@ public class Scene2Controller implements Initializable {
         accountObservableList.add(s1.getClass().getName());
         accountObservableList.add(c1.getClass().getName());
         
-//        accountList.setItems(accountObservableList);
+    // accountList.setItems(accountObservableList);
         
         observableListHash = FXCollections.observableArrayList();
         observableListHash.add("Savings Account");
