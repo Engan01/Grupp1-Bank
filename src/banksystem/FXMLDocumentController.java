@@ -22,9 +22,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Label label;
-
+    
     @FXML
-    private Button addCustomerButton;
+    private Button addCustomerButton, deleteCustomerButton,searchButton,
+                        clearSearchButton,ExportButton,viewProfileButton ;
+
+    
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
