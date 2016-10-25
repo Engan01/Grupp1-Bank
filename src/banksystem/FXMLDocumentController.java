@@ -33,22 +33,22 @@ public class FXMLDocumentController implements Initializable {
     private Singelton s;
 
     private ObservableList<String> oList;
-    
+
     @FXML
     private TextField ssnField;
-    
+
     @FXML
     private Label statusLabel;
-    
+
     @FXML
     private ListView customersList;
-    
+
     @FXML
     private Button addCustomerButton;
 
     @FXML
     private Button deleteCustomerButton;
-    
+
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
 
@@ -72,9 +72,10 @@ public class FXMLDocumentController implements Initializable {
             statusLabel.setText("This customer doesn't exist in the system!");
         }
     }
+
     @FXML
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
-        
+
         Stage stage;
         Parent root;
 
@@ -84,48 +85,46 @@ public class FXMLDocumentController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
-        
+
         boolean b1 = s.getB();
-        if(b1){
+        if (b1) {
             String n = s.getN();
             long l = s.getL();
-            b.addCustomer(n,l);
-            
+            b.addCustomer(n, l);
+
             s.setB(Boolean.FALSE);
             s.setL(null);
             s.setN(null);
         }
         setListView();
-        
+
     }
-    
+
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
+        
+        String s1 = (String)customersList.getSelectionModel().getSelectedItem();
 
         Stage stage;
         Parent root;
-
+        
         stage = new Stage();
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(deleteCustomerButton.getScene().getWindow());
         stage.showAndWait();
+        
+        boolean b = s.getB();
+        if(b){
+            s1 = s1.replaceAll("[A-Za-z-]", "").trim();
+            long pNr = Long.parseLong(s1);
+            //metod i bankLogic för att ta bort kund (skicka long pNr)
+        }
+        setListView();
+        
     }
-    @FXML
-    private void confirmPop2(ActionEvent event) {
 
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
-    @FXML
-    private void cancelPop2(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
 
@@ -157,7 +156,6 @@ public class FXMLDocumentController implements Initializable {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
 
-
         setListView(); // fyller lista med kunder
 
     }
@@ -167,8 +165,11 @@ public class FXMLDocumentController implements Initializable {
 
         ArrayList<Customer> tC = b.getCustomerList();
         for (Customer c : tC) {
-            String s = c.getName() + " " + c.getPnr();
-            oList.add(s);
+            String s = Long.toString(c.getPnr());
+            s = s.substring(0, 8) + "-" + s.substring(8, s.length()); // lägger till ett "-" innan de sista fyra siffrorna!
+
+            String s1 = c.getName() + " " + s;
+            oList.add(s1);
         }
 
         customersList.setItems(oList);
