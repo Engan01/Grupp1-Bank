@@ -38,7 +38,7 @@
                   <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                  <ListView fx:id="customersList" prefHeight="321.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
                   <Label text="Customers: " textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="Helvetica Neue Bold" size="13.0" />
@@ -47,7 +47,7 @@
                         <Insets bottom="-8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="111.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Export to file" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="exportFileButton" mnemonicParsing="false" onAction="#exportToFile" prefHeight="29.0" prefWidth="111.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Export to file" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="70.0" />
                      </GridPane.margin>

@@ -1,8 +1,14 @@
 package banksystem;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,28 +27,31 @@ import javafx.stage.Stage;
  *
  * @author asanilssonenglund
  */
-
 public class FXMLDocumentController implements Initializable {
-    
+
     private BankLogic b;
 
     @FXML
     private TextField ssnField;
 
     @FXML
-    private ListView customersList; 
-    
+    private ListView customersList;
+
     @FXML
     private TextArea customerDetailList;
 
     @FXML
     private Button addCustomerButton;
-    
+
     @FXML
     private Button deleteCustomerButton, viewProfileButton;
 
     @FXML
     private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
+
+    @FXML
+    public static ObservableList<String> oList;
+    
     
     @FXML
     public void viewProfile(ActionEvent event) throws IOException{
@@ -51,7 +60,7 @@ public class FXMLDocumentController implements Initializable {
         Scene s1 = new Scene(root);
         Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stg.setScene(s1);
-        stg.show(); 
+        stg.show();
         
     }
     
@@ -78,16 +87,16 @@ public class FXMLDocumentController implements Initializable {
         stg.close();
 
     }
-    
-        @FXML
+
+    @FXML
     private void cancelPop1(ActionEvent event) {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
     }
-    
-        @FXML
+
+    @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
 
         Stage stage;
@@ -101,6 +110,35 @@ public class FXMLDocumentController implements Initializable {
         stage.showAndWait();
     }
 
+
+    
+
+    
+    @FXML
+    private void exportToFile(ActionEvent event) throws IOException {
+
+        BufferedWriter writer = null;
+        try {
+            ArrayList<Customer> lista1 = b.getCustomerList();
+            writer = new BufferedWriter(new FileWriter("customerpage.txt"));
+            for(Customer c : lista1){
+             writer.write(c.toString() + "\n");
+ 
+            }
+           
+
+        } catch (IOException e) {
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+            }
+        }
+
+    }
+
     @FXML
     private void confirmPop2(ActionEvent event) {
 
@@ -108,8 +146,8 @@ public class FXMLDocumentController implements Initializable {
         stg.close();
 
     }
-    
-        @FXML
+
+    @FXML
     private void cancelPop2(ActionEvent event) {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -131,6 +169,13 @@ public class FXMLDocumentController implements Initializable {
         b.addCustomer("Hans haraldsson", nr);
         nr = 198905643978L;
         b.addCustomer("Harry haraldsson", nr);
+        oList = FXCollections.observableArrayList();
+        ArrayList<Customer> tC = b.getCustomerList();
+        for (Customer c : tC) {
+            String s = c.getName() + " " + c.getPnr();
+            oList.add(s);
+        }
+        customersList.setItems(oList);
 
     }
 

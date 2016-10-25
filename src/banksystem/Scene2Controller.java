@@ -2,7 +2,6 @@ package banksystem;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +26,7 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
+    private ObservableList<String> accountObservableList;
     private BankLogic b;
     
     private ObservableList<String> observableListHash;
@@ -41,8 +40,11 @@ public class Scene2Controller implements Initializable {
 //    @FXML
 //    private Label ssn;
 //    
-//    @FXML
-//    private ListView customerList;
+    @FXML
+    private ListView accountList;
+    
+    @FXML
+    private Button deleteAccount;
 //    
 //    @FXML
 //    private Button deleteCustomer;
@@ -113,7 +115,7 @@ public class Scene2Controller implements Initializable {
         // popup-kod för att ändra namn
         Stage stage;
         Parent root;
-
+        
         stage = new Stage();
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp3.fxml"));
         stage.setScene(new Scene(root));
@@ -194,8 +196,8 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void deposit() {
-
+    public void deposit(ActionEvent e){
+        
     }
 
     @FXML
@@ -215,8 +217,19 @@ public class Scene2Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         b = BankLogic.getInstance();
-
+        
+        SavingAccount s1 = new SavingAccount(1002, 5000, 0.07);
+        CreditAccount c1 = new CreditAccount(2014, 4000, 0.05);
+        accountObservableList = FXCollections.observableArrayList();
+        
+        
+        accountObservableList.add(s1.getClass().getName());
+        accountObservableList.add(c1.getClass().getName());
+        
+//        accountList.setItems(accountObservableList);
+        
         observableListHash = FXCollections.observableArrayList();
         observableListHash.add("Savings Account");
         observableListHash.add("Credit Account");
