@@ -40,7 +40,7 @@
                         <Label fx:id="name" text="Label" GridPane.columnIndex="1" />
                         <Label text="SSN:" GridPane.rowIndex="1" />
                         <Label fx:id="ssn" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="editName" mnemonicParsing="false" onAction="#editName" text="Edit name" GridPane.columnIndex="2" />
+                        <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" text="Edit name" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </children>

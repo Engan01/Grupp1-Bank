@@ -78,7 +78,7 @@ public class BankLogic {
     }
     
     
-    public ArrayList getCustomerList(){
+    public ArrayList getCustomerList(){ // metod som returnerar customersList
         return customersList;
     }
 

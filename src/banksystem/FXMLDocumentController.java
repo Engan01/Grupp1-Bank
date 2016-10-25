@@ -44,13 +44,26 @@ public class FXMLDocumentController implements Initializable {
     private Button addCustomerButton;
 
     @FXML
-    private Button deleteCustomerButton;
+    private Button deleteCustomerButton, viewProfileButton;
 
     @FXML
     private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
 
     @FXML
     public static ObservableList<String> oList;
+    
+//    @FXML
+//    public void viewProfile(ActionEvent event) throws IOException{
+//        
+//        Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+//        Scene s1 = new Scene(root);
+//        Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+//        stg.setScene(s1);
+//        stg.show(); 
+//        
+//    }
+    
+  
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
@@ -150,6 +163,9 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        
+        
+        // test - ta bort när vi är färdiga
         long nr = 198905643943L;
         b.addCustomer("Kalle karlsson", nr);
         nr = 198905643843L;
