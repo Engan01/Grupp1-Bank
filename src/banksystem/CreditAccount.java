@@ -7,7 +7,7 @@ package banksystem;
 public class CreditAccount extends Account {
     
     private final double creditLimit = 5000;
-    private final double debtInterest = 0.07;
+    //private final double debtInterest = 0.07;
     
        public CreditAccount(){
        super(); // default constructor
@@ -17,4 +17,5 @@ public class CreditAccount extends Account {
     public CreditAccount(int accountNumber, double balance, double interestRate){
         super(accountNumber, balance, interestRate);
     }
+    
 }
