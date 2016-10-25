@@ -19,6 +19,13 @@ public class Scene2Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
