@@ -52,7 +52,7 @@ public class BankLogic {
         return false; // om kunden inte finns returneras false
     }
     
-    public String[] getCustemer(long pNr){
+    public String[] getCustomer(long pNr){
         String[] lista;
         ArrayList<Account> a;
         Customer c1 = null;
