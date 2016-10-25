@@ -23,6 +23,7 @@ public class BankSystem extends Application {
         stage.setScene(scene);
         stage.show();
         
+       stage.setTitle("RADER Bank System");
            
     }
     
