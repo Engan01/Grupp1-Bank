@@ -99,16 +99,19 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <TextField fx:id="ssnField" prefHeight="23.0" prefWidth="178.0" promptText="Enter social security No." style="-fx-background-radius: 0;">
                            <font>
                               <Font name="Helvetica Neue Light" size="12.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets top="-10.0" />
+                           </GridPane.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
+                        <Button mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
                            <font>
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
@@ -130,6 +133,19 @@
                            </GridPane.margin>
                            <font>
                               <Font name="Helvetica Neue Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="statusLabel" prefHeight="37.0" prefWidth="196.0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Helvetica Neue" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="121.0" text="YYYYMMDDXXXX" textFill="#8d8d8d">
+                           <GridPane.margin>
+                              <Insets left="90.0" top="30.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="12.0" />
                            </font>
                         </Label>
                      </children>

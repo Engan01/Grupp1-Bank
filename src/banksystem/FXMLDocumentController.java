@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -33,6 +34,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextField ssnField;
+    
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private ListView customersList;
@@ -63,8 +67,20 @@ public class FXMLDocumentController implements Initializable {
         stg.show();
         
     }
-    
-
+    // search method
+    @FXML
+    public void search(ActionEvent event) throws IOException{
+        String str=ssnField.getText();
+        Boolean ok=b.searchCustomer(Long.parseLong(str));
+        
+        if (ok)
+        {
+            b.getCustomer(Long.parseLong(str));
+        }
+        else {
+            statusLabel.setText("This customer doesn't exist in the system!");
+        }
+    }
     @FXML
     private void addCustomer(ActionEvent event) throws IOException {
 
@@ -147,7 +163,7 @@ public class FXMLDocumentController implements Initializable {
             } catch (IOException e) {
             }
         }
-      //te
+     
     }
 
 
