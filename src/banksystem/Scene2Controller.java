@@ -3,11 +3,12 @@ package banksystem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,27 +25,27 @@ import javafx.stage.Stage;
  * @author asanilssonenglund
  */
 public class Scene2Controller implements Initializable {
-    
-    private BankLogic b;
 
+    private ObservableList<String> accountObservableList;
+    private BankLogic b;
     
+//    @FXML
+//    private Label name;
+//    
     @FXML
-    private Label name;
-    
-    @FXML
-    private Button editNameButton;
+    private Button editName;
 //    
 //    @FXML
 //    private Label ssn;
 //    
-//    @FXML
-//    private ListView customerList;
+    @FXML
+    private ListView accountList;
+    
+    @FXML
+    private Button deleteAccount;
 //    
-//    @FXML
-//    private Button deleteCustomer;
-//    
-//    @FXML
-//    private Button addCustomer;
+    @FXML
+    private Button addAccount;
 //    
 //    @FXML
 //    private Label accountNr;
@@ -84,72 +85,83 @@ public class Scene2Controller implements Initializable {
 //    
 //    @FXML
 //    private Label transferStatus;
-    
-    @FXML
-    private Label withdrawPop5;
-    
-    @FXML
-    private Label interestRatePop5;
-    
-    @FXML
-    private Label totalAmountPop5;
-    
-  
+//    
     @FXML
     private Button back;
-    
-    @FXML
-    private Button confirmPop3, cancelPop3;
     
     
     
     @FXML
     public void editName(ActionEvent e) throws IOException{
-
-        // popup-kod för att ändra namn
-       
+        
+        // **** POP-UP 3 (edit name) ****
         Stage stage;
         Parent root;
-
+        
         stage = new Stage();
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp3.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(editNameButton.getScene().getWindow());
+        stage.initOwner(editName.getScene().getWindow());
         stage.showAndWait();
-      
-    }
-    
-        @FXML
-    private void confirmPop3(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
-    }
-    
-        @FXML
-    private void cancelPop3(ActionEvent event) {
-
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
-
+        
+        
     }
     
     
     
     @FXML
-    public void addAccount(){
+    public void addAccount(ActionEvent e) throws IOException{
+        
+          // **** POP-UP 4 (add account) ****
+        Stage stage;
+        Parent root;
+        
+        stage = new Stage();
+        root = FXMLLoader.load(getClass().getResource("FXMLpopUp4.fxml"));
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(addAccount.getScene().getWindow());
+        stage.showAndWait();
+        
         
     }
     
     @FXML
-    public void deleteAccount(){
+    public void deleteAccount(ActionEvent e) throws IOException{
+        
+        String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
+        if("Test".equals(selectedAccount)){
+            accountObservableList.remove(0);
+        }
+        
+
+          // **** POP-UP 5 (delete SAVINGS account) ****
+//        Stage stage;
+//        Parent root;
+//        
+//        stage = new Stage();
+//        root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
+//        stage.setScene(new Scene(root));
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        stage.initOwner(deleteAccount.getScene().getWindow());
+//        stage.showAndWait();
+//        
+           // **** POP-UP 6 (delete CHECKING account) ****
+//        Stage stage;
+//        Parent root;
+//        
+//        stage = new Stage();
+//        root = FXMLLoader.load(getClass().getResource("FXMLpopUp6.fxml"));
+//        stage.setScene(new Scene(root));
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        stage.initOwner(deleteAccount.getScene().getWindow());
+//        stage.showAndWait();
         
     }
     
     @FXML
-    public void back() throws IOException{
+    public void back(ActionEvent e) throws IOException{
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
@@ -160,7 +172,7 @@ public class Scene2Controller implements Initializable {
     }
     
     @FXML
-    public void deposit(){
+    public void deposit(ActionEvent e){
         
     }
     
@@ -181,7 +193,14 @@ public class Scene2Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         b = BankLogic.getInstance();
+        accountObservableList = FXCollections.observableArrayList();
+        
+        
+        accountObservableList.add("Test");
+        accountList.setItems(accountObservableList);
+        
     }    
     
 }
