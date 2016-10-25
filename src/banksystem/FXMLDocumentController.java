@@ -35,9 +35,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button addCustomerButton;
+    
+    @FXML
+    private Button deleteCustomerButton;
 
     @FXML
-    private Button confirmPop1, cancelPop1;
+    private Button confirmPop1, cancelPop1, confirmPop2, cancelPop2;
     
   
 
@@ -65,6 +68,36 @@ public class FXMLDocumentController implements Initializable {
     
         @FXML
     private void cancelPop1(ActionEvent event) {
+
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+    
+        @FXML
+    private void deleteCustomer(ActionEvent event) throws IOException {
+
+        Stage stage;
+        Parent root;
+
+        stage = new Stage();
+        root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(addCustomerButton.getScene().getWindow());
+        stage.showAndWait();
+    }
+
+    @FXML
+    private void confirmPop2(ActionEvent event) {
+
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stg.close();
+
+    }
+    
+        @FXML
+    private void cancelPop2(ActionEvent event) {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();

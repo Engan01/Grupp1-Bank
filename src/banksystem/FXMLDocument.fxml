@@ -65,7 +65,7 @@
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Delete customer" textFill="#baf47c">
+                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Delete customer" textFill="#baf47c">
                            <HBox.margin>
                               <Insets left="-118.0" top="72.0" />
                            </HBox.margin>
