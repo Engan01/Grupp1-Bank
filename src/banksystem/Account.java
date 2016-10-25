@@ -6,4 +6,10 @@ package banksystem;
  */
 public class Account {
     
+    private int accountNumber;
+    
+    public int getAccountNumber(){
+        return accountNumber;
+    }
+    
 }

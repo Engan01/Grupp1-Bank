@@ -52,18 +52,31 @@ public class BankLogic {
         return false; // om kunden inte finns returneras false
     }
     
-//    public String[] getCustemer(long pNr){
-//        String[] lista;
-//        for(Customer c : customersList){
-//            long p = c.getPnr();
-//            if(p == pNr){
-//                lista = new
-//                break;
-//            }
-//            
-//        }
-//        
-//        return lista;
-//    }
+    public String[] getCustomer(long pNr){
+        String[] lista;
+        ArrayList<Account> a;
+        Customer c1 = null;
+        
+        for(Customer c : customersList){
+            long p = c.getPnr();
+            if(p == pNr){
+                c1 = c;
+            break;
+            }
+        }
+        
+        a = c1.getAccountList();
+        lista = new String[a.size() + 1];
+        lista[0] = c1.getName() + " " + c1.getPnr();
+        int i = 1;
+        for(Account l : a){
+            lista[i] = Integer.toString(l.getAccountNumber());
+            i++;    
+        }
+
+        return lista;
+    }
+    
+    //kjffkjgfkg
 
 }
