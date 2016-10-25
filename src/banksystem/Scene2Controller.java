@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package banksystem;
 
 import java.net.URL;
@@ -22,9 +17,6 @@ import javafx.scene.control.TextField;
  */
 public class Scene2Controller implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     
     @FXML
     private Label name;
@@ -88,16 +80,7 @@ public class Scene2Controller implements Initializable {
     private Button back;
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

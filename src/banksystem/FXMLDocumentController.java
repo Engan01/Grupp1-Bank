@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -21,6 +20,7 @@ import javafx.stage.Stage;
  *
  * @author asanilssonenglund
  */
+
 public class FXMLDocumentController implements Initializable {
 
     @FXML
@@ -68,8 +68,7 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Hej svejs");
-        System.out.println("nytt test för delgruppA");
+
     }
 
 }
