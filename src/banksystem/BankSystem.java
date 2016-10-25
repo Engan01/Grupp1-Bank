@@ -1,6 +1,7 @@
 package banksystem;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +22,10 @@ public class BankSystem extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
+           
     }
+    
 
     /**
      * @param args the command line arguments
