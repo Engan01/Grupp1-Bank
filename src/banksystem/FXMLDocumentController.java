@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,8 +30,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView customersList; 
     
-//    @FXML
-//    private TextArea customerDetailList;
+    @FXML
+    private TextArea customerDetailList;
 
     @FXML
     private Button addCustomerButton;
