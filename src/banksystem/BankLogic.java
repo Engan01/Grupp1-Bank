@@ -76,5 +76,10 @@ public class BankLogic {
 
         return lista;
     }
+    
+    
+    public ArrayList getCustomerList(){
+        return customersList;
+    }
 
 }
