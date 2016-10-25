@@ -21,24 +21,26 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="204.0" prefWidth="288.0">
+            <AnchorPane prefHeight="330.0" prefWidth="243.0">
                <children>
                   <GridPane layoutX="30.0" layoutY="17.0" prefHeight="98.0" prefWidth="171.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.46516418457031" minWidth="10.0" prefWidth="118.72090148925781" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.27909851074219" minWidth="10.0" prefWidth="124.27909851074219" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.27909851074219" minWidth="10.0" prefWidth="124.27909851074219" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="42.302467346191406" minHeight="10.0" prefHeight="36.83729553222656" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="42.302467346191406" minHeight="10.0" prefHeight="36.83729553222656" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="59.62786865234375" minHeight="10.0" prefHeight="33.48854064941406" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="102.25615692138672" minHeight="10.0" prefHeight="43.51145935058594" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="102.25615692138672" minHeight="10.0" prefHeight="43.51145935058594" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Name" />
                         <Label text="Label" GridPane.columnIndex="1" />
                         <Label text="SSN:" GridPane.rowIndex="1" />
                         <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="Edit name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" text="Edit name" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </children>
