@@ -7,6 +7,7 @@ package banksystem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -21,6 +22,7 @@ public class Scene2Controller implements Initializable {
      */
     
     @FXML
+    private Label name;
     
     
     
