@@ -28,6 +28,7 @@ public class SavingAccount extends Account{
         return balance;
 
     }
+    @Override
     public String getAccountName(){
     return "Saving Account";    
     }

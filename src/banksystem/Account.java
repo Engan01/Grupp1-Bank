@@ -68,6 +68,8 @@ public abstract class Account  {
         this.accountType = accountType;
     }
     
+    public abstract String getAccountName();
+    
     
     
 }

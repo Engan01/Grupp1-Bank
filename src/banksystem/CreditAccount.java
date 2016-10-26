@@ -8,7 +8,7 @@ public class CreditAccount extends Account {
     
     private final double creditLimit = 5000;
     private final double debtInterest = 1.07;
-    private final double debetIncrease= 1.005;
+    private final double debtIncrease= 1.005;
     private double amount; //textfield value scene2
     
        public CreditAccount(){
@@ -33,10 +33,11 @@ public class CreditAccount extends Account {
     if(balance>=0)
         balance*=debtInterest;
     else
-        balance*=debtInterest;
+        balance*=debtIncrease;
        
     return balance;
     }
+    @Override
     public String getAccountName(){
     return "Credit Account";    
     }
