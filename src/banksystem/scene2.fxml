@@ -60,7 +60,7 @@
                   <Label text="Interest rate:" GridPane.rowIndex="2" />
                   <Label fx:id="rate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Deposit" textFill="#baf47c" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Withdraw" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#withdraw" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Withdraw" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="amount" prefHeight="27.0" prefWidth="111.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="10.0" />

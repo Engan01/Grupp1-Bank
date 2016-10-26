@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -50,6 +51,9 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Button back;
+    
+    @FXML
+    private TextField amount;
 
     @FXML
     public void deposit(ActionEvent e) {
@@ -57,7 +61,20 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void withdraw() {
+    public void withdraw(ActionEvent e) {
+        
+        
+        String selectedAccount = (String)accountList.getSelectionModel().getSelectedItem(); 
+        selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
+        
+        // behöver konvertera String till int för att gå vodare
+//        System.out.println(selectedAccount);
+//        
+//        
+//        double newNum = Integer.parseInt(amount.getText().toString());
+//        b.withdraw(0, selectedAccount, newNum);
+        
+        
 
     }
 
