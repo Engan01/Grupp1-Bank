@@ -18,13 +18,21 @@ public class SavingAccount extends Account{
     public SavingAccount(double balance, double interestRate){
         super(balance, interestRate);
     }
-       public double deposit(double balance){
+       public double deposit(double balance, double amount){
         balance+=amount;
         return balance;
     }
     
-    public double withdraw(double balance, double creditLimit){
+    public double withdraw(double balance, double amount){
+        if(numberOfWithdraw<1){
         balance-=amount;
+        numberOfWithdraw++;
+        }
+        else{
+        balance*=interestRate;
+        balance-=amount;
+        numberOfWithdraw++;
+        }    
         return balance;
 
     }
