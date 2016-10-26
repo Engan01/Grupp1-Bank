@@ -47,15 +47,18 @@ public class Customer {
         return str;
     }
     
-    public void addSavingAccount(double balance, double interestRate){
-        accounts.add(new SavingAccount(balance, interestRate));
-        
-        
+    public int addSavingAccount(double balance, double interestRate){
+        SavingAccount sA = new SavingAccount(balance, interestRate);
+        int nr = sA.getAccountNumber();
+        accounts.add(sA);
+        return nr;    
     }
     
-    public void addCheckingAccount(double balance, double interestRate){
-        
-        accounts.add(new CreditAccount(balance, interestRate)); 
+    public int addCheckingAccount(double balance, double interestRate){
+        CreditAccount cA = new CreditAccount(balance, interestRate);
+        int nr = cA.getAccountNumber();
+        accounts.add(cA);
+        return nr;
         
     }
     

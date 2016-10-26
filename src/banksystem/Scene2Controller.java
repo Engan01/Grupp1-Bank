@@ -109,6 +109,10 @@ public class Scene2Controller implements Initializable {
             switch(i){
                 case(1):
                     int g = b.addSavingsAccount(l);
+                    break;
+                default:
+                    g = b.addCreditAccount(l);
+                    break;
             }
         }
         setListView();

@@ -104,12 +104,10 @@ public class BankLogic {
         }
         
     public int addSavingsAccount(long pNR){
-        for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
-            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
-                customersList.get(i).getAccountList().add(new SavingAccount(0.0, 0.005)); // lägger till ett konto för pNR
-           int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
-            int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
-            return accountNumberGiven; // returnenrar kontonummret
+        for(Customer c : customersList){ // loppar igenom customerList
+            if(pNR == c.getPnr()){  // och hittar matchande pNR
+                int kontoNr = c.addSavingAccount(0.0, 0.005);
+           return kontoNr; // returnenrar kontonummret
             }
              
         }
@@ -117,12 +115,10 @@ public class BankLogic {
     }
     
     public int addCreditAccount(long pNR){
-              for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
-            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
-                customersList.get(i).getAccountList().add(new CreditAccount(0.0, 0.07)); // lägger till ett konto för pNR
-           int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
-            int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
-            return accountNumberGiven; // returnenrar kontonummret
+            for(Customer c : customersList){ // loppar igenom customerList
+            if(pNR == c.getPnr()){  // och hittar matchande pNR
+                int kontoNr = c.addCheckingAccount(0.0, 0.07);
+           return kontoNr; // returnenrar kontonummret
             }
              
         }
