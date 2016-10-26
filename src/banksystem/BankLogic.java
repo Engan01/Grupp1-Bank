@@ -9,6 +9,7 @@ public class BankLogic {
     
     private ArrayList<Customer> customersList = new ArrayList<>();
     
+    private int accountNumber;
     private static BankLogic instance;
     private BankLogic(){}
     
@@ -81,5 +82,13 @@ public class BankLogic {
     public ArrayList getCustomerList(){ // metod som returnerar customersList
         return customersList;
     }
+    
+//    public String[] removeCustomer(long pNr){
+//        
+//    }
+//    
+//    public int getAccountNumber(){
+//        
+//    }
     
 }

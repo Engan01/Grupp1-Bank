@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -90,7 +89,9 @@ public class FXMLDocumentController implements Initializable {
         if (b1) {
             String n = s.getN();
             long l = s.getL();
-            b.addCustomer(n, l);
+            boolean a = b.addCustomer(n, l);
+            if(!a)
+                statusLabel.setText("User already exists!");
 
             s.setB(Boolean.FALSE);
             s.setL(null);

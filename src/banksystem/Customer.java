@@ -38,4 +38,8 @@ public class Customer {
         String str= "Name: "+this.getName()+", Social security No: "+this.getPnr();
         return str;
     }
+    
+//    public String[] closeAllAccounts(){
+//        
+//    }
 }
