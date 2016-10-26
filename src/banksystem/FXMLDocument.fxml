@@ -84,7 +84,7 @@
                               <Insets top="-10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
                            <font>
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>

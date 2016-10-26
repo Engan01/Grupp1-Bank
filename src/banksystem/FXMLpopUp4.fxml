@@ -25,6 +25,6 @@
    <children>
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#saving" prefHeight="27.0" prefWidth="139.0" text="Savings Account" />
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#cancelPop4" prefHeight="27.0" prefWidth="144.0" text="Cancel" GridPane.rowIndex="2" />
-      <Button mnemonicParsing="false" onAction="#credit" prefHeight="27.0" prefWidth="140.0" text="Credit Account" GridPane.rowIndex="1" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#credit" prefHeight="27.0" prefWidth="140.0" text="Credit Account" GridPane.rowIndex="1" />
    </children>
 </GridPane>
