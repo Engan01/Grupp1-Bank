@@ -29,7 +29,7 @@ public class SavingAccount extends Account{
 
     }
     public String getAccountName(){
-    return "Credit Account";    
+    return "Saving Account";    
     }
 }
 
