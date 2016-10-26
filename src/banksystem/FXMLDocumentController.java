@@ -102,17 +102,31 @@ public class FXMLDocumentController implements Initializable {
 
         boolean b1 = s.getB();
         if (b1) {
+            try{
             String n = s.getN();
-            long l = s.getL();
+            String n2 = s.getN2();
+            n2 = n2.replaceAll("-", "").trim();
+            int i1 = n2.length();
+            
+            if(i1 != 12){
+                statusLabel.setText("Please type full social security number!");
+                throw new NullPointerException();
+            }
+            long l = Long.parseLong(n2);
+            
+            
             boolean a = b.addCustomer(n, l);
             if (!a) {
                 statusLabel.setText("User already exists!");
             }
 
-            s.setB(Boolean.FALSE);
-            s.setL(null);
-            s.setN(null);
+            
+            }catch(NullPointerException ex){}
         }
+        s.setB(Boolean.FALSE);
+        s.setL(null);
+        s.setN(null);
+        s.setN2(null);
         setListView();
 
     }

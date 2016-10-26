@@ -31,8 +31,8 @@ public class FXMLpopUp1 implements Initializable {
         s.setB(Boolean.TRUE);
         String s1 = labelSsnPop1.getText();
         s1 = s1.replaceAll("-", "").trim();
-        long l = Long.parseLong(s1);
-        s.setL(l);
+        s.setN2(s1);
+        
         
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();

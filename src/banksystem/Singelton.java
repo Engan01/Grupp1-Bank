@@ -17,6 +17,7 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     
     private Boolean b;
     private String n;
+    private String n2;
     private Long l;
     private int i;
 
@@ -50,6 +51,14 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
 
     public void setI(int i) {
         this.i = i;
+    }
+
+    public String getN2() {
+        return n2;
+    }
+
+    public void setN2(String n2) {
+        this.n2 = n2;
     }
     
     
