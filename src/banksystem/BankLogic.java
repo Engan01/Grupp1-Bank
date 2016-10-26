@@ -4,7 +4,7 @@ package banksystem;
 
 import java.util.ArrayList;
 
- 
+
 public class BankLogic {
     
     private ArrayList<Customer> customersList = new ArrayList<>();
@@ -44,9 +44,9 @@ public class BankLogic {
     }
     
     public boolean searchCustomer(long pNr){ // metod för att söka efter kunder med personnumer
-       
+        
         for(Customer c : customersList){ // löper igenom lista med kunder
-            long p = c.getPnr(); 
+            long p = c.getPnr();
             if(pNr == p) //om personnumret finns returneras true
                 return true;
         }
@@ -62,7 +62,7 @@ public class BankLogic {
             long p = c.getPnr();
             if(p == pNr){
                 c1 = c;
-            break;
+                break;
             }
         }
         
@@ -72,9 +72,9 @@ public class BankLogic {
         int i = 1;
         for(Account l : a){
             lista[i] = Integer.toString(l.getAccountNumber());
-            i++;    
+            i++;
         }
-
+        
         return lista;
     }
     
@@ -84,11 +84,11 @@ public class BankLogic {
     }
     
 //    public String[] removeCustomer(long pNr){
-//        
+//
 //    }
-//    
+//
 //    public int getAccountNumber(){
-//        
+//
 //    }
     
     public boolean changeCustomerName(String name, long pNR){
@@ -97,35 +97,89 @@ public class BankLogic {
             if(pNR == customersList.get(i).getPnr()){
                 customersList.get(i).setName(name);
                 return true;
-                }
-                
             }
-            return false;
+            
         }
-        
+        return false;
+    }
+    
     public int addSavingsAccount(long pNR){
-        for(Customer c : customersList){ // loppar igenom customerList
-            if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addSavingAccount(0.0, 0.005);
-           return kontoNr; // returnenrar kontonummret
+        for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
+            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
+                customersList.get(i).getAccountList().add(new SavingAccount(0.0, 0.005)); // lägger till ett konto för pNR
+                int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
+                int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
+                return accountNumberGiven; // returnenrar kontonummret
             }
-             
+            
         }
-        return -1;     
+        return -1;
     }
     
     public int addCreditAccount(long pNR){
-            for(Customer c : customersList){ // loppar igenom customerList
-            if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addCheckingAccount(0.0, 0.07);
-           return kontoNr; // returnenrar kontonummret
+        for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
+            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
+                customersList.get(i).getAccountList().add(new CreditAccount(0.0, 0.07)); // lägger till ett konto för pNR
+                int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
+                int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
+                return accountNumberGiven; // returnenrar kontonummret
             }
-             
-        }
-        return -1;     
+            
+        }return -1;
     }
     
-   
+    
+    
+    
+    public boolean withdraw(long pNR, int accountNumber, double amount){
+        
+        for(int i = 0; i <customersList.size(); i++){ // loppar igenom customerList
+            if(pNR == customersList.get(i).getPnr()){ // matchar personnummer
+                
+                for(int j = 0; j < customersList.get(i).getAccountList().size(); j++){ // går in i matchande person och hämtar storlek på accountList
+                    if(accountNumber == customersList.get(i).getAccountList().get(j).accountNumber){ // letar upp matchande kontonummer
+                        
+                        if("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())){ // kontrollerar om kontonummer är ett Kreditkonto
+                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
+                            double newBalance = currentBalance - amount; // räknar ut nytt belopp
+                            
+                            if(newBalance >= 5000){ // om det nya beloppet på kontot är mer än -5000
+                                return true; // Det går bra att sätta in pengar
+                            }else{
+                                return false; // annars, det går inte
+                            }
+                            
+                        }else{
+                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett kreditkonto
+                            double newBalance = currentBalance - amount; // räknar ut nya beloppet
+                            
+                            if(newBalance >= 0){ // kontrollerar om det nya beloppet accepteras på sparkontot
+                                return true; // Accepteras
+                            }else{
+                                return false; // Accepteras inte
+                            }
+                            
+                        }
+                        
+              
+                        
+                    }
+                    
+                }
+                
+            }else{
+                System.out.println("pNR matchar inte!");
+                return false;
+            }
+            
+            
+            
+        } // första for sats
+        return false;
+    } // slut på metod
+    
+    
+    
     
     
     
