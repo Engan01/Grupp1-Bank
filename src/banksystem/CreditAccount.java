@@ -14,8 +14,8 @@ public class CreditAccount extends Account {
         
     }
     
-    public CreditAccount(int accountNumber, double balance, double interestRate){
-        super(accountNumber, balance, interestRate);
+    public CreditAccount(double balance, double interestRate){
+        super(balance, interestRate);
     }
     
 }

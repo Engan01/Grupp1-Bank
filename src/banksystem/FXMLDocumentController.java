@@ -26,6 +26,8 @@ import javafx.stage.Stage;
  *
  * @author asanilssonenglund
  */
+
+
 public class FXMLDocumentController implements Initializable {
 
     private BankLogic b;

@@ -14,8 +14,8 @@ public class SavingAccount extends Account{
         super(); // default constructor
     }
     
-    public SavingAccount(int accountNumber, double balance, double interestRate){
-        super(accountNumber, balance, interestRate);
+    public SavingAccount(double balance, double interestRate){
+        super(balance, interestRate);
     }
    
 }
