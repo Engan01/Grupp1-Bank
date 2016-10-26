@@ -91,4 +91,18 @@ public class BankLogic {
 //        
 //    }
     
+    public boolean changeCustomerName(String name, long pNR){
+        
+        for(int i = 0; i <customersList.size(); i++){
+            if(pNR == customersList.get(i).getPnr()){
+                customersList.get(i).setName(name);
+                return true;
+                }
+                
+            }
+            return false;
+        }
+        
+    
+    
 }

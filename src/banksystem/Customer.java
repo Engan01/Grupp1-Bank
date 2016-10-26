@@ -14,10 +14,23 @@ public class Customer {
     public Customer(String name, long pNr){
         this.name = name;
         this.pNr = pNr;
+        SavingAccount s = new SavingAccount(100, 0.07);
+        
     }
 
     public String getName() {
         return name;
+    }
+    
+    public void setName(String name){
+        
+//        boolean 
+//        
+//        name = name.replace()
+//        
+//        if(name)
+//        
+//        this.name=name;
     }
 
     public long getPnr() {
