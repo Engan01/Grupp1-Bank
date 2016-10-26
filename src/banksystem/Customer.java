@@ -14,7 +14,7 @@ public class Customer {
     public Customer(String name, long pNr){
         this.name = name;
         this.pNr = pNr;
-        SavingAccount s = new SavingAccount(100, 0.07);
+        addSavingAccount(100, 0.07);
         
     }
 
@@ -24,13 +24,8 @@ public class Customer {
     
     public void setName(String name){
         
-//        boolean 
-//        
-//        name = name.replace()
-//        
-//        if(name)
-//        
-//        this.name=name;
+        String newName = name.replaceAll("[^A-Z]","");
+        name=newName;
     }
 
     public long getPnr() {
@@ -50,6 +45,18 @@ public class Customer {
         
         String str= "Name: "+this.getName()+", Social security No: "+this.getPnr();
         return str;
+    }
+    
+    public void addSavingAccount(double balance, double interestRate){
+        accounts.add(new SavingAccount(balance, interestRate));
+        
+        
+    }
+    
+    public void addCheckingAccount(double balance, double interestRate){
+        
+        accounts.add(new CreditAccount(balance, interestRate)); 
+        
     }
     
 //    public String[] closeAllAccounts(){
