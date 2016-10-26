@@ -8,6 +8,7 @@ public class SavingAccount extends Account{
     
     
     private int numberOfWithdraw = 1;
+    private double amount;
     
     
     public SavingAccount(){
@@ -17,5 +18,18 @@ public class SavingAccount extends Account{
     public SavingAccount(double balance, double interestRate){
         super(balance, interestRate);
     }
-   
+       public double deposit(double balance){
+        balance+=amount;
+        return balance;
+    }
+    
+    public double withdraw(double balance, double creditLimit){
+        balance-=amount;
+        return balance;
+
+    }
+    public String getAccountName(){
+    return "Credit Account";    
+    }
 }
+
