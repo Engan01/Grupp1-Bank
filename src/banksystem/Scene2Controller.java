@@ -147,11 +147,13 @@ public class Scene2Controller implements Initializable {
                 case(1):
                     int g = b.addSavingsAccount(l);
                     break;
-                default:
+                case(-1):
                     g = b.addCreditAccount(l);
                     break;
             }
         }
+        s.setB(Boolean.FALSE);
+        s.setI(0);
         setListView();
     }
 

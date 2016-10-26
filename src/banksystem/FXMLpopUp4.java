@@ -41,6 +41,7 @@ public class FXMLpopUp4 implements Initializable {
 
     @FXML
     private void cancelPop4(ActionEvent event) {
+        s.setB(Boolean.FALSE);
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
