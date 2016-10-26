@@ -104,14 +104,33 @@ public class BankLogic {
         }
         
     public int addSavingsAccount(long pNR){
-        for(int i = 0; i < customersList.size(); i++){
-            if(pNR == customersList.get(i).getPnr()){
-                customersList.get(i).addSavingAccount(0, 0.05);
-                return customersList.get(i).getAccountList().get(i).accountNumber;
+        for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
+            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
+                customersList.get(i).getAccountList().add(new SavingAccount(0.0, 0.005)); // lägger till ett konto för pNR
+           int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
+            int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
+            return accountNumberGiven; // returnenrar kontonummret
             }
+             
         }
-        return -1;
+        return -1;     
     }
+    
+    public int addCreditAccount(long pNR){
+              for(int i = 0; i < customersList.size(); i++){ // loppar igenom customerList
+            if(pNR == customersList.get(i).getPnr()){  // och hittar matchande pNR
+                customersList.get(i).getAccountList().add(new CreditAccount(0.0, 0.07)); // lägger till ett konto för pNR
+           int objectNum = customersList.get(i).getAccountList().size(); // hämtar storleken på listan så vi vet vad tillagda kontot ligger
+            int accountNumberGiven = customersList.get(i).getAccountList().get(objectNum).accountNumber; // hämtar ut kontonummer för tillagt konto
+            return accountNumberGiven; // returnenrar kontonummret
+            }
+             
+        }
+        return -1;     
+    }
+    
+   
+    
     
     
 }
