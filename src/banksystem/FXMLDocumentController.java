@@ -176,7 +176,14 @@ public class FXMLDocumentController implements Initializable {
         ssnField.clear();
         setListView();
     }
-
+    
+     @FXML
+    private void viewCustomerDetails(ActionEvent event) throws IOException {
+        
+        String str=(String)customersList.getSelectionModel().getSelectedItem();
+        customerDetailList.setText(str);
+    }
+    
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
 
@@ -202,6 +209,8 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
