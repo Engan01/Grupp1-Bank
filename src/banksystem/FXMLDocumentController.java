@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -126,8 +125,11 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
+        try{
 
         String s1 = (String) customersList.getSelectionModel().getSelectedItem();
+        if(s1.isEmpty())
+            throw new NullPointerException();
 
         Stage stage;
         Parent root;
@@ -147,6 +149,9 @@ public class FXMLDocumentController implements Initializable {
         }
         setListView();
         s.setB(Boolean.FALSE);
+        }catch(NullPointerException ex){
+            statusLabel.setText("Select customer!");
+        }
 
     }
 

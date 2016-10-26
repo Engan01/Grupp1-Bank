@@ -100,13 +100,18 @@ public class Scene2Controller implements Initializable {
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.showAndWait();
         
+        String s1 = ssn.getText();
+        s1 = s1.replaceAll("-", "");
+        long l = Long.parseLong(s1);
+        
         if(s.getB()){
             int i = s.getI();
             switch(i){
                 case(1):
-                    
+                    int g = b.addSavingsAccount(l);
             }
         }
+        setListView();
     }
 
     @FXML
@@ -125,6 +130,7 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.showAndWait();
+        setListView();
         }catch(NullPointerException ex){
             transferStatus.setText("You have to select a account!");
         }
@@ -160,12 +166,29 @@ public class Scene2Controller implements Initializable {
         }
         name.setText(namn);
         ssn.setText(sl);
+        setListView();
+    }
+    
+        public void setListView() {  // metod för att lägga samtliga kunders konto i listView
+        String g = ssn.getText();
+        g = g.replaceAll("-", "");
+        long pNr = Long.parseLong(g);
         
-
         accountObservableList = FXCollections.observableArrayList();
 
-        // accountList.setItems(accountObservableList);
+        ArrayList<Customer> tC = b.getCustomerList();
         
+
+        for (Customer c : tC) {
+            if(c.getPnr() == pNr){
+                ArrayList<Account> a = c.getAccountList();
+                for(Account a1 : a){
+                    accountObservableList.add(a1.getAccountNumber() + " ");
+                }
+            }
+        }
+
+        accountList.setItems(accountObservableList);
     }
 
 }
