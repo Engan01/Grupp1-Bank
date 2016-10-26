@@ -220,13 +220,9 @@ public class Scene2Controller implements Initializable {
         
         b = BankLogic.getInstance();
         
-        SavingAccount s1 = new SavingAccount(1002, 5000, 0.07);
-        CreditAccount c1 = new CreditAccount(2014, 4000, 0.05);
         accountObservableList = FXCollections.observableArrayList();
         
-        
-        accountObservableList.add(s1.getClass().getName());
-        accountObservableList.add(c1.getClass().getName());
+
         
     // accountList.setItems(accountObservableList);
         
