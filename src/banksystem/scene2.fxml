@@ -147,7 +147,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </ListView>
-            <Label text="Customer all accounts:" GridPane.rowIndex="1">
+            <Label text="Customer all accounts:" textFill="#232df2" GridPane.rowIndex="1">
                <font>
                   <Font size="13.0" />
                </font>
@@ -155,7 +155,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="deleteAccount" mnemonicParsing="false" onAction="#deleteAccount" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#deleteAccountEvent" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>
@@ -186,7 +186,10 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" text="Status" GridPane.columnIndex="1" />
+            <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="273.0" text="Status" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
          </children>
       </GridPane>
       <GridPane prefHeight="57.0" prefWidth="715.0" style="-fx-background-color: #89be30;">

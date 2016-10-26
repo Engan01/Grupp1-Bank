@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.Scene2Controller">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp5">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="Withdraw:" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="283.0" text="Interest rate:" GridPane.rowIndex="1" />
