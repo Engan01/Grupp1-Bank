@@ -73,8 +73,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void editName(ActionEvent e) throws IOException {
-
-        // popup-kod för att ändra namn
+       
         Stage stage;
         Parent root;
 
@@ -84,6 +83,44 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(editNameButton.getScene().getWindow());
         stage.showAndWait();
+        
+        if(s.getB()){
+            try{
+        String newName = s.getN();
+        newName = newName.trim();
+        if(newName.isEmpty()){
+            transferStatus.setText("No new name selected!");
+            throw new NullPointerException();
+        }
+        String s1 = newName.replaceAll("[A-Za-z ]", "");
+        if(!s1.isEmpty()){
+            transferStatus.setText("Name can't contain numbers!");
+            throw new NullPointerException();
+        }
+        
+        s.setN(null);
+        s.setB(Boolean.FALSE);
+        
+        String n = ssn.getText();
+        n = n.replaceAll("-", "").trim();
+        long l = Long.parseLong(n);
+        
+        ArrayList<Customer> a = b.getCustomerList();
+        
+        for(Customer c : a){
+            if(c.getPnr() == l){
+                c.setName(newName);
+                name.setText(newName);
+            }
+        }
+        
+            }catch(NullPointerException ex){
+                
+            }
+        }else{
+            transferStatus.setText("No new name selected!");
+        }
+        
 
     }
 
@@ -172,6 +209,7 @@ public class Scene2Controller implements Initializable {
         ssn.setText(sl);
         setListView();
     }
+    
     
         public void setListView() {  // metod för att lägga samtliga kunders konto i listView
         String g = ssn.getText();

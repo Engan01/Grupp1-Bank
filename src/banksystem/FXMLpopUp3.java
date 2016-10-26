@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -17,12 +17,17 @@ import javafx.stage.Stage;
  */
 
 public class FXMLpopUp3 implements Initializable {
-
+    
+    private Singelton s;
+    
     @FXML
-    private Button confirmPop3, cancelPop3;
+    private TextField textFieldPop3;
 
     @FXML
     private void confirmPop3(ActionEvent event) {
+        String name = textFieldPop3.getText();
+        s.setN(name);
+        s.setB(Boolean.TRUE);
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
@@ -39,7 +44,7 @@ public class FXMLpopUp3 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        s = Singelton.getInstance();
     }
 
 }

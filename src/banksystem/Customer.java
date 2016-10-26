@@ -24,8 +24,8 @@ public class Customer {
     
     public void setName(String name){
         
-        String newName = name.replaceAll("[^A-Z]","");
-        name=newName;
+        String newName = name.replaceAll("[^A-Za-z ]","").trim();
+        this.name=newName;
     }
 
     public long getPnr() {

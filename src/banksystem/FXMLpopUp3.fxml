@@ -10,7 +10,7 @@
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp3">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="New name:" />
-      <TextField fx:id="labelNamePop1" GridPane.columnIndex="1" />
+      <TextField fx:id="textFieldPop3" GridPane.columnIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmPop3" text="Confirm" />

@@ -193,13 +193,6 @@ public class FXMLDocumentController implements Initializable {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
 
-        b.addCustomer("Anders Christensen", 199212245608l);
-        b.addCustomer("Anna Nilsson", 199212234608l);
-        b.addCustomer("Sven Svensson", 199212645608l);
-        b.addCustomer("Sara Andersson", 199212560608l);
-
-
-
         setListView(); // fyller lista med kunder
 
     }

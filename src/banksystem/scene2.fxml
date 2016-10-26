@@ -71,8 +71,8 @@
             </GridPane>
             <GridPane prefHeight="112.0" prefWidth="200.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.46516418457031" minWidth="10.0" prefWidth="118.72090148925781" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.27909851074219" minWidth="10.0" prefWidth="124.27909851074219" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.46516418457031" minWidth="10.0" prefWidth="59.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="158.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
@@ -85,7 +85,7 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="name" text="Label" textFill="WHITE" GridPane.columnIndex="1">
+                  <Label fx:id="name" alignment="CENTER" prefHeight="17.0" prefWidth="155.0" text="Label" textFill="WHITE" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
@@ -95,7 +95,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="ssn" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="ssn" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Edit name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
