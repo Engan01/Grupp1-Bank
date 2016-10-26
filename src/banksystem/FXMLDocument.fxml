@@ -92,7 +92,7 @@
                               <Insets left="15.0" top="-10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="15.0" top="-20.0" />
                            </GridPane.margin>
@@ -143,7 +143,7 @@
                   <Font name="Regencie Light" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="exportFileButton" mnemonicParsing="false" onAction="#exportToFile" prefHeight="29.0" prefWidth="120.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Export to file" GridPane.rowIndex="2">
+            <Button fx:id="exportFileButton" mnemonicParsing="false" onAction="#exportToFile" prefHeight="29.0" prefWidth="120.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" stylesheets="@../StyleSheet.css" text="Export to file" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="140.0" />
                </GridPane.margin>
