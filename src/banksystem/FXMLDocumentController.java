@@ -55,12 +55,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
+        try{
+        String customer = (String) customersList.getSelectionModel().getSelectedItem();
+        if(customer.isEmpty())
+            throw new NullPointerException();
+        customer = customer.replaceAll("[A-Za-z -]", "").trim();
+        long l = Long.parseLong(customer);
+        
+        s.setL(l);
 
         Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
         Scene s1 = new Scene(root);
         Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stg.setScene(s1);
         stg.show();
+        }catch(NullPointerException ex){
+            statusLabel.setText("Select customer!");
+        }
 
     }
 

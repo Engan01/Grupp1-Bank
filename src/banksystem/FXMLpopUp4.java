@@ -15,10 +15,14 @@ import javafx.stage.Stage;
  */
 
 public class FXMLpopUp4 implements Initializable {
+    
+    private Singelton s;
 
 
     @FXML
     private void saving(ActionEvent event) {
+        s.setB(Boolean.TRUE);
+        s.setI(1);
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
@@ -27,6 +31,8 @@ public class FXMLpopUp4 implements Initializable {
     
         @FXML
     private void credit(ActionEvent event) {
+        s.setB(Boolean.TRUE);
+        s.setI(-1);
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
@@ -43,7 +49,7 @@ public class FXMLpopUp4 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        s = Singelton.getInstance();
      
     }
 

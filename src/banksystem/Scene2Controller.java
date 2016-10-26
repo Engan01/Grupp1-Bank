@@ -2,6 +2,7 @@ package banksystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,9 +28,13 @@ public class Scene2Controller implements Initializable {
 
     private ObservableList<String> accountObservableList;
     private BankLogic b;
+    private Singelton s;
 
     @FXML
     private Label name;
+    
+    @FXML
+    private Label ssn;
     
     @FXML
     private Label transferStatus;
@@ -94,6 +99,14 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.showAndWait();
+        
+        if(s.getB()){
+            int i = s.getI();
+            switch(i){
+                case(1):
+                    
+            }
+        }
     }
 
     @FXML
@@ -131,6 +144,23 @@ public class Scene2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         b = BankLogic.getInstance();
+        s = Singelton.getInstance();
+        
+        long l = s.getL();
+        String sl = Long.toString(l);
+        sl = sl.substring(0, 8) + "-" + sl.substring(8, sl.length());        
+        s.setL(null);
+        String namn = null;
+        ArrayList<Customer> a = b.getCustomerList();
+        for(Customer c : a){
+            if(c.getPnr() == l){
+                namn = c.getName();
+                break;
+            }
+        }
+        name.setText(namn);
+        ssn.setText(sl);
+        
 
         accountObservableList = FXCollections.observableArrayList();
 
