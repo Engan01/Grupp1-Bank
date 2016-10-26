@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public abstract class Account  {
     
+    private static int accountNumberAll = 1001;
+    
     protected int accountNumber;
     protected double balance;
     protected ArrayList <Transaction> transaction;
@@ -19,63 +21,49 @@ public abstract class Account  {
         // default
     }
     
-    public Account(int accountNumber, double balance, double interestRate){
+    public Account(double balance, double interestRate){
         
-        this.accountNumber=accountNumber;
-        this.balance=balance;
-        this.interestRate=interestRate;
+        
+        this.balance = balance;
+        this.interestRate = interestRate;
+        setAccountNumber();
     }
     
     
     public int getAccountNumber(){
         return accountNumber;
     }
-
-    /**
-     * @param accountNumber the accountNumber to set
-     */
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
+    
+    public void setAccountNumber() {
+        this.accountNumber = accountNumberAll;
+        accountNumberAll++;
     }
 
-    /**
-     * @return the balance
-     */
+
     public double getBalance() {
         return balance;
     }
 
-    /**
-     * @param balance the balance to set
-     */
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    /**
-     * @return the transaction
-     */
+
     public ArrayList <Transaction> getTransaction() {
         return transaction;
     }
 
-    /**
-     * @param transaction the transaction to set
-     */
+
     public void setTransaction(ArrayList <Transaction> transaction) {
         this.transaction = transaction;
     }
 
-    /**
-     * @return the accountType
-     */
+
     public String getAccountType() {
         return accountType;
     }
 
-    /**
-     * @param accountType the accountType to set
-     */
+
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
