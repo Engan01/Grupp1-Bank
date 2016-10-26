@@ -183,7 +183,7 @@ public class Scene2Controller implements Initializable {
             if(c.getPnr() == pNr){
                 ArrayList<Account> a = c.getAccountList();
                 for(Account a1 : a){
-                    accountObservableList.add(a1.getAccountNumber() + " ");
+                    accountObservableList.add(a1.getAccountNumber() + " " + a1.getAccountName());
                 }
             }
         }
