@@ -8,7 +8,7 @@ public class SavingAccount extends Account{
     
     
     private int numberOfWithdraw = 1;
-    private double amount;
+//    private double amount;
     
     
     public SavingAccount(){
