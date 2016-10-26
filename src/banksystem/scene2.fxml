@@ -96,7 +96,10 @@
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="ssn" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Edit name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Edit name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin></Button>
                </children>
             </GridPane>
             <GridPane prefHeight="117.0" prefWidth="243.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
