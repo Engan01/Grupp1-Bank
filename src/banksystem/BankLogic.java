@@ -144,6 +144,7 @@ public class BankLogic {
                             double newBalance = currentBalance - amount; // räknar ut nytt belopp
                             
                             if(newBalance >= 5000){ // om det nya beloppet på kontot är mer än -5000
+                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
                                 return true; // Det går bra att sätta in pengar
                             }else{
                                 return false; // annars, det går inte
@@ -154,6 +155,7 @@ public class BankLogic {
                             double newBalance = currentBalance - amount; // räknar ut nya beloppet
                             
                             if(newBalance >= 0){ // kontrollerar om det nya beloppet accepteras på sparkontot
+                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
                                 return true; // Accepteras
                             }else{
                                 return false; // Accepteras inte
