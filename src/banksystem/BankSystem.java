@@ -25,7 +25,8 @@ public class BankSystem extends Application {
         stage.show();
         
         stage.setTitle("RADER Bank System");
-           
+        
+        
     }
     
 
@@ -34,6 +35,7 @@ public class BankSystem extends Application {
      */
     public static void main(String[] args) {   
         launch(args);
+        
     }
     
 }

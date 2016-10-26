@@ -103,6 +103,15 @@ public class BankLogic {
             return false;
         }
         
+    public int addSavingsAccount(long pNR){
+        for(int i = 0; i < customersList.size(); i++){
+            if(pNR == customersList.get(i).getPnr()){
+                customersList.get(i).addSavingAccount(0, 0.05);
+                return customersList.get(i).getAccountList().get(i).accountNumber;
+            }
+        }
+        return -1;
+    }
     
     
 }
