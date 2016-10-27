@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,18 +8,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp3">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="416.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp3">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="New name:" />
-      <TextField fx:id="textFieldPop3" GridPane.columnIndex="1" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-         <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmPop3" text="Confirm" />
-         </children>
-      </AnchorPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="New name:">
+         <font>
+            <Font name="Helvetica" size="12.0" />
+         </font></Label>
+      <TextField fx:id="textFieldPop3" style="-fx-background-radius: 0;" GridPane.columnIndex="1" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button layoutX="85.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancelPop3" text="Cancel" />
+            <Button layoutX="85.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancelPop3" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Helvetica Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#confirmPop3" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Confirm" textFill="#bddad6" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="9.0">
+               <font>
+                  <Font name="Helvetica Bold" size="12.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>
