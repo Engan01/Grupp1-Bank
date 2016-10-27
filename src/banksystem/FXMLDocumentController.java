@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +28,6 @@ import javafx.stage.Stage;
  *
  * @author asanilssonenglund
  */
-
 public class FXMLDocumentController implements Initializable {
 
     private BankLogic b;
@@ -55,21 +55,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
-        try{
-        String customer = (String) customersList.getSelectionModel().getSelectedItem();
-        if(customer.isEmpty())
-            throw new NullPointerException();
-        customer = customer.replaceAll("[A-Za-z -]", "").trim();
-        long l = Long.parseLong(customer);
-        
-        s.setL(l);
+        try {
+            String customer = (String) customersList.getSelectionModel().getSelectedItem();
+            if (customer.isEmpty()) {
+                throw new NullPointerException();
+            }
+            customer = customer.replaceAll("[A-Za-z -]", "").trim();
+            long l = Long.parseLong(customer);
 
-        Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
-        Scene s1 = new Scene(root);
-        Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        stg.setScene(s1);
-        stg.show();
-        }catch(NullPointerException ex){
+            s.setL(l);
+
+            Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+            Scene s1 = new Scene(root);
+            Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stg.setScene(s1);
+            stg.show();
+        } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
 
@@ -78,15 +79,30 @@ public class FXMLDocumentController implements Initializable {
     // search method
     @FXML
     public void search(ActionEvent event) throws IOException {
-        String str = ssnField.getText();
-        Boolean ok = b.searchCustomer(Long.parseLong(str));
 
-        if (ok) {
-            setSearchListView(Long.parseLong(str)); // anropar metoden setSearchListView
-            
-        } else {
-            statusLabel.setText("This customer doesn't exist in the system!");
+        String str = " ";
+        Boolean ok = true;
+        try {
+            str = ssnField.getText();
+            ok = b.searchCustomer(Long.parseLong(str));
+
+            if (ok) {
+                setSearchListView(Long.parseLong(str)); // anropar metoden setSearchListView
+
+            } else {
+                statusLabel.setText("This customer doesn't exist in the system!");
+            }
+
+            if (str.length() < 12) {
+                throw new IndexOutOfBoundsException();
+            }
+
+        } catch (IndexOutOfBoundsException ex) {
+            statusLabel.setText("Invalid!The social security number is less than 12 numbers");
+        } catch (Exception ex) {
+            statusLabel.setText("Invalid! You need to type your ssn the right way, YYYYMMDDXXXX");
         }
+
     }
 
     @FXML
@@ -104,26 +120,25 @@ public class FXMLDocumentController implements Initializable {
 
         boolean b1 = s.getB();
         if (b1) {
-            try{
-            String n = s.getN();
-            String n2 = s.getN2();
-            n2 = n2.replaceAll("-", "").trim();
-            int i1 = n2.length();
-            
-            if(i1 != 12){
-                statusLabel.setText("Please type full social security number!");
-                throw new NullPointerException();
-            }
-            long l = Long.parseLong(n2);
-            
-            
-            boolean a = b.addCustomer(n, l);
-            if (!a) {
-                statusLabel.setText("User already exists!");
-            }
+            try {
+                String n = s.getN();
+                String n2 = s.getN2();
+                n2 = n2.replaceAll("-", "").trim();
+                int i1 = n2.length();
 
-            
-            }catch(NullPointerException ex){}
+                if (i1 != 12) {
+                    statusLabel.setText("Please type full social security number!");
+                    throw new NullPointerException();
+                }
+                long l = Long.parseLong(n2);
+
+                boolean a = b.addCustomer(n, l);
+                if (!a) {
+                    statusLabel.setText("User already exists!");
+                }
+
+            } catch (NullPointerException ex) {
+            }
         }
         s.setB(Boolean.FALSE);
         s.setL(null);
@@ -132,40 +147,42 @@ public class FXMLDocumentController implements Initializable {
         setListView();
 
     }
-    
+
     @FXML
-    private void customersList(ActionEvent event) throws IOException { 
-    
+    private void customersList(ActionEvent event) throws IOException {
+
         customerDetailList.setText("hej");
-        
+
     }
+
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
-        try{
+        try {
 
-        String s1 = (String) customersList.getSelectionModel().getSelectedItem();
-        if(s1.isEmpty())
-            throw new NullPointerException();
+            String s1 = (String) customersList.getSelectionModel().getSelectedItem();
+            if (s1.isEmpty()) {
+                throw new NullPointerException();
+            }
 
-        Stage stage;
-        Parent root;
+            Stage stage;
+            Parent root;
 
-        stage = new Stage();
-        root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(deleteCustomerButton.getScene().getWindow());
-        stage.showAndWait();
+            stage = new Stage();
+            root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(deleteCustomerButton.getScene().getWindow());
+            stage.showAndWait();
 
-        boolean b = s.getB();
-        if (b) {
-            s1 = s1.replaceAll("[A-Za-z-]", "").trim();
-            long pNr = Long.parseLong(s1);
-            //metod i bankLogic för att ta bort kund (skicka long pNr)
-        }
-        setListView();
-        s.setB(Boolean.FALSE);
-        }catch(NullPointerException ex){
+            boolean b = s.getB();
+            if (b) {
+                s1 = s1.replaceAll("[A-Za-z-]", "").trim();
+                long pNr = Long.parseLong(s1);
+                //metod i bankLogic för att ta bort kund (skicka long pNr)
+            }
+            setListView();
+            s.setB(Boolean.FALSE);
+        } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
 
@@ -177,14 +194,14 @@ public class FXMLDocumentController implements Initializable {
         ssnField.clear();
         setListView();
     }
-    
-     @FXML
+
+    @FXML
     private void viewCustomerDetails(ActionEvent event) throws IOException {
-        
-        String str=(String)customersList.getSelectionModel().getSelectedItem();
+
+        String str = (String) customersList.getSelectionModel().getSelectedItem();
         customerDetailList.setText(str);
     }
-    
+
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
 
@@ -210,8 +227,6 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
-    
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -221,20 +236,20 @@ public class FXMLDocumentController implements Initializable {
         setListView(); // fyller lista med kunder
 
     }
-    
-     public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
-         
+
+    public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
+
         oList = FXCollections.observableArrayList();
 
-        for (Customer c :(ArrayList<Customer>)b.getCustomerList()) {// loopar igenom lista med kunder
-            
-            if(ssn==c.getPnr()){// om det inmatade personnummret finns i listan så körs resten av koden
-            String s = Long.toString(c.getPnr());
-            s = s.substring(0, 8) + "-" + s.substring(8, s.length());
-            String s1 = c.getName() + " " + s;
-            oList.add(s1);
+        for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
+
+            if (ssn == c.getPnr()) {// om det inmatade personnummret finns i listan så körs resten av koden
+                String s = Long.toString(c.getPnr());
+                s = s.substring(0, 8) + "-" + s.substring(8, s.length());
+                String s1 = c.getName() + " " + s;
+                oList.add(s1);
             }
-          
+
         }
 
         customersList.setItems(oList);
