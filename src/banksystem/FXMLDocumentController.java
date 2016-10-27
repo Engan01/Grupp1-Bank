@@ -82,7 +82,8 @@ public class FXMLDocumentController implements Initializable {
         Boolean ok = b.searchCustomer(Long.parseLong(str));
 
         if (ok) {
-            b.getCustomer(Long.parseLong(str));
+            setSearchListView(Long.parseLong(str)); // anropar metoden setSearchListView
+            
         } else {
             statusLabel.setText("This customer doesn't exist in the system!");
         }
@@ -219,6 +220,24 @@ public class FXMLDocumentController implements Initializable {
 
         setListView(); // fyller lista med kunder
 
+    }
+    
+     public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
+         
+        oList = FXCollections.observableArrayList();
+
+        for (Customer c :(ArrayList<Customer>)b.getCustomerList()) {// loopar igenom lista med kunder
+            
+            if(ssn==c.getPnr()){// om det inmatade personnummret finns i listan så körs resten av koden
+            String s = Long.toString(c.getPnr());
+            s = s.substring(0, 8) + "-" + s.substring(8, s.length());
+            String s1 = c.getName() + " " + s;
+            oList.add(s1);
+            }
+          
+        }
+
+        customersList.setItems(oList);
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders namn i listView
