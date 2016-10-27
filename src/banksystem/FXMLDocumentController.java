@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -84,6 +83,7 @@ public class FXMLDocumentController implements Initializable {
         Boolean ok = true;
         try {
             str = ssnField.getText();
+            str = str.replaceAll("-", "").trim(); // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton 
             ok = b.searchCustomer(Long.parseLong(str));
 
             if (ok) {
@@ -93,12 +93,12 @@ public class FXMLDocumentController implements Initializable {
                 statusLabel.setText("This customer doesn't exist in the system!");
             }
 
-            if (str.length() < 12) {
+            if (str.length() < 12 || str.length() > 12) { // större eller mindre än 12 // Anton
                 throw new IndexOutOfBoundsException();
             }
 
         } catch (IndexOutOfBoundsException ex) {
-            statusLabel.setText("Invalid!The social security No. is less\nthan 12 numbers");
+            statusLabel.setText("Invalid social security No!");
         } catch (Exception ex) {
             statusLabel.setText("Invalid! You need to type your social \nsecurity No.the right way, YYYYMMDDXXXX");
         }
