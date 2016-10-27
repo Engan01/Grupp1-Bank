@@ -98,9 +98,9 @@ public class FXMLDocumentController implements Initializable {
             }
 
         } catch (IndexOutOfBoundsException ex) {
-            statusLabel.setText("Invalid!The social security number is less than 12 numbers");
+            statusLabel.setText("Invalid!The social security No. is less\nthan 12 numbers");
         } catch (Exception ex) {
-            statusLabel.setText("Invalid! You need to type your ssn the right way, YYYYMMDDXXXX");
+            statusLabel.setText("Invalid! You need to type your social \nsecurity No.the right way, YYYYMMDDXXXX");
         }
 
     }

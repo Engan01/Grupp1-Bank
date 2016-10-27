@@ -11,7 +11,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLDocumentController">
     <children>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1c2f36" height="559.0" layoutY="51.0" stroke="TRANSPARENT" strokeLineCap="BUTT" strokeMiterLimit="0.0" strokeType="OUTSIDE" width="273.0" />
       <GridPane layoutX="-3.0" layoutY="210.0" prefHeight="611.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -31,14 +30,14 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="10.0" prefWidth="372.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="289.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="248.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView fx:id="customersList" prefHeight="393.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                  <ListView fx:id="customersList" prefHeight="382.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
                   <Label text="Customers: " textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="Helvetica Neue Bold" size="13.0" />
@@ -48,35 +47,35 @@
                      </GridPane.margin>
                   </Label>
                   <HBox prefHeight="144.0" prefWidth="166.0" GridPane.columnIndex="2" GridPane.rowSpan="2" />
-                  <TextArea fx:id="customerDetailList" prefHeight="289.0" prefWidth="322.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextArea fx:id="customerDetailList" prefHeight="247.0" prefWidth="347.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin>
                   </TextArea>
                   <HBox prefHeight="82.0" prefWidth="324.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="View profile" textFill="#baf47c">
+                        <Button mnemonicParsing="false" onAction="#viewProfile" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="View profile" textFill="#bddad6">
                            <HBox.margin>
                               <Insets left="260.0" top="12.0" />
                            </HBox.margin>
                            <font>
-                              <Font name="Helvetica Neue Medium" size="12.0" />
+                              <Font name="Helvetica Bold" size="12.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
                   <GridPane prefHeight="104.0" prefWidth="372.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="231.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="112.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="252.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="120.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="38.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="ssnField" prefHeight="23.0" prefWidth="178.0" promptText="Enter social security No." style="-fx-background-radius: 0;">
+                        <TextField fx:id="ssnField" prefHeight="23.0" prefWidth="215.0" promptText="Enter social security No." style="-fx-background-radius: 0;">
                            <font>
                               <Font name="Helvetica Neue Light" size="12.0" />
                            </font>
@@ -89,38 +88,43 @@
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                            <GridPane.margin>
-                              <Insets left="15.0" top="-10.0" />
+                              <Insets left="5.0" top="-10.0" />
                            </GridPane.margin>
                         </Button>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
-                              <Insets left="15.0" top="-20.0" />
+                              <Insets left="5.0" top="-50.0" />
                            </GridPane.margin>
                            <font>
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                         </Button>
-                        <Label text="Customer details:" GridPane.rowIndex="2">
+                        <Label text="Customer details" GridPane.rowIndex="2">
                            <GridPane.margin>
-                              <Insets top="5.0" />
+                              <Insets top="-10.0" />
                            </GridPane.margin>
                            <font>
                               <Font name="Helvetica Neue Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statusLabel" prefHeight="43.0" prefWidth="224.0" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Helvetica Neue" size="11.0" />
-                           </font>
-                        </Label>
                         <Label prefHeight="15.0" prefWidth="119.0" text="YYYYMMDDXXXX" textAlignment="RIGHT" textFill="#8d8d8d">
                            <GridPane.margin>
-                              <Insets left="130.0" top="30.0" />
+                              <Insets left="145.0" top="30.0" />
                            </GridPane.margin>
                            <font>
                               <Font size="12.0" />
                            </font>
                         </Label>
+                        <Label fx:id="statusLabel" prefHeight="61.0" prefWidth="262.0" textFill="#ff4e26" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Helvetica Neue" size="12.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" startX="-135.0" stroke="#1c2f36" strokeLineCap="BUTT" strokeWidth="1.5" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="110.0" top="-8.0" />
+                           </GridPane.margin>
+                        </Line>
                      </children>
                   </GridPane>
                   <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="119.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Add customer" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="4">
