@@ -78,12 +78,20 @@ public class FXMLDocumentController implements Initializable {
     // search method
     @FXML
     public void search(ActionEvent event) throws IOException {
+        statusLabel.setText("");
 
         String str = " ";
         Boolean ok = true;
         try {
             str = ssnField.getText();
-            str = str.replaceAll("-", "").trim(); // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton 
+            str = str.trim();
+            for (int i = 0; i < str.length(); i++) { // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton 
+                char c = str.charAt(i);
+                if (c == '-') { // det går bara att skriva ett '-'
+                    str = str.substring(0, i) + str.substring(i + 1, str.length());
+                    break;
+                }
+            }
             ok = b.searchCustomer(Long.parseLong(str));
 
             if (ok) {
@@ -107,7 +115,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
-
+        statusLabel.setText("");
+        
         Stage stage;
         Parent root;
 
@@ -121,16 +130,54 @@ public class FXMLDocumentController implements Initializable {
         boolean b1 = s.getB();
         if (b1) {
             try {
-                String n = s.getN();
-                String n2 = s.getN2();
-                n2 = n2.replaceAll("-", "").trim();
-                int i1 = n2.length();
+                String n = s.getN(); // namn
+                String n2 = s.getN2(); // SSN
+                n = n.trim();
+                n2 = n2.trim();
 
-                if (i1 != 12) {
+                if (n.isEmpty()) {
+                    statusLabel.setText("Please type a name!");
+                    throw new NullPointerException();
+                }
+
+                int i1 = 0;
+                int i2 = 0;
+                for (int i = 0; i < n.length(); i++) {
+                    if (n.charAt(i) == ' ') {
+                        i1++;
+                    } else if (n.charAt(i) == '-') {
+                        i2++;
+                    }
+                }
+                if (i1 > 2 || i2 > 1) { // man kan max ha två mellanslag i sitt namn och ett "-"
+                    statusLabel.setText("Invalid name!");
+                    throw new NullPointerException();
+                }
+
+                String s1 = n.replaceAll("[A-Za-z -]", "");
+                if (!s1.isEmpty()) {
+                    statusLabel.setText("Name can only contain letters!");
+                    throw new NullPointerException();
+                }
+                
+                int i3 = n2.length();
+                if (i3 == 13) { // ssn +  ett tecken
+                    int l = 0;
+                    for(int k = 0; k < n2.length(); k++){
+                        if(n2.charAt(k) == '-')
+                            l++; // om tecknet är "-"
+                    } // om man skrivit någor annat tecken än "-" ska det inte gå 
+                    if(l > 0) // tar bort "-" förutsat att det sitter på rätt plats
+                    n2 = n2.substring(0, 8) + n2.substring(9, n2.length());
+                }
+
+                i3 = n2.length();
+                long l = Long.parseLong(n2);
+
+                if (i3 != 12) {
                     statusLabel.setText("Please type full social security number!");
                     throw new NullPointerException();
                 }
-                long l = Long.parseLong(n2);
 
                 boolean a = b.addCustomer(n, l);
                 if (!a) {
@@ -138,6 +185,8 @@ public class FXMLDocumentController implements Initializable {
                 }
 
             } catch (NullPointerException ex) {
+            } catch (NumberFormatException ex) {
+                statusLabel.setText("Invalid social security number!");
             }
         }
         s.setB(Boolean.FALSE);

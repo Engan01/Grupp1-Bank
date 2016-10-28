@@ -24,7 +24,6 @@ import javafx.stage.Stage;
  *
  * @author asanilssonenglund
  */
-
 public class Scene2Controller implements Initializable {
 
     private ObservableList<String> accountObservableList;
@@ -33,10 +32,10 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Label name;
-    
+
     @FXML
     private Label ssn;
-    
+
     @FXML
     private Label transferStatus;
 
@@ -51,7 +50,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Button back;
-    
+
     @FXML
     private TextField amount;
 
@@ -62,20 +61,17 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void withdraw(ActionEvent e) {
-        
-        
-        String selectedAccount = (String)accountList.getSelectionModel().getSelectedItem(); 
+
+        String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        
+
         // behöver konvertera String till int för att gå vodare
+        // int i = Integer.parseInt(String); // Anton
 //        System.out.println(selectedAccount);
 //        
 //        
-//        double newNum = Integer.parseInt(amount.getText().toString());
+//        double newNum = Integer.parseInt(amount.getText().toString()); // det ska nog vara Double.parseDouble om du vill konvertera till double // Anton
 //        b.withdraw(0, selectedAccount, newNum);
-        
-        
-
     }
 
     @FXML
@@ -90,7 +86,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void editName(ActionEvent e) throws IOException {
-       
+        transferStatus.setText("");
+
         Stage stage;
         Parent root;
 
@@ -100,50 +97,64 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(editNameButton.getScene().getWindow());
         stage.showAndWait();
-        
-        if(s.getB()){
-            try{
-        String newName = s.getN();
-        newName = newName.trim();
-        if(newName.isEmpty()){
-            transferStatus.setText("No new name selected!");
-            throw new NullPointerException();
-        }
-        String s1 = newName.replaceAll("[A-Za-z ]", "");
-        if(!s1.isEmpty()){
-            transferStatus.setText("Name can't contain numbers!");
-            throw new NullPointerException();
-        }
-        
-        s.setN(null);
-        s.setB(Boolean.FALSE);
-        
-        String n = ssn.getText();
-        n = n.replaceAll("-", "").trim();
-        long l = Long.parseLong(n);
-        
-        ArrayList<Customer> a = b.getCustomerList();
-        
-        for(Customer c : a){
-            if(c.getPnr() == l){
-                c.setName(newName);
-                name.setText(newName);
-            }
-        }
-        
-            }catch(NullPointerException ex){
+
+        if (s.getB()) {
+            try {
+                String newName = s.getN();
+                newName = newName.trim();
+                if (newName.isEmpty()) {
+                    transferStatus.setText("No new name selected!");
+                    throw new NullPointerException();
+                }
+                int i1 = 0;
+                int i2 = 0;
+                for(int i = 0; i < newName.length(); i++){
+                    if(newName.charAt(i) == ' '){
+                        i1++;
+                    }
+                    else if(newName.charAt(i) == '-'){
+                        i2++;
+                    }
+                }
+                if(i1 > 2 || i2 > 1){ // man kan max ha två mellanslag i sitt namn och ett "-"
+                    transferStatus.setText("Invalid name!");
+                    throw new NullPointerException();
+                }
                 
+                String s1 = newName.replaceAll("[A-Za-z -]", "");
+                if (!s1.isEmpty()) {
+                    transferStatus.setText("Name can only contain letters!");
+                    throw new NullPointerException();
+                }
+
+                s.setN(null);
+                s.setB(Boolean.FALSE);
+
+                String n = ssn.getText();
+                n = n.replaceAll("-", "").trim();
+                long l = Long.parseLong(n);
+
+                ArrayList<Customer> a = b.getCustomerList();
+
+                for (Customer c : a) {
+                    if (c.getPnr() == l) {
+                        c.setName(newName);
+                        name.setText(newName);
+                    }
+                }
+
+            } catch (NullPointerException ex) {
+
             }
-        }else{
+        } else {
             transferStatus.setText("No new name selected!");
         }
-        
 
     }
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
-        
+
         Stage stage;
         Parent root;
 
@@ -153,18 +164,18 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.showAndWait();
-        
+
         String s1 = ssn.getText();
         s1 = s1.replaceAll("-", "");
         long l = Long.parseLong(s1);
-        
-        if(s.getB()){
+
+        if (s.getB()) {
             int i = s.getI();
-            switch(i){
-                case(1):
+            switch (i) {
+                case (1):
                     int g = b.addSavingsAccount(l);
                     break;
-                case(-1):
+                case (-1):
                     g = b.addCreditAccount(l);
                     break;
             }
@@ -176,22 +187,23 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
-        try{
-        String s1 = (String)accountList.getSelectionModel().getSelectedItem();
-        if(s1.isEmpty())
-            throw new NullPointerException();
-        
-        Stage stage;
-        Parent root;
+        try {
+            String s1 = (String) accountList.getSelectionModel().getSelectedItem();
+            if (s1.isEmpty()) {
+                throw new NullPointerException();
+            }
 
-        stage = new Stage();
-        root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(addAccountButton.getScene().getWindow());
-        stage.showAndWait();
-        setListView();
-        }catch(NullPointerException ex){
+            Stage stage;
+            Parent root;
+
+            stage = new Stage();
+            root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(addAccountButton.getScene().getWindow());
+            stage.showAndWait();
+            setListView();
+        } catch (NullPointerException ex) {
             transferStatus.setText("You have to select a account!");
         }
     }
@@ -211,15 +223,15 @@ public class Scene2Controller implements Initializable {
 
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
-        
+
         long l = s.getL();
         String sl = Long.toString(l);
-        sl = sl.substring(0, 8) + "-" + sl.substring(8, sl.length());        
+        sl = sl.substring(0, 8) + "-" + sl.substring(8, sl.length());
         s.setL(null);
         String namn = null;
         ArrayList<Customer> a = b.getCustomerList();
-        for(Customer c : a){
-            if(c.getPnr() == l){
+        for (Customer c : a) {
+            if (c.getPnr() == l) {
                 namn = c.getName();
                 break;
             }
@@ -228,22 +240,20 @@ public class Scene2Controller implements Initializable {
         ssn.setText(sl);
         setListView();
     }
-    
-    
-        public void setListView() {  // metod för att lägga samtliga kunders konto i listView
+
+    public void setListView() {  // metod för att lägga samtliga kunders konto i listView
         String g = ssn.getText();
         g = g.replaceAll("-", "");
         long pNr = Long.parseLong(g);
-        
+
         accountObservableList = FXCollections.observableArrayList();
 
         ArrayList<Customer> tC = b.getCustomerList();
-        
 
         for (Customer c : tC) {
-            if(c.getPnr() == pNr){
+            if (c.getPnr() == pNr) {
                 ArrayList<Account> a = c.getAccountList();
-                for(Account a1 : a){
+                for (Account a1 : a) {
                     accountObservableList.add(a1.getAccountNumber() + " " + a1.getAccountName());
                 }
             }
