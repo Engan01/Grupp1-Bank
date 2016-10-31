@@ -15,8 +15,8 @@ public class Transaction {
     private final double belopp;
     private final double saldo;
     
-    public Transaction(LocalDateTime date, boolean b, double belopp, double saldo){
-        this.date = date;
+    public Transaction(boolean b, double belopp, double saldo){
+        this.date = LocalDateTime.now();
         this.b = b;
         this.belopp = belopp;
         this.saldo = saldo;
