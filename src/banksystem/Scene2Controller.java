@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -55,6 +56,9 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private TextField amount;
+    
+    @FXML
+    private ChoiceBox transferFrom, transferTo;
 
     @FXML
     public void deposit(ActionEvent e) {
@@ -250,6 +254,9 @@ public class Scene2Controller implements Initializable {
                 setTransactions(str);
             }
         });
+                //Fylling i listorna med alla konton som en viss kund har
+                transferFrom.setItems(accountObservableList);
+                transferTo.setItems(accountObservableList);
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
