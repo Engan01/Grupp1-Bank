@@ -17,8 +17,8 @@ public class CreditAccount extends Account {
 
     }
 
-    public CreditAccount(double balance, double interestRate) {
-        super(balance, interestRate);
+    public CreditAccount(double balance) {
+        super(balance);
     }
 
     public double deposit(double balance, double amount) {

@@ -14,8 +14,8 @@ public class SavingAccount extends Account {
         super(); // default constructor
     }
 
-    public SavingAccount(double balance, double interestRate) {
-        super(balance, interestRate);
+    public SavingAccount(double balance) {
+        super(balance);
     }
 
     public double deposit(double balance, double amount) {
@@ -28,7 +28,7 @@ public class SavingAccount extends Account {
             balance -= amount;
             numberOfWithdraw++;
         } else {
-            balance *= interestRate;
+            balance *= interest;
             balance -= amount;
             numberOfWithdraw++;
         }

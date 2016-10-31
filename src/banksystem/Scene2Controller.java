@@ -291,7 +291,7 @@ public class Scene2Controller implements Initializable {
         Customer c = getThisObject();
         
         ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
-        //transactionObservable.add("Account number: " + aNr + "\t Balance: " + );
+       // transactionObservable.add("Account number: " + aNr + "\t Balance: " + );
         
         for(Transaction t : arr){
             transactionObservable.add(t.toString());
