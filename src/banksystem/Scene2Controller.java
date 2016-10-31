@@ -80,6 +80,8 @@ public class Scene2Controller implements Initializable {
         
         ; // drar pengar från spcifikt konto
         if(b.deposit(c.getPnr(), acountNR, amount2)==true){ // om det går bra
+           // c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
+           
             mainStatus.setText("Deposit succesfull!");
         }else{
             mainStatus.setText("Error. Deposit failed.");
@@ -114,6 +116,8 @@ public class Scene2Controller implements Initializable {
         
         if(b.withdraw(c.getPnr(), acountNR, amount2)==true){ // om det går bra
            
+         
+             // c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
            
             
             String s = Integer.toString(acountNR);

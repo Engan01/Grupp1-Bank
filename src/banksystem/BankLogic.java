@@ -131,6 +131,9 @@ public class BankLogic {
 
  public boolean withdraw(long pNR, int accountNumber, double amount) {
 
+        
+     
+     
         for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
 
