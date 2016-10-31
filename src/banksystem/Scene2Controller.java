@@ -288,15 +288,20 @@ public class Scene2Controller implements Initializable {
         transactionObservable = FXCollections.observableArrayList();
         str  = str.replaceAll("[^0-9]", "").trim();
         int aNr = Integer.parseInt(str);
+        
         Customer c = getThisObject();
         
         ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
-       // transactionObservable.add("Account number: " + aNr + "\t Balance: " + );
+        System.out.println(arr.size());
+        transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
         
+        if(!arr.isEmpty()){
+           
         for(Transaction t : arr){
             transactionObservable.add(t.toString());
         }
-        
+        }
+       
         transactionList.setItems(transactionObservable);
         
         

@@ -11,8 +11,8 @@ public abstract class Account  {
     private static int accountNumberAll = 1001;
     
     private int accountNumber;
-    private double balance;
-    private ArrayList <Transaction> transaction;
+    private double balance = 0;
+    private ArrayList <Transaction> transaction = new ArrayList<>();
     private String accountType;
    
     
@@ -22,7 +22,6 @@ public abstract class Account  {
     }
     
     public Account(double balance){
-        
         
         this.balance = balance;
         

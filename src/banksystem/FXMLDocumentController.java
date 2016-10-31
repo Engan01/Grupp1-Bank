@@ -191,7 +191,7 @@ public class FXMLDocumentController implements Initializable {
                 n2 = n2.substring(0, 8);
                 long cu = Long.parseLong(n2);
                 
-                System.out.println(todaysDate-cu);
+                
                 
 //                if((todaysDate-cu) > 18){
 //                    statusLabel.setText("The customer must be 18 or older!");
