@@ -299,8 +299,7 @@ public class Scene2Controller implements Initializable {
             }
         });
                 //Fylling i listorna med alla konton som en viss kund har
-                transferFrom.setItems(accountObservableList);
-                transferTo.setItems(accountObservableList);
+                
  
                 
     }
@@ -322,8 +321,11 @@ public class Scene2Controller implements Initializable {
                 }
             }
         }
+        transferFrom.setItems(accountObservableList);
+        transferTo.setItems(accountObservableList);
 
         accountList.setItems(accountObservableList);
+        
     }
     
     public void setTransactions(String str){
