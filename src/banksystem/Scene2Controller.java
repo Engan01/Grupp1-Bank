@@ -61,26 +61,68 @@ public class Scene2Controller implements Initializable {
     @FXML
     private TextField amount;
     
+    @FXML
+    private Label balance;
+    
 
     @FXML
     public void deposit(ActionEvent e) {
 
-    }
-
-    @FXML
-    public void withdraw(ActionEvent e) {
-
+        Customer c = getThisObject();
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
+        
+        int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+        double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+        
+        
+        b.deposit(c.getPnr(), acountNR, amount2); // drar pengar från spcifikt konto
+        
+        
+        
+        
+        
+         // *** skrive ut nytt belopp på "balance" label
+        for(int i = 0 ; i < c.getAccountList().size(); i ++ ){
+            if(acountNR == c.getAccountList().get(i).getAccountNumber()){
+                double newBalance = c.getAccountList().get(i).getBalance();
+                
+                String newString = String.valueOf(newBalance);
+                balance.setText(newString);
+            }
+        }
 
-        // behöver konvertera String till int för att gå vodare
-        // int i = Integer.parseInt(String); // Anton
-//        System.out.println(selectedAccount);
-//        
-//        
-//        double newNum = Integer.parseInt(amount.getText().toString()); // det ska nog vara Double.parseDouble om du vill konvertera till double // Anton
-//        b.withdraw(0, selectedAccount, newNum);
     }
+    
+    
+    
+    @FXML
+    public void withdraw(ActionEvent e) {
+        Customer c = getThisObject();
+        
+        String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
+        selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
+        
+        int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+        double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+        
+        
+        b.withdraw(c.getPnr(), acountNR, amount2); // drar pengar från spcifikt konto
+        
+                
+         // *** skrive ut nytt belopp på "balance" label
+        for(int i = 0 ; i < c.getAccountList().size(); i ++ ){
+            if(acountNR == c.getAccountList().get(i).getAccountNumber()){
+                double newBalance = c.getAccountList().get(i).getBalance();
+                
+                String newString = String.valueOf(newBalance);
+                balance.setText(newString);
+            }
+        }
+
+    }
+
+
 
     @FXML
     public void exportToFile() {

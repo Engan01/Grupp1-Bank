@@ -126,7 +126,9 @@ public class BankLogic {
         return -1;
     }
 
-    public boolean withdraw(long pNR, int accountNumber, double amount) {
+
+
+ public boolean withdraw(long pNR, int accountNumber, double amount) {
 
         for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
@@ -136,10 +138,12 @@ public class BankLogic {
 
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
-                            double newBalance = currentBalance - amount; // räknar ut nytt belopp
+                            currentBalance = currentBalance - amount; // räknar ut nytt belopp
+                            
+                    
 
-                            if (newBalance >= 5000) { // om det nya beloppet på kontot är mer än -5000
-                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            if (currentBalance >= -5000) { // om det nya beloppet på kontot är mer än -5000
+                                customersList.get(i).getAccountList().get(j).setBalance(currentBalance);
                                 return true; // Det går bra att sätta in pengar
                             } else {
                                 return false; // annars, det går inte
@@ -147,10 +151,10 @@ public class BankLogic {
 
                         } else {
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett kreditkonto
-                            double newBalance = currentBalance - amount; // räknar ut nya beloppet
+                            currentBalance = currentBalance - amount; // räknar ut nya beloppet
 
-                            if (newBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
-                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            if (currentBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
+                                customersList.get(i).getAccountList().get(j).setBalance(currentBalance);
                                 return true; // Accepteras
                             } else {
                                 return false; // Accepteras inte
@@ -170,5 +174,57 @@ public class BankLogic {
         } // första for sats
         return false;
     } // slut på metod
+    
+    
+    
+    public boolean deposit(long pNR, int accountNumber, double amount) {
+
+        for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
+            if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
+
+                for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
+                    if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
+
+                        if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
+                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
+                            double newBalance = currentBalance + amount; // räknar ut nytt belopp
+                            customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            return true;
+//                            if (newBalance >= 5000) { // om det nya beloppet på kontot är mer än -5000
+//                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+//                                return true; // Det går bra att sätta in pengar
+//                            } else {
+//                                return false; // annars, det går inte
+//                            }
+
+                        } else {
+                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett kreditkonto
+                            double newBalance = currentBalance + amount; // räknar ut nya beloppet
+                            customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            return true;
+//                            if (newBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
+//                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+//                                return true; // Accepteras
+//                            } else {
+//                                return false; // Accepteras inte
+//                            }
+
+                        }
+
+                    }
+
+                }
+
+            } else {
+                System.out.println("pNR matchar inte!");
+                return false;
+            }
+
+        } // första for sats
+        return false;
+    } // slut på metod
+
+
+
 
 }
