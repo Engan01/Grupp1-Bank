@@ -325,6 +325,7 @@ public class FXMLDocumentController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) customersList.getSelectionModel().getSelectedItem();
                 customerDetailList.setText(str);
+                
             }
         });
 
