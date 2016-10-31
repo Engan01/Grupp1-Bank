@@ -144,6 +144,7 @@ public class BankLogic {
 
                             if (currentBalance >= -5000) { // om det nya beloppet på kontot är mer än -5000
                                 customersList.get(i).getAccountList().get(j).setBalance(currentBalance);
+                                
                                 return true; // Det går bra att sätta in pengar
                             } else {
                                 return false; // annars, det går inte

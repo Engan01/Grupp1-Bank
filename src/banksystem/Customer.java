@@ -14,7 +14,7 @@ public class Customer {
     public Customer(String name, long pNr){
         this.name = name;
         this.pNr = pNr;
-        addSavingAccount(100);
+        addSavingAccount(0);
         
     }
 
