@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -116,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
         statusLabel.setText("");
-        
+
         Stage stage;
         Parent root;
 
@@ -159,16 +161,19 @@ public class FXMLDocumentController implements Initializable {
                     statusLabel.setText("Name can only contain letters!");
                     throw new NullPointerException();
                 }
-                
+
                 int i3 = n2.length();
                 if (i3 == 13) { // ssn +  ett tecken
                     int l = 0;
-                    for(int k = 0; k < n2.length(); k++){
-                        if(n2.charAt(k) == '-')
+                    for (int k = 0; k < n2.length(); k++) {
+                        if (n2.charAt(k) == '-') {
                             l++; // om tecknet är "-"
+                        }
                     } // om man skrivit någor annat tecken än "-" ska det inte gå 
-                    if(l > 0) // tar bort "-" förutsat att det sitter på rätt plats
-                    n2 = n2.substring(0, 8) + n2.substring(9, n2.length());
+                    if (l > 0) // tar bort "-" förutsat att det sitter på rätt plats
+                    {
+                        n2 = n2.substring(0, 8) + n2.substring(9, n2.length());
+                    }
                 }
 
                 i3 = n2.length();
@@ -244,12 +249,6 @@ public class FXMLDocumentController implements Initializable {
         setListView();
     }
 
-    @FXML
-    private void viewCustomerDetails(ActionEvent event) throws IOException {
-
-        String str = (String) customersList.getSelectionModel().getSelectedItem();
-        customerDetailList.setText(str);
-    }
 
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
@@ -283,6 +282,15 @@ public class FXMLDocumentController implements Initializable {
         s = Singelton.getInstance();
 
         setListView(); // fyller lista med kunder
+
+        customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String str = (String) customersList.getSelectionModel().getSelectedItem();
+                customerDetailList.setText(str);
+            }
+        });
 
     }
 
