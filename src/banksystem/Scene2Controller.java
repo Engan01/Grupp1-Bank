@@ -40,7 +40,7 @@ public class Scene2Controller implements Initializable {
     private Label ssn;
 
     @FXML
-    private Label transferStatus;
+    private Label transferStatus, nameStatus, exportStatus, mainStatus;
 
     @FXML
     private Button editNameButton;
@@ -94,7 +94,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void editName(ActionEvent e) throws IOException {
-        transferStatus.setText("");
+        nameStatus.setText("");
 
         Stage stage;
         Parent root;
@@ -111,7 +111,7 @@ public class Scene2Controller implements Initializable {
                 String newName = s.getN();
                 newName = newName.trim();
                 if (newName.isEmpty()) {
-                    transferStatus.setText("No new name selected!");
+                    nameStatus.setText("No new name selected!");
                     throw new NullPointerException();
                 }
                 int i1 = 0;
@@ -125,13 +125,13 @@ public class Scene2Controller implements Initializable {
                     }
                 }
                 if(i1 > 2 || i2 > 1){ // man kan max ha två mellanslag i sitt namn och ett "-"
-                    transferStatus.setText("Invalid name!");
+                    nameStatus.setText("Invalid name!");
                     throw new NullPointerException();
                 }
                 
                 String s1 = newName.replaceAll("[A-Za-z -]", "");
                 if (!s1.isEmpty()) {
-                    transferStatus.setText("Name can only contain letters!");
+                    nameStatus.setText("Name can only contain letters!");
                     throw new NullPointerException();
                 }
 
@@ -155,7 +155,7 @@ public class Scene2Controller implements Initializable {
 
             }
         } else {
-            transferStatus.setText("No new name selected!");
+            nameStatus.setText("No new name selected!");
         }
 
     }
@@ -212,7 +212,7 @@ public class Scene2Controller implements Initializable {
             stage.showAndWait();
             setListView();
         } catch (NullPointerException ex) {
-            transferStatus.setText("You have to select a account!");
+            mainStatus.setText("You have to select a account!");
         }
     }
 
