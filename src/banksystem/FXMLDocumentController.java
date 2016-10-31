@@ -101,7 +101,7 @@ public class FXMLDocumentController implements Initializable {
                 statusLabel.setText("This customer doesn't exist in the system!");
             }
 
-            if (str.length() < 12 || str.length() > 12) { // större eller mindre än 12 // Anton
+            if (str.length() != 12) { // större eller mindre än 12 // Anton
                 throw new IndexOutOfBoundsException();
             }
 
