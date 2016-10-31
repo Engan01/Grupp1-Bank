@@ -298,7 +298,7 @@ public class Scene2Controller implements Initializable {
                 setTransactions(str);
             }
         });
-                //Fylling i listorna med alla konton som en viss kund har
+                
                 
  
                 

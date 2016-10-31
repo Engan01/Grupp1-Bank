@@ -5,11 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -184,23 +181,25 @@ public class FXMLDocumentController implements Initializable {
                 long l = Long.parseLong(n2);
               
                 LocalDate d = LocalDate.now();
-                String g = d.toString();
-                g = g.replaceAll("-", "").trim();
+                LocalDate dd = d.minusYears(18);
+                String förUng = dd.toString();
+                dd = d.plusYears(120);
+                String förGammal = dd.toString();
+               
+                int fU = Integer.parseInt(förUng.replaceAll("-", "").trim());
+                int fG = Integer.parseInt(förGammal.replaceAll("-", "").trim());
+                String n3 = n2.substring(0, 8);
+                int kund = Integer.parseInt(n3);
                 
-                long todaysDate = Long.parseLong(g);
-                n2 = n2.substring(0, 8);
-                long cu = Long.parseLong(n2);
-                
-                
-               // jämför dagens datum med kundens personnummer för att se om personen är mindre än 18 
-                if((todaysDate-cu) < 180000){
-                    statusLabel.setText("The customer must be 18 or older!");
-                    throw new NullPointerException();
-                }//
-                else if ((todaysDate-cu) >1200000){
-                  statusLabel.setText("The customer cannot be older than \n120 years old!");
-                    throw new NullPointerException();  
+                if(kund > fU){
+                    statusLabel.setText("You must be 18 or older!");
+                    throw new NullPointerException();          
+                }else if(kund < fG){
+                    statusLabel.setText("You are to old!");
+                    throw new NullPointerException(); 
                 }
+                
+      
                 
                 
                 if (i3 != 12) {
