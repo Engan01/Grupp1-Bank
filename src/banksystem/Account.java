@@ -67,6 +67,10 @@ public abstract class Account  {
         this.accountType = accountType;
     }
     
+    public void addTransaction(boolean b, double belopp, double saldo){
+        transaction.add(new Transaction(b, belopp, saldo));
+    }
+    
     public abstract String getAccountName();
     
     public abstract double getInterest();
