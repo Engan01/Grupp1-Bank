@@ -25,6 +25,8 @@ public class FXMLpopUp1 implements Initializable {
     @FXML
     private TextField labelSsnPop1;
 
+    
+    
     @FXML
     private void confirmPop1(ActionEvent event) {
         s.setN(labelNamePop1.getText());
@@ -43,7 +45,7 @@ public class FXMLpopUp1 implements Initializable {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
-
+        
     }
 
     @Override

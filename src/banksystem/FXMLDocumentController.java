@@ -120,18 +120,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
+        
         statusLabel.setText("");
 
         Stage stage;
         Parent root;
 
         stage = new Stage();
+        
+        stage.setTitle("Adding new customer");
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp1.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.showAndWait();
-
+        
+       
         boolean b1 = s.getB();
         if (b1) {
             try {
@@ -253,6 +257,7 @@ public class FXMLDocumentController implements Initializable {
             Parent root;
 
             stage = new Stage();
+            stage.setTitle("Delete existing customer");
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
