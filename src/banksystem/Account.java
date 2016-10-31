@@ -70,6 +70,6 @@ public abstract class Account  {
     
     public abstract String getAccountName();
     
-    
-    
+    public abstract double getInterest();
+
 }
