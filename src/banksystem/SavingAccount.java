@@ -8,6 +8,7 @@ public class SavingAccount extends Account{
     
     
     private int numberOfWithdraw = 1;
+    private static double interest = 0.01;
 //    private double amount;
     
     
@@ -39,6 +40,11 @@ public class SavingAccount extends Account{
     @Override
     public String getAccountName(){
     return "Saving Account";    
+    }
+    
+    @Override
+    public double getInterest(){
+        return interest;
     }
 }
 
