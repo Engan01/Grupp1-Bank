@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
-    private ObservableList<String> accountObservableList;
+    private ObservableList<String> accountObservableList, transactionObservable;
     private BankLogic b;
     private Singelton s;
 
@@ -40,7 +40,7 @@ public class Scene2Controller implements Initializable {
     private Label ssn;
 
     @FXML
-    private Label transferStatus;
+    private Label transferStatus, nameStatus, exportStatus, mainStatus;
 
     @FXML
     private Button editNameButton;
@@ -57,8 +57,13 @@ public class Scene2Controller implements Initializable {
     @FXML
     private ChoiceBox transferFrom, transferTo;
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 738bd8baae39646c0c1ea3151e199a4c502d29d5
     @FXML
     private TextField amount;
+    
 
     @FXML
     public void deposit(ActionEvent e) {
@@ -92,7 +97,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void editName(ActionEvent e) throws IOException {
-        transferStatus.setText("");
+        nameStatus.setText("");
 
         Stage stage;
         Parent root;
@@ -109,7 +114,7 @@ public class Scene2Controller implements Initializable {
                 String newName = s.getN();
                 newName = newName.trim();
                 if (newName.isEmpty()) {
-                    transferStatus.setText("No new name selected!");
+                    nameStatus.setText("No new name selected!");
                     throw new NullPointerException();
                 }
                 int i1 = 0;
@@ -123,13 +128,13 @@ public class Scene2Controller implements Initializable {
                     }
                 }
                 if(i1 > 2 || i2 > 1){ // man kan max ha två mellanslag i sitt namn och ett "-"
-                    transferStatus.setText("Invalid name!");
+                    nameStatus.setText("Invalid name!");
                     throw new NullPointerException();
                 }
                 
                 String s1 = newName.replaceAll("[A-Za-z -]", "");
                 if (!s1.isEmpty()) {
-                    transferStatus.setText("Name can only contain letters!");
+                    nameStatus.setText("Name can only contain letters!");
                     throw new NullPointerException();
                 }
 
@@ -153,7 +158,7 @@ public class Scene2Controller implements Initializable {
 
             }
         } else {
-            transferStatus.setText("No new name selected!");
+            nameStatus.setText("No new name selected!");
         }
 
     }
@@ -210,7 +215,7 @@ public class Scene2Controller implements Initializable {
             stage.showAndWait();
             setListView();
         } catch (NullPointerException ex) {
-            transferStatus.setText("You have to select a account!");
+            mainStatus.setText("You have to select a account!");
         }
     }
 
@@ -254,9 +259,17 @@ public class Scene2Controller implements Initializable {
                 setTransactions(str);
             }
         });
+<<<<<<< HEAD
                 //Fyllig i listor på all konton för en viss kund
                 transferFrom.setItems(accountObservableList);
                 transferTo.setItems(accountObservableList);
+=======
+                //Fylling i listorna med alla konton som en viss kund har
+                transferFrom.setItems(accountObservableList);
+                transferTo.setItems(accountObservableList);
+ 
+                
+>>>>>>> 738bd8baae39646c0c1ea3151e199a4c502d29d5
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -281,11 +294,26 @@ public class Scene2Controller implements Initializable {
     }
     
     public void setTransactions(String str){
-        str  =str.replaceAll("[^-9]", "").trim();
-        String sn = ssn.getText();
-        sn = sn.replaceAll("-", "").trim();
-        long ln = Long.parseLong(sn);
-       // ArrayList<Transaction> arr = b.getCustomerList(ln).getAccountList()
+        transactionObservable = FXCollections.observableArrayList();
+        str  = str.replaceAll("[^0-9]", "").trim();
+        int aNr = Integer.parseInt(str);
+        
+        Customer c = getThisObject();
+        
+        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
+        System.out.println(arr.size());
+        transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
+        
+        if(!arr.isEmpty()){
+           
+        for(Transaction t : arr){
+            transactionObservable.add(t.toString());
+        }
+        }
+       
+        transactionList.setItems(transactionObservable);
+        
+        
     }
     
     @FXML
