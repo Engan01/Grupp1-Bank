@@ -10,22 +10,21 @@ public abstract class Account  {
     
     private static int accountNumberAll = 1001;
     
-    protected int accountNumber;
-    protected double balance;
-    protected ArrayList <Transaction> transaction;
-    protected String accountType;
-    protected double interestRate;
+    private int accountNumber;
+    private double balance = 0;
+    private ArrayList <Transaction> transaction = new ArrayList<>();
+    private String accountType;
+   
     
     
     public Account(){
         // default
     }
     
-    public Account(double balance, double interestRate){
-        
+    public Account(double balance){
         
         this.balance = balance;
-        this.interestRate = interestRate;
+        
         setAccountNumber();
     }
     
@@ -70,6 +69,6 @@ public abstract class Account  {
     
     public abstract String getAccountName();
     
-    
-    
+    public abstract double getInterest();
+
 }

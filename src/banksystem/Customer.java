@@ -14,8 +14,8 @@ public class Customer {
     public Customer(String name, long pNr){
         this.name = name;
         this.pNr = pNr;
-        addSavingAccount(100, 0.07);
-        //sdgagagad
+        addSavingAccount(100);
+        
     }
 
     public String getName() {
@@ -47,19 +47,28 @@ public class Customer {
         return str;
     }
     
-    public int addSavingAccount(double balance, double interestRate){
-        SavingAccount sA = new SavingAccount(balance, interestRate);
+    public int addSavingAccount(double balance){
+        SavingAccount sA = new SavingAccount(balance);
         int nr = sA.getAccountNumber();
         accounts.add(sA);
         return nr;    
     }
     
-    public int addCheckingAccount(double balance, double interestRate){
-        CreditAccount cA = new CreditAccount(balance, interestRate);
+    public int addCheckingAccount(double balance){
+        CreditAccount cA = new CreditAccount(balance);
         int nr = cA.getAccountNumber();
         accounts.add(cA);
         return nr;
         
+    }
+    
+    public Account getSelectedAccount(int aNr){
+        for(Account a : accounts){
+            if(a.getAccountNumber() == aNr){
+                return a;
+            }
+        }
+        return null;
     }
     
 //    public String[] closeAllAccounts(){

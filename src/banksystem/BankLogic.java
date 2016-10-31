@@ -107,7 +107,7 @@ public class BankLogic {
     public int addSavingsAccount(long pNR) {
             for(Customer c : customersList){ // loppar igenom customerList
             if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addSavingAccount(0.0, 0.005);
+                int kontoNr = c.addSavingAccount(0.0);
            return kontoNr; // returnenrar kontonummret
 
     }
@@ -118,7 +118,7 @@ public class BankLogic {
     public int addCreditAccount(long pNR) {
             for(Customer c : customersList){ // loppar igenom customerList
             if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addCheckingAccount(0.0, 0.07);
+                int kontoNr = c.addCheckingAccount(0.0);
            return kontoNr; // returnenrar kontonummret
             }
 
@@ -132,7 +132,7 @@ public class BankLogic {
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
 
                 for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
-                    if (accountNumber == customersList.get(i).getAccountList().get(j).accountNumber) { // letar upp matchande kontonummer
+                    if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
 
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot

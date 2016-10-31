@@ -58,9 +58,6 @@ public class Scene2Controller implements Initializable {
     private ChoiceBox transferFrom, transferTo;
     
 
-
-
-
     @FXML
     private TextField amount;
     
@@ -256,20 +253,14 @@ public class Scene2Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) accountList.getSelectionModel().getSelectedItem();
-//                setTransactions(str);
+                setTransactions(str);
             }
         });
-
-                //Fyllig i listor på all konton för en viss kund
-                transferFrom.setItems(accountObservableList);
-                transferTo.setItems(accountObservableList);
-
                 //Fylling i listorna med alla konton som en viss kund har
                 transferFrom.setItems(accountObservableList);
                 transferTo.setItems(accountObservableList);
  
                 
-
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -293,33 +284,27 @@ public class Scene2Controller implements Initializable {
         accountList.setItems(accountObservableList);
     }
     
-//    public void setTransactions(String str){
-//        transactionObservable = FXCollections.observableArrayList();
-//        str  = str.replaceAll("[^0-9]", "").trim();
-//        int aNr = Integer.parseInt(str);
-//        
-//        Customer c = getThisObject();
-//        
-//        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
-//        System.out.println(arr.size());
-//        transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
-//        
-//        if(!arr.isEmpty()){
-//           
-//        for(Transaction t : arr){
-//            transactionObservable.add(t.toString());
-//        }
-//        }
-//       
-//        transactionList.setItems(transactionObservable);
-//        
-//        
-//    }
-    
-    @FXML
-    public void transfer(double amount){
-        String accountNr=transferFrom.getSelectionModel().getSelectedItem().toString();
-        System.out.println(accountNr);
+    public void setTransactions(String str){
+        transactionObservable = FXCollections.observableArrayList();
+        str  = str.replaceAll("[^0-9]", "").trim();
+        int aNr = Integer.parseInt(str);
+        
+        Customer c = getThisObject();
+        
+        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
+        System.out.println(arr.size());
+        transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
+        
+        if(!arr.isEmpty()){
+           
+        for(Transaction t : arr){
+            transactionObservable.add(t.toString());
+        }
+        }
+       
+        transactionList.setItems(transactionObservable);
+        
+        
     }
     
     public Customer getThisObject(){
