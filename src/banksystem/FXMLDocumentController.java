@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -183,13 +185,19 @@ public class FXMLDocumentController implements Initializable {
                 LocalDate d = LocalDate.now();
                 LocalDate dd = d.minusYears(18);
                 String förUng = dd.toString();
-                dd = d.plusYears(120);
+                dd = d.minusYears(120);
                 String förGammal = dd.toString();
                
                 int fU = Integer.parseInt(förUng.replaceAll("-", "").trim());
                 int fG = Integer.parseInt(förGammal.replaceAll("-", "").trim());
                 String n3 = n2.substring(0, 8);
+                n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length());
+                
+                LocalDate date = LocalDate.parse(n3);
+             
+                n3 = n3.replaceAll("-", "");
                 int kund = Integer.parseInt(n3);
+                
                 
                 if(kund > fU){
                     statusLabel.setText("You must be 18 or older!");
@@ -213,7 +221,7 @@ public class FXMLDocumentController implements Initializable {
                 }
 
             } catch (NullPointerException ex) {
-            } catch (NumberFormatException ex) {
+            } catch (NumberFormatException | DateTimeParseException ex) {
                 statusLabel.setText("Invalid social security number!");
             }
         }
