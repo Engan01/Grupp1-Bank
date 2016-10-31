@@ -152,7 +152,41 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void transferButton() {
-
+          
+        int selectedFromAccountNr=Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
+        
+        int selectedToAccountNr=Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
+        
+        double selectedAccountsBalance=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance();
+        double transferAmount=Double.parseDouble(amount.getText());
+        
+        //Om inte finns tillräckligt pengar på kontot
+        if(selectedFromAccountNr ==selectedToAccountNr)
+        {
+             transferStatus.setText("You can not transfer money \nto the same account!");
+        }
+        //I fall av fel inmatning
+        else if(transferAmount<=0){
+            transferStatus.setText("The amount to be transfered can \nnot be negative or zero!");
+        }
+        //Om användaren väljer att skicka pengar till ett och samma konto
+        else if (transferAmount>selectedAccountsBalance){
+     
+            transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
+    
+        }
+        else{
+            //Uppdatering saldo på första konto efter att överföra ett visst belopp
+            double newBalanceFromAccount=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount;
+            getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
+          
+            //Uppdatering saldo på första konto efter att överföra ett visst belopp
+            double newBalanceToAccount=getThisObject().getSelectedAccount(selectedToAccountNr).getBalance()+transferAmount;
+            getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
+            
+            //Visa användaren att det gick att överföra pengar
+            transferStatus.setText("The transfer has been done!");
+        }    
     }
 
     @FXML
