@@ -2,6 +2,7 @@ package banksystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -30,6 +31,7 @@ import javafx.stage.Stage;
 public class Scene2Controller implements Initializable {
 
     private ObservableList<String> accountObservableList, transactionObservable;
+    private ObservableList<String> updatedTransactionList;
     private BankLogic b;
     private Singelton s;
 
@@ -40,7 +42,7 @@ public class Scene2Controller implements Initializable {
     private Label ssn;
 
     @FXML
-    private Label transferStatus, nameStatus, exportStatus, mainStatus;
+    private Label transferStatus, nameStatus, exportStatus, mainStatus, accountNr;
 
     @FXML
     private Button editNameButton;
@@ -76,8 +78,12 @@ public class Scene2Controller implements Initializable {
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
         
         
-        b.deposit(c.getPnr(), acountNR, amount2); // drar pengar från spcifikt konto
-        
+        ; // drar pengar från spcifikt konto
+        if(b.deposit(c.getPnr(), acountNR, amount2)==true){ // om det går bra
+            mainStatus.setText("Deposit succesfull!");
+        }else{
+            mainStatus.setText("Error. Deposit failed.");
+        }
         
         
         
@@ -106,8 +112,19 @@ public class Scene2Controller implements Initializable {
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
         
+        if(b.withdraw(c.getPnr(), acountNR, amount2)==true){ // om det går bra
+           
+           
+            
+            String s = Integer.toString(acountNR);
+            setTransactions(s);
+            
+            
+            mainStatus.setText("Withdraw succesfull!");
+        }else{
+            mainStatus.setText("Error. Not enought money on account!");
+        }
         
-        b.withdraw(c.getPnr(), acountNR, amount2); // drar pengar från spcifikt konto
         
                 
          // *** skrive ut nytt belopp på "balance" label
@@ -296,9 +313,15 @@ public class Scene2Controller implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) accountList.getSelectionModel().getSelectedItem();
                 setTransactions(str);
+                
+                str = str.replaceAll("[A-Za-z -]", "");
+                accountNr.setText(str);
+                
             }
         });
-                
+                //Fylling i listorna med alla konton som en viss kund har
+                transferFrom.setItems(accountObservableList);
+                transferTo.setItems(accountObservableList);
                 
  
                 
@@ -321,11 +344,8 @@ public class Scene2Controller implements Initializable {
                 }
             }
         }
-        transferFrom.setItems(accountObservableList);
-        transferTo.setItems(accountObservableList);
 
         accountList.setItems(accountObservableList);
-        
     }
     
     public void setTransactions(String str){
