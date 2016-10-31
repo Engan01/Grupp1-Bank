@@ -131,7 +131,7 @@
                         <Insets right="3.0" />
                      </GridPane.margin>
                   </ChoiceBox>
-                  <TextField fx:id="amount" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="amountTransfer" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="3.0" />
                      </GridPane.margin>

@@ -2,7 +2,6 @@ package banksystem;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -55,95 +54,81 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Button back;
-    
+
     @FXML
     private ChoiceBox transferFrom, transferTo;
-    
 
     @FXML
     private TextField amount;
-    
+
     @FXML
     private Label balance;
-    
 
     @FXML
     public void deposit(ActionEvent e) {
-
         Customer c = getThisObject();
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        
+
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-        
-        
-        ; // drar pengar från spcifikt konto
-        if(b.deposit(c.getPnr(), acountNR, amount2)==true){ // om det går bra
-           // c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
-           
+
+        //drar pengar från spcifikt konto
+        if (b.deposit(c.getPnr(), acountNR, amount2) == true) { // om det går bra
+            c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
+            String gg = Integer.toString(acountNR);
+            setTransactions(gg);
             mainStatus.setText("Deposit succesfull!");
-        }else{
+        } else {
             mainStatus.setText("Error. Deposit failed.");
         }
-        
-        
-        
-        
-         // *** skrive ut nytt belopp på "balance" label
-        for(int i = 0 ; i < c.getAccountList().size(); i ++ ){
-            if(acountNR == c.getAccountList().get(i).getAccountNumber()){
+
+        // *** skrive ut nytt belopp på "balance" label
+        for (int i = 0; i < c.getAccountList().size(); i++) {
+            if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
                 double newBalance = c.getAccountList().get(i).getBalance();
-                
+
                 String newString = String.valueOf(newBalance);
                 balance.setText(newString);
+
             }
         }
 
     }
-    
-    
-    
+
     @FXML
     public void withdraw(ActionEvent e) {
         Customer c = getThisObject();
-        
+
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        
+
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-        
-        if(b.withdraw(c.getPnr(), acountNR, amount2)==true){ // om det går bra
-           
-         
-             // c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
-           
-            
-            String s = Integer.toString(acountNR);
-            setTransactions(s);
-            
-            
+
+        if (b.withdraw(c.getPnr(), acountNR, amount2) == true) { // om det går bra
+
+            c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
+            String gg = Integer.toString(acountNR);
+            setTransactions(gg);
+
             mainStatus.setText("Withdraw succesfull!");
-        }else{
+        } else {
             mainStatus.setText("Error. Not enought money on account!");
         }
-        
-        
-                
-         // *** skrive ut nytt belopp på "balance" label
-        for(int i = 0 ; i < c.getAccountList().size(); i ++ ){
-            if(acountNR == c.getAccountList().get(i).getAccountNumber()){
+
+        // *** skrive ut nytt belopp på "balance" label
+        for (int i = 0; i < c.getAccountList().size(); i++) {
+            if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
                 double newBalance = c.getAccountList().get(i).getBalance();
-                
+
                 String newString = String.valueOf(newBalance);
                 balance.setText(newString);
             }
         }
 
     }
-
-
 
     @FXML
     public void exportToFile() {
@@ -213,19 +198,18 @@ public class Scene2Controller implements Initializable {
                 }
                 int i1 = 0;
                 int i2 = 0;
-                for(int i = 0; i < newName.length(); i++){
-                    if(newName.charAt(i) == ' '){
+                for (int i = 0; i < newName.length(); i++) {
+                    if (newName.charAt(i) == ' ') {
                         i1++;
-                    }
-                    else if(newName.charAt(i) == '-'){
+                    } else if (newName.charAt(i) == '-') {
                         i2++;
                     }
                 }
-                if(i1 > 2 || i2 > 1){ // man kan max ha två mellanslag i sitt namn och ett "-"
+                if (i1 > 2 || i2 > 1) { // man kan max ha två mellanslag i sitt namn och ett "-"
                     nameStatus.setText("Invalid name!");
                     throw new NullPointerException();
                 }
-                
+
                 String s1 = newName.replaceAll("[A-Za-z -]", "");
                 if (!s1.isEmpty()) {
                     nameStatus.setText("Name can only contain letters!");
@@ -344,25 +328,23 @@ public class Scene2Controller implements Initializable {
         name.setText(namn);
         ssn.setText(sl);
         setListView();
-        
-                accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+        accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) accountList.getSelectionModel().getSelectedItem();
                 setTransactions(str);
-                
+
                 str = str.replaceAll("[A-Za-z -]", "");
                 accountNr.setText(str);
-                
+
             }
         });
-                //Fylling i listorna med alla konton som en viss kund har
-                transferFrom.setItems(accountObservableList);
-                transferTo.setItems(accountObservableList);
-                
- 
-                
+        //Fylling i listorna med alla konton som en viss kund har
+        transferFrom.setItems(accountObservableList);
+        transferTo.setItems(accountObservableList);
+
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -385,40 +367,40 @@ public class Scene2Controller implements Initializable {
 
         accountList.setItems(accountObservableList);
     }
-    
-    public void setTransactions(String str){
+
+    public void setTransactions(String str) {
         transactionObservable = FXCollections.observableArrayList();
-        str  = str.replaceAll("[^0-9]", "").trim();
+        str = str.replaceAll("[^0-9]", "").trim();
         int aNr = Integer.parseInt(str);
-        
+
         Customer c = getThisObject();
-        
-        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction(); 
+
+        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
         transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
-        
-        if(!arr.isEmpty()){
-           
-        for(Transaction t : arr){
-            transactionObservable.add(t.toString());
+
+        if (!arr.isEmpty()) {
+
+            for (Transaction t : arr) {
+                transactionObservable.add(t.toString());
+            }
         }
-        }
-       
+
         transactionList.setItems(transactionObservable);
-        
-        
+
     }
-    
-    public Customer getThisObject(){
+
+    public Customer getThisObject() {
         String sn = ssn.getText();
         sn = sn.replaceAll("-", "").trim();
         long l = Long.parseLong(sn);
         ArrayList<Customer> cL = b.getCustomerList();
         Customer rC = null;
-        for(Customer c : cL){
-            if(c.getPnr() == l)
+        for (Customer c : cL) {
+            if (c.getPnr() == l) {
                 rC = c;
+            }
         }
-        
+
         return rC;
     }
 
