@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +45,7 @@ public class Scene2Controller implements Initializable {
     private Button editNameButton;
 
     @FXML
-    private ListView accountList;
+    private ListView accountList, transactionList;
 
     @FXML
     private Button addAccountButton;
@@ -239,6 +241,15 @@ public class Scene2Controller implements Initializable {
         name.setText(namn);
         ssn.setText(sl);
         setListView();
+        
+                accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String str = (String) accountList.getSelectionModel().getSelectedItem();
+                setTransactions(str);
+            }
+        });
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -260,6 +271,28 @@ public class Scene2Controller implements Initializable {
         }
 
         accountList.setItems(accountObservableList);
+    }
+    
+    public void setTransactions(String str){
+        str  =str.replaceAll("[^-9]", "").trim();
+        String sn = ssn.getText();
+        sn = sn.replaceAll("-", "").trim();
+        long ln = Long.parseLong(sn);
+       // ArrayList<Transaction> arr = b.getCustomerList(ln).getAccountList()
+    }
+    
+    public Customer getThisObject(){
+        String sn = ssn.getText();
+        sn = sn.replaceAll("-", "").trim();
+        long l = Long.parseLong(sn);
+        ArrayList<Customer> cL = b.getCustomerList();
+        Customer rC = null;
+        for(Customer c : cL){
+            if(c.getPnr() == l)
+                rC = c;
+        }
+        
+        return rC;
     }
 
 }
