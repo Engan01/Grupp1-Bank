@@ -60,6 +60,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private TextField amount;
+    
 
     @FXML
     public void deposit(ActionEvent e) {
@@ -255,9 +256,10 @@ public class Scene2Controller implements Initializable {
                 setTransactions(str);
             }
         });
-                //Fyllning i listorna med alla konton som en viss kund har
+                //Fylling i listorna med alla konton som en viss kund har
                 transferFrom.setItems(accountObservableList);
                 transferTo.setItems(accountObservableList);
+ 
                 
     }
 
