@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
-    private ObservableList<String> accountObservableList;
+    private ObservableList<String> accountObservableList, transactionObservable;
     private BankLogic b;
     private Singelton s;
 
@@ -285,11 +285,21 @@ public class Scene2Controller implements Initializable {
     }
     
     public void setTransactions(String str){
-        str  =str.replaceAll("[^-9]", "").trim();
-        String sn = ssn.getText();
-        sn = sn.replaceAll("-", "").trim();
-        long ln = Long.parseLong(sn);
-       // ArrayList<Transaction> arr = b.getCustomerList(ln).getAccountList()
+        transactionObservable = FXCollections.observableArrayList();
+        str  = str.replaceAll("[^0-9]", "").trim();
+        int aNr = Integer.parseInt(str);
+        Customer c = getThisObject();
+        
+        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
+        //transactionObservable.add("Account number: " + aNr + "\t Balance: " + );
+        
+        for(Transaction t : arr){
+            transactionObservable.add(t.toString());
+        }
+        
+        transactionList.setItems(transactionObservable);
+        
+        
     }
     
     public Customer getThisObject(){

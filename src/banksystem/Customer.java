@@ -62,6 +62,15 @@ public class Customer {
         
     }
     
+    public Account getSelectedAccount(int aNr){
+        for(Account a : accounts){
+            if(a.getAccountNumber() == aNr){
+                return a;
+            }
+        }
+        return null;
+    }
+    
 //    public String[] closeAllAccounts(){
 //        
 //    }
