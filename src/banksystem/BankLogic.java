@@ -70,6 +70,7 @@ public class BankLogic {
         }
 
         a = c1.getAccountList();
+        
         lista = new String[a.size() + 1];
         lista[0] = c1.getName() + " " + c1.getPnr();
         int i = 1;

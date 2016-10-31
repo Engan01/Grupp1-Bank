@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -52,7 +53,10 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Button back;
-
+    
+    @FXML
+    private ChoiceBox transferFrom, transferTo;
+    
     @FXML
     private TextField amount;
 
@@ -250,6 +254,9 @@ public class Scene2Controller implements Initializable {
                 setTransactions(str);
             }
         });
+                //Fyllig i listor på all konton för en viss kund
+                transferFrom.setItems(accountObservableList);
+                transferTo.setItems(accountObservableList);
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -279,6 +286,12 @@ public class Scene2Controller implements Initializable {
         sn = sn.replaceAll("-", "").trim();
         long ln = Long.parseLong(sn);
        // ArrayList<Transaction> arr = b.getCustomerList(ln).getAccountList()
+    }
+    
+    @FXML
+    public void transfer(double amount){
+        String accountNr=transferFrom.getSelectionModel().getSelectedItem().toString();
+        System.out.println(accountNr);
     }
     
     public Customer getThisObject(){
