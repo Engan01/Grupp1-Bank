@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -178,7 +182,26 @@ public class FXMLDocumentController implements Initializable {
 
                 i3 = n2.length();
                 long l = Long.parseLong(n2);
-
+              
+                LocalDate d = LocalDate.now();
+                String g = d.toString();
+                g = g.replaceAll("-", "").trim();
+                
+                long todaysDate = Long.parseLong(g);
+                n2 = n2.substring(0, 8);
+                long cu = Long.parseLong(n2);
+                
+                System.out.println(todaysDate-cu);
+                
+//                if((todaysDate-cu) > 18){
+//                    statusLabel.setText("The customer must be 18 or older!");
+//                    throw new NullPointerException();
+//                }
+//                else if (todaysDate-cu >120){
+//                  statusLabel.setText("The customer cannot be older than 120!");
+//                    throw new NullPointerException();  
+//                }
+                
                 if (i3 != 12) {
                     statusLabel.setText("Please type full social security number!");
                     throw new NullPointerException();
