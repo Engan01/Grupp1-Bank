@@ -47,7 +47,7 @@
                      </GridPane.margin>
                   </Label>
                   <HBox prefHeight="144.0" prefWidth="166.0" GridPane.columnIndex="2" GridPane.rowSpan="2" />
-                  <TextArea fx:id="customerDetailList" prefHeight="247.0" prefWidth="347.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextArea fx:id="customerDetailList" editable="false" prefHeight="247.0" prefWidth="347.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin>

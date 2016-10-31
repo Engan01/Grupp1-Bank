@@ -192,15 +192,16 @@ public class FXMLDocumentController implements Initializable {
                 long cu = Long.parseLong(n2);
                 
                 
+               // jämför dagens datum med kundens personnummer för att se om personen är mindre än 18 
+                if((todaysDate-cu) < 180000){
+                    statusLabel.setText("The customer must be 18 or older!");
+                    throw new NullPointerException();
+                }//
+                else if ((todaysDate-cu) >1200000){
+                  statusLabel.setText("The customer cannot be older than \n120 years old!");
+                    throw new NullPointerException();  
+                }
                 
-//                if((todaysDate-cu) > 18){
-//                    statusLabel.setText("The customer must be 18 or older!");
-//                    throw new NullPointerException();
-//                }
-//                else if (todaysDate-cu >120){
-//                  statusLabel.setText("The customer cannot be older than 120!");
-//                    throw new NullPointerException();  
-//                }
                 
                 if (i3 != 12) {
                     statusLabel.setText("Please type full social security number!");
