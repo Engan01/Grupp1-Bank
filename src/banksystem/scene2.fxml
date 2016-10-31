@@ -128,7 +128,7 @@
                      </GridPane.margin>
                   </TextField>
                   <ChoiceBox fx:id="transferTo" prefWidth="150.0" style="-fx-background-radius: 0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#transfer" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Transfer " textFill="#baf47c" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Transfer " textFill="#baf47c" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
