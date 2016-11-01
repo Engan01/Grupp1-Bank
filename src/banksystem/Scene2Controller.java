@@ -310,7 +310,8 @@ public class Scene2Controller implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(addAccountButton.getScene().getWindow());
             stage.showAndWait();
-            setListView();
+            
+            
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
         }
