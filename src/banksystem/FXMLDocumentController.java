@@ -315,6 +315,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
+        oList = FXCollections.observableArrayList();
 
         setListView(); // fyller lista med kunder
 
@@ -341,7 +342,7 @@ public class FXMLDocumentController implements Initializable {
                        customerDetailList.setText(str + "\n\nNumber of savings account(s): "+counter +"\nNumber of credit account(s): "+counter1);
                    }
                } 
-                
+               customersList.getSelectionModel().setSelectionMode(null); 
             }
         });
 
@@ -349,7 +350,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
 
-        oList = FXCollections.observableArrayList();
+        oList.clear();
 
         for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
 
