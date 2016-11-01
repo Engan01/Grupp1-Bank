@@ -91,7 +91,7 @@
                               <Insets left="5.0" top="-10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-radius: ;" stylesheets="@brightStyleSheet.css" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" stylesheets="@brightStyleSheet.css" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="5.0" top="-50.0" />
                            </GridPane.margin>

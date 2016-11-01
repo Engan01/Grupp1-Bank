@@ -133,7 +133,7 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: ;" stylesheets="@greenStyleSheet.css" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="25.0" prefWidth="80.0" stylesheets="@greenStyleSheet.css" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets top="14.0" />
                      </GridPane.margin>
