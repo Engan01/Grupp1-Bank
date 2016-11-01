@@ -162,7 +162,6 @@ public class BankLogic {
                             else{
                                 double amount1 = amount * 0.02 + amount;
                                 currentBalance = currentBalance - amount1; // räknar ut nya beloppet med utagsränta
-                            System.out.println(currentBalance);
                             }
                             if (currentBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
                                 customersList.get(i).getAccountList().get(j).withdraw(amount);
