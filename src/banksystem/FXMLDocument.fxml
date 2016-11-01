@@ -54,7 +54,7 @@
                   </TextArea>
                   <HBox prefHeight="82.0" prefWidth="324.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="View profile" textFill="#bddad6">
+                        <Button mnemonicParsing="false" onAction="#viewProfile" prefHeight="27.0" prefWidth="87.0" stylesheets="@darkStyleSheet.css" text="View profile" textFill="#bddad6">
                            <HBox.margin>
                               <Insets left="260.0" top="12.0" />
                            </HBox.margin>
@@ -83,7 +83,7 @@
                               <Insets top="-10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Search" textFill="#baf47c" GridPane.columnIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style=": 0;" stylesheets="@brightStyleSheet.css" text="Search" textFill="#566368" GridPane.columnIndex="1">
                            <font>
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
@@ -91,7 +91,7 @@
                               <Insets left="5.0" top="-10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-radius: ;" stylesheets="@brightStyleSheet.css" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="5.0" top="-50.0" />
                            </GridPane.margin>
@@ -127,12 +127,12 @@
                         </Line>
                      </children>
                   </GridPane>
-                  <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="119.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Add customer" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="119.0" stylesheets="@brightStyleSheet.css" text="Add customer" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Helvetica Neue Medium" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Delete customer" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="27.0" prefWidth="125.0" stylesheets="@brightStyleSheet.css" text="Delete customer" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Helvetica Neue Medium" size="12.0" />
                      </font>
@@ -147,7 +147,7 @@
                   <Font name="Regencie Light" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="exportFileButton" mnemonicParsing="false" onAction="#exportToFile" prefHeight="29.0" prefWidth="120.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" stylesheets="@../StyleSheet.css" text="Export to file" GridPane.rowIndex="2">
+            <Button fx:id="exportFileButton" mnemonicParsing="false" onAction="#exportToFile" prefHeight="29.0" prefWidth="120.0" stylesheets="@greenStyleSheet.css" text="Export to file" textFill="#5d7f22" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="140.0" />
                </GridPane.margin>
