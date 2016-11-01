@@ -108,35 +108,44 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="86.0" minHeight="15.0" prefHeight="34.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Name:" textFill="WHITE">
+                  <Label text="Name:" textFill="WHITE" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="name" alignment="CENTER" prefHeight="17.0" prefWidth="155.0" textFill="WHITE" GridPane.columnIndex="1">
+                  <Label fx:id="name" alignment="CENTER" prefHeight="17.0" prefWidth="155.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="SSN:" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label text="SSN:" textFill="WHITE" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="ssn" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="ssn" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets top="14.0" />
                      </GridPane.margin>
                   </Button>
+                  <Label minWidth="-Infinity" prefWidth="150.0" text="Customer details:" textFill="WHITE" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <GridPane prefHeight="172.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
