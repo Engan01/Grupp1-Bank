@@ -323,7 +323,24 @@ public class FXMLDocumentController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) customersList.getSelectionModel().getSelectedItem();
-                customerDetailList.setText(str);
+                
+                 // Customer Detail  
+               for (Customer c: (ArrayList<Customer>) b.getCustomerList()){// loopa igenom customerList för att hitta rätt objekt genom att jämföra personnummre
+                   if (Long.parseLong(str.replaceAll("[^0-9]", ""))==c.getPnr()){// str.length-12 vi backar 12 steg i personnummret
+                       int counter=0;
+                       int counter1=0;
+                       for(Account a: c.getAccountList()){//loopar igenom accountList
+                        if (a instanceof SavingAccount){// kollar om det finns en savings account 
+                            counter++;
+                        }  
+                        else if(a instanceof CreditAccount){// kollar om det finns en credit account
+                           counter1++; 
+                        }
+                       }
+                       
+                       customerDetailList.setText(str + "\n\nNumber of savings account(s): "+counter +"\nNumber of credit account(s): "+counter1);
+                   }
+               } 
                 
             }
         });
