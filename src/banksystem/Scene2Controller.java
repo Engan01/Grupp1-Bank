@@ -372,6 +372,7 @@ public class Scene2Controller implements Initializable {
         
         try {
             String s1 = (String) accountList.getSelectionModel().getSelectedItem();
+            String s2 = s1;
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
@@ -399,9 +400,10 @@ public class Scene2Controller implements Initializable {
             
             if(s.getB()){
                 getThisObject().deleteAccount(selectedAccountNr);
-                setListView();
-                
+                accountObservableList.remove(s2);
             }
+            
+            
             
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
@@ -432,16 +434,21 @@ public class Scene2Controller implements Initializable {
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
         accountList.setItems(accountObservableList);
-         
+    
        accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
            @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                try{
                 String str = (String) accountList.getSelectionModel().getSelectedItem();
-                    
+                
+                
+                if(!str.isEmpty()){ 
                 str = str.replaceAll("[A-Za-z -]", "");
                 accountNr.setText(str);
                 setTransactions();
                 accountList.getSelectionModel().setSelectionMode(null);
+                }
+                }catch(NullPointerException e){}
             }
         });
 
