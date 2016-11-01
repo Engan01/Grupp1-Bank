@@ -71,11 +71,14 @@ public class Scene2Controller implements Initializable {
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
 
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
-
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+        
+        String saveSSN = ssn.getText(); // hämtar personNr
+        saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
+        long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
 
         //drar pengar från spcifikt konto
-        if (b.deposit(c.getPnr(), acountNR, amount2) == true) { // om det går bra
+        if (b.deposit(l, acountNR, amount2) == true) { // om det går bra
             c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
             String gg = Integer.toString(acountNR);
             setTransactions(gg);
@@ -100,28 +103,19 @@ public class Scene2Controller implements Initializable {
     @FXML
     public void withdraw(ActionEvent e) {
         Customer c = getThisObject();
-     
-        
-        
+    
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
-//        if(selectedAccount.equals("")){
-//            mainStatus.setText("No account selected!");
-//                    throw new NullPointerException();
-//        }
+
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        System.out.println("Kontonummer för withdraw: " + selectedAccount);
-        
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+        
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
         
-        String saveSSN = ssn.getText();
-        System.out.println(saveSSN);
+        String saveSSN = ssn.getText(); // hämtar personNr
+        saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
+        long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
         
-        saveSSN = saveSSN.replaceAll("[-]", "");
-        System.out.println(saveSSN);
-        
-       
-        long l = Long.parseLong(saveSSN);
+        System.out.println("PersonNr som skickas in i withdraw medod: " + l);
         
         if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
 

@@ -135,6 +135,8 @@ public class BankLogic {
      
         for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
+                
+                System.out.println("Matchanden inne i withdraw met personNr: " + customersList.get(i).getPnr());
 
                 for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
                     if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
@@ -171,10 +173,7 @@ public class BankLogic {
 
                 }
 
-            } else {
-                System.out.println("pNR matchar inte!");
-                return false;
-            }
+            } 
 
         } // första for sats
         return false;
@@ -220,10 +219,7 @@ public class BankLogic {
 
                 }
 
-            } else {
-                System.out.println("pNR matchar inte!");
-                return false;
-            }
+            } 
 
         } // första for sats
         return false;
