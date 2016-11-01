@@ -95,7 +95,7 @@ public class Scene2Controller implements Initializable {
         if (b.deposit(l, acountNR, amount2) == true) { // om det går bra
             c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
             String gg = Integer.toString(acountNR);
-            setTransactions(gg);
+            setTransactions();
             mainStatus.setText("Deposit succesfull!");
         } else {
             mainStatus.setText("Error. Deposit failed.");
@@ -160,7 +160,7 @@ public class Scene2Controller implements Initializable {
 
             c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
             String gg = Integer.toString(acountNR);
-            setTransactions(gg);
+            setTransactions();
 
             mainStatus.setText("Withdraw succesfull!");
         } else {
@@ -225,25 +225,21 @@ public class Scene2Controller implements Initializable {
             //Uppdatering saldo på första konto efter att överföra ett visst belopp
             double newBalanceFromAccount=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount;
             getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
-            
-            
-            
-            
-            
+
             c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
             String gg = Integer.toString(selectedFromAccountNr);
-            setTransactions(gg);
-            
-            
+           
           
             //Uppdatering saldo på andra konto efter att överföra ett visst belopp
             double newBalanceToAccount=getThisObject().getSelectedAccount(selectedToAccountNr).getBalance()+transferAmount;
             getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
-            
+        
             c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
-            String gg2 = Integer.toString(selectedToAccountNr);
-            setTransactions(gg2);
+            String gg2 = Integer.toString(selectedFromAccountNr);
+           
+           
             
+            setTransactions();
             //Visa användaren att det gick att överföra pengar
             transferStatus.setText("The transfer has been done!");
         }    
@@ -425,6 +421,9 @@ public class Scene2Controller implements Initializable {
 
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
+        
+        transactionObservable = FXCollections.observableArrayList();
+        transactionList.setItems(transactionObservable);
 
         long l = s.getL();
         String sl = Long.toString(l);
@@ -476,18 +475,19 @@ public class Scene2Controller implements Initializable {
            @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String str = (String) accountList.getSelectionModel().getSelectedItem();
-                setTransactions(str);
 
                 str = str.replaceAll("[A-Za-z -]", "");
                 accountNr.setText(str);
+                setTransactions();
                 accountList.getSelectionModel().setSelectionMode(null);
             }
         });
     }
 
-    public void setTransactions(String str) {
-        transactionObservable = FXCollections.observableArrayList();
-        str = str.replaceAll("[^0-9]", "").trim();
+    public void setTransactions() {
+        
+        String str = accountNr.getText().trim();
+        transactionObservable.clear();
         int aNr = Integer.parseInt(str);
 
         Customer c = getThisObject();
@@ -502,7 +502,6 @@ public class Scene2Controller implements Initializable {
             }
         }
 
-        transactionList.setItems(transactionObservable);
         String total2 = Double.toString(c.getSelectedAccount(aNr).getBalance());
         
         balance.setText(total2);
