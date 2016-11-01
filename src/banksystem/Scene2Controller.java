@@ -164,7 +164,7 @@ public class Scene2Controller implements Initializable {
 
             mainStatus.setText("Withdraw succesfull!");
         } else {
-            mainStatus.setText("Error. \nNot enought money on account!");
+            mainStatus.setText("Withdraw not possible!");
         }
 
         // *** skrive ut nytt belopp på "balance" label
