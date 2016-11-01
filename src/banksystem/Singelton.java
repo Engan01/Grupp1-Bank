@@ -20,6 +20,7 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     private String n2;
     private Long l;
     private int i;
+    
 
     public Boolean getB() {
         return b;
