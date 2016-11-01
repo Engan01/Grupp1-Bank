@@ -65,13 +65,26 @@ public class Scene2Controller implements Initializable {
     private Label balance;
 
     @FXML
-    public void deposit(ActionEvent e) {
+    public void deposit(ActionEvent e) throws Exception{
+        
+        try{
         Customer c = getThisObject();
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
+        
+        if(selectedAccount.isEmpty()){
+           throw new NullPointerException();
+           
+        }
+        
+       
+        
+        
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
 
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+        
+        
         
         String saveSSN = ssn.getText(); // hämtar personNr
         saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
@@ -96,15 +109,40 @@ public class Scene2Controller implements Initializable {
                 balance.setText(newString);
 
             }
+            
+            
         }
+        
 
-    }
+        }
+        catch(NullPointerException ex2){
+                mainStatus.setText("You must select a account.");
+                }
+        
+        catch(Exception ex){
+            System.out.println("Error");
+            
+        }
+        
+        
+        
+        }
+        
+    
 
     @FXML
-    public void withdraw(ActionEvent e) {
+    public void withdraw(ActionEvent e) throws Exception {
+        
+        try{
         Customer c = getThisObject();
     
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
+        
+        if(selectedAccount.isEmpty()){
+           throw new NullPointerException();
+           
+        }
+        
 
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
@@ -125,7 +163,7 @@ public class Scene2Controller implements Initializable {
 
             mainStatus.setText("Withdraw succesfull!");
         } else {
-            mainStatus.setText("Error. Not enought money on account!");
+            mainStatus.setText("Error. \nNot enought money on account!");
         }
 
         // *** skrive ut nytt belopp på "balance" label
@@ -138,6 +176,17 @@ public class Scene2Controller implements Initializable {
             }
         }
 
+         }
+        catch(NullPointerException ex2){
+                mainStatus.setText("You must select a account.");
+                }
+        
+        catch(Exception ex){
+            System.out.println("Error");
+            
+        }
+        
+        
     }
 
     @FXML
