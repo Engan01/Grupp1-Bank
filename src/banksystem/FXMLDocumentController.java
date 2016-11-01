@@ -290,10 +290,20 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void clearSearch(ActionEvent event) {
-
+    private void clearSearch(ActionEvent event) throws NullPointerException{
+        
+        try{
+            
+            if(ssnField.getText().isEmpty()){
+                throw new NullPointerException();
+            }
+            
         ssnField.clear();
         setListView();
+        
+        }catch(NullPointerException e){
+            statusLabel.setText("Searched cleared!");
+        }
     }
 
 
