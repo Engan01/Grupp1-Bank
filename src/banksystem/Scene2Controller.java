@@ -395,15 +395,14 @@ public class Scene2Controller implements Initializable {
             if(s.getB()){
                 getThisObject().deleteAccount(selectedAccountNr);
                 setListView();
+                
             }
             
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
         }
         
-                
-        int selectedAccountNumber=Integer.parseInt(s1);
-        System.out.println(selectedAccountNumber);
+    
     }
 
     @FXML
@@ -424,6 +423,25 @@ public class Scene2Controller implements Initializable {
         
         transactionObservable = FXCollections.observableArrayList();
         transactionList.setItems(transactionObservable);
+        accountObservableList = FXCollections.observableArrayList();
+        
+        transferFrom.setItems(accountObservableList);
+        transferTo.setItems(accountObservableList);
+        
+        accountList.setItems(accountObservableList);
+        
+                
+       accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
+           @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String str = (String) accountList.getSelectionModel().getSelectedItem();
+                    
+                str = str.replaceAll("[A-Za-z -]", "");
+                accountNr.setText(str);
+                setTransactions();
+                accountList.getSelectionModel().setSelectionMode(null);
+            }
+        });
 
         long l = s.getL();
         String sl = Long.toString(l);
@@ -440,48 +458,28 @@ public class Scene2Controller implements Initializable {
         name.setText(namn);
         ssn.setText(sl);
         setListView();
-        
-
-        
-        //Fylling i listorna med alla konton som en viss kund har
-        transferFrom.setItems(accountObservableList);
-        transferTo.setItems(accountObservableList);
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
+        accountObservableList.clear();
         String g = ssn.getText();
+        
         g = g.replaceAll("-", "");
         long pNr = Long.parseLong(g);
-
-        accountObservableList = FXCollections.observableArrayList();
 
         ArrayList<Customer> tC = b.getCustomerList();
 
         for (Customer c : tC) {
             if (c.getPnr() == pNr) {
                 ArrayList<Account> a = c.getAccountList();
+                if(!a.isEmpty()){
                 for (Account a1 : a) {
                     accountObservableList.add(a1.getAccountNumber() + " " + a1.getAccountName());
+                }
                 }
             }
         }
         
-        // Fyllning i listorna med alla konton som en viss kund har
-        transferFrom.setItems(accountObservableList);
-        transferTo.setItems(accountObservableList);
-        
-        accountList.setItems(accountObservableList);
-       accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
-           @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String str = (String) accountList.getSelectionModel().getSelectedItem();
-
-                str = str.replaceAll("[A-Za-z -]", "");
-                accountNr.setText(str);
-                setTransactions();
-                accountList.getSelectionModel().setSelectionMode(null);
-            }
-        });
     }
 
     public void setTransactions() {
