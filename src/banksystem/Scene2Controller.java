@@ -29,7 +29,8 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
-    private ObservableList<String> accountObservableList, transactionObservable;
+    private ObservableList<String> accountObservableList;
+    private ObservableList<String> transactionObservable;
     private ObservableList<String> updatedTransactionList;
     private BankLogic b;
     private Singelton s;
@@ -302,9 +303,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
-        if(accountList.getSelectionModel().getSelectedItem() != null)
-        accountList.getSelectionModel().select(-1);
-
+      
         Stage stage;
         Parent root;
 
@@ -314,6 +313,8 @@ public class Scene2Controller implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.showAndWait();
+        
+        
 
         String s1 = ssn.getText();
         s1 = s1.replaceAll("-", "");
@@ -321,18 +322,24 @@ public class Scene2Controller implements Initializable {
 
         if (s.getB()) {
             int i = s.getI();
+            String s4;
             switch (i) {
                 case (1):
                     int g = b.addSavingsAccount(l);
+                    s4 = Integer.toString(g) + " Savings Account";
+                    accountObservableList.add(s4);
                     break;
                 case (-1):
                     g = b.addCreditAccount(l);
+                    s4 = Integer.toString(g) + " Credit Account";
+                    accountObservableList.add(s4);
                     break;
             }
         }
         s.setB(Boolean.FALSE);
         s.setI(0);
-        setListView();
+        
+        
     }
 
     @FXML
@@ -352,7 +359,8 @@ public class Scene2Controller implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(addAccountButton.getScene().getWindow());
             stage.showAndWait();
-            setListView();
+            
+            
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
         }
@@ -389,19 +397,9 @@ public class Scene2Controller implements Initializable {
         name.setText(namn);
         ssn.setText(sl);
         setListView();
+        
 
-        accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String str = (String) accountList.getSelectionModel().getSelectedItem();
-                setTransactions(str);
-
-                str = str.replaceAll("[A-Za-z -]", "");
-                accountNr.setText(str);
-
-            }
-        });
+        
         //Fylling i listorna med alla konton som en viss kund har
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
@@ -433,6 +431,17 @@ public class Scene2Controller implements Initializable {
         transferTo.setItems(accountObservableList);
         
         accountList.setItems(accountObservableList);
+       accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
+           @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String str = (String) accountList.getSelectionModel().getSelectedItem();
+                setTransactions(str);
+
+                str = str.replaceAll("[A-Za-z -]", "");
+                accountNr.setText(str);
+                accountList.getSelectionModel().setSelectionMode(null);
+            }
+        });
     }
 
     public void setTransactions(String str) {
