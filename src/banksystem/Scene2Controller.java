@@ -368,10 +368,10 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
-        String s1=null;
+     
         
         try {
-            s1 = (String) accountList.getSelectionModel().getSelectedItem();
+            String s1 = (String) accountList.getSelectionModel().getSelectedItem();
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
@@ -429,13 +429,10 @@ public class Scene2Controller implements Initializable {
         transactionObservable = FXCollections.observableArrayList();
         transactionList.setItems(transactionObservable);
         accountObservableList = FXCollections.observableArrayList();
-        
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
-        
         accountList.setItems(accountObservableList);
-        
-                
+         
        accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
            @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
