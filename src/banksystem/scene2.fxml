@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="630.0" prefWidth="540.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.Scene2Controller">
+<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="630.0" prefWidth="700.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.Scene2Controller">
    <children>
-      <GridPane prefHeight="631.0" prefWidth="217.0" style="-fx-background-color: #1c2f36;">
+      <GridPane prefHeight="631.0" prefWidth="240.0" style="-fx-background-color: #1c2f36;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -18,11 +18,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <GridPane layoutY="42.0" prefHeight="589.0" prefWidth="540.0">
+      <GridPane layoutY="42.0" prefHeight="589.0" prefWidth="700.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="417.0" minWidth="10.0" prefWidth="220.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="0.0" prefWidth="11.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="319.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="417.0" minWidth="10.0" prefWidth="237.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.0" minWidth="0.0" prefWidth="19.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="442.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="133.0" vgrow="SOMETIMES" />
@@ -35,8 +35,8 @@
          <children>
             <GridPane prefHeight="186.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.valignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="163.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.0" minWidth="0.0" prefWidth="153.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="197.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.0" minWidth="0.0" prefWidth="185.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -89,9 +89,9 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="amount" prefHeight="25.0" prefWidth="83.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                  <TextField fx:id="amount" prefHeight="25.0" prefWidth="128.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <GridPane.margin>
-                        <Insets left="50.0" top="10.0" />
+                        <Insets left="55.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label text="Amount:" GridPane.rowIndex="2">
@@ -218,7 +218,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#deleteAccountEvent" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+            <Button mnemonicParsing="false" onAction="#deleteAccountEvent" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="25.0" />
                </GridPane.margin>
@@ -241,7 +241,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
@@ -266,7 +266,7 @@
             </Label>
          </children>
       </GridPane>
-      <GridPane prefHeight="47.0" prefWidth="540.0" style="-fx-background-color: #89be30;">
+      <GridPane prefHeight="47.0" prefWidth="700.0" style="-fx-background-color: #89be30;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
