@@ -56,6 +56,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextArea customerDetailList;
+    
+    @FXML
+    private Label mainStatus;
 
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
@@ -302,6 +305,7 @@ public class FXMLDocumentController implements Initializable {
             ArrayList<Customer> lista1 = b.getCustomerList();
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
+            mainStatus.setText("File exported.");
             writer = new BufferedWriter(new FileWriter(textFile));
             for (Customer c : lista1) {
                 writer.write(c.toString() + "\n");
