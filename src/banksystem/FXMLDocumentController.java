@@ -187,26 +187,26 @@ public class FXMLDocumentController implements Initializable {
               
                 LocalDate d = LocalDate.now();
                 LocalDate dd = d.minusYears(18);
-                String förUng = dd.toString();
+                String tooYoung = dd.toString();
                 dd = d.minusYears(120);
-                String förGammal = dd.toString();
+                String tooOld = dd.toString();
                
-                int fU = Integer.parseInt(förUng.replaceAll("-", "").trim());
-                int fG = Integer.parseInt(förGammal.replaceAll("-", "").trim());
+                int tY = Integer.parseInt(tooYoung.replaceAll("-", "").trim());
+                int tO = Integer.parseInt(tooOld.replaceAll("-", "").trim());
                 String n3 = n2.substring(0, 8);
                 n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length());
                 
                 LocalDate date = LocalDate.parse(n3);
              
                 n3 = n3.replaceAll("-", "");
-                int kund = Integer.parseInt(n3);
+                int customer = Integer.parseInt(n3);
                 
                 
-                if(kund > fU){
-                    statusLabel.setText("You must be 18 or older!");
+                if(customer > tY){
+                    statusLabel.setText("The customer can't be younger \nthan 18 years old!");
                     throw new NullPointerException();          
-                }else if(kund < fG){
-                    statusLabel.setText("You are to old!");
+                }else if(customer < tO){
+                    statusLabel.setText("The customer can't be older \nthan 120 years old!");
                     throw new NullPointerException(); 
                 }
                 
