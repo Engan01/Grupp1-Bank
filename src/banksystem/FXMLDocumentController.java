@@ -267,12 +267,14 @@ public class FXMLDocumentController implements Initializable {
                     c = c1;
             }
             ArrayList<Account> arr = c.getAccountList();
+            
             double balance = 0;
             int savingsAccounts = 0;
             int creditAccountsPlus = 0;
             int creditAccountsMinus = 0;
+            
             for(Account a : arr){
-                if(a.getAccountName().equals("Savings Account")){
+                if(a.getAccountName().equals("Saving Account")){
                     savingsAccounts++;
                     balance += a.getBalance() * 0.01 + a.getBalance();
                 }else{
@@ -292,10 +294,10 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
             
-            
-            
-            
-           
+            s.setD(balance);
+            s.setI(savingsAccounts);
+            s.setI1(creditAccountsPlus);
+            s.setI2(creditAccountsMinus);
 
             Stage stage;
             Parent root;
@@ -315,13 +317,17 @@ public class FXMLDocumentController implements Initializable {
             if (s.getB()) {
                 s1 = s1.replaceAll("[A-Za-z-]", "").trim();
                 pNr = Long.parseLong(s1);
-                //metod i bankLogic för att ta bort kund (skicka long pNr)
+                String[] ss = b.removeCustomer(pNr);
             }
-            setListView();
+            customerDetailList.setText("");
+            
+            
             s.setB(Boolean.FALSE);
+            
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
+        setListView();
 
     }
 
@@ -382,7 +388,11 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                try{
                 String str = (String) customersList.getSelectionModel().getSelectedItem();
+                
+                if(!str.isEmpty()){
+       
                 
                  // Customer Detail  
                for (Customer c: (ArrayList<Customer>) b.getCustomerList()){// loopa igenom customerList för att hitta rätt objekt genom att jämföra personnummre
@@ -402,6 +412,9 @@ public class FXMLDocumentController implements Initializable {
                    }
                } 
                customersList.getSelectionModel().setSelectionMode(null); 
+               }
+                
+                }catch(NullPointerException e){}
             }
         });
 
@@ -426,7 +439,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders namn i listView
-        oList = FXCollections.observableArrayList();
+        oList.clear();
 
         ArrayList<Customer> tC = b.getCustomerList();
 

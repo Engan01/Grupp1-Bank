@@ -20,13 +20,29 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     private String n2;
     private Long l;
     private int i;
-    
-
+    private int i1;
+    private int i2;
     private double d;
     private double d2;
     private double dT;
     public Boolean getB() {
         return b;
+    }
+
+    public int getI1() {
+        return i1;
+    }
+
+    public void setI1(int i1) {
+        this.i1 = i1;
+    }
+
+    public int getI2() {
+        return i2;
+    }
+
+    public void setI2(int i2) {
+        this.i2 = i2;
     }
 
     public String getN() {

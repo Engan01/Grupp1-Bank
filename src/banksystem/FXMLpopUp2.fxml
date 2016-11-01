@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="288.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp2">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="282.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp2">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -19,11 +19,12 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <rowConstraints>
+      <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#confirmPop2" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Confirm" textFill="#bddad6">
                <font>
@@ -35,9 +36,34 @@
                </font></Button>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="383.0" text="Are you sure?">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="262.0" text="Are you sure?" GridPane.rowIndex="1">
          <font>
             <Font name="Helvetica" size="12.0" />
          </font></Label>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="181.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="61.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="191.0" text="Number of Saving accounts:" />
+            <Label prefHeight="60.0" prefWidth="179.0" text="Credit accounts:" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="158.0" text="Minus balance:" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="164.0" text="Plus balance:" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="175.0" text="Balance:" GridPane.rowIndex="4" />
+            <Label fx:id="row1" prefHeight="17.0" prefWidth="185.0" GridPane.columnIndex="1" />
+            <Label fx:id="row2" prefHeight="17.0" prefWidth="59.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="row3" prefHeight="17.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="row4" prefHeight="17.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="row5" prefHeight="17.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
    </children>
 </GridPane>

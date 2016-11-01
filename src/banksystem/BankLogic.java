@@ -85,9 +85,25 @@ public class BankLogic {
         return customersList;
     }
 
-//    public String[] removeCustomer(long pNr){
-//
-//    }
+    public String[] removeCustomer(long pNr){
+        Customer c = null;
+        for(Customer cc : customersList){
+            if(pNr == cc.getPnr())
+                c = cc;
+        }
+        int antal = c.getAccountList().size() + 1;
+        String[] lista = new String[antal];
+        
+        lista[0] = c.getName() + " " + c.getPnr();
+        for(int i = 0, j = 1; i < c.getNumberOfAccounts(); i++){
+            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName();
+        }
+        
+        customersList.remove(c); // tar bort kunden
+        return lista;
+        
+
+    }
 //
 //    public int getAccountNumber(){
 //
