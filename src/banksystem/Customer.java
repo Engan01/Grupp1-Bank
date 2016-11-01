@@ -74,4 +74,8 @@ public class Customer {
 //    public String[] closeAllAccounts(){
 //        
 //    }
+    
+    public void deleteAccount(int aNr){
+        accounts.remove(getSelectedAccount(aNr));
+    }
 }

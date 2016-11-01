@@ -396,6 +396,10 @@ public class Scene2Controller implements Initializable {
         });
             stage.showAndWait();
             
+            if(s.getB()){
+                getThisObject().deleteAccount(selectedAccountNr);
+                setListView();
+            }
             
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
@@ -443,9 +447,6 @@ public class Scene2Controller implements Initializable {
         //Fylling i listorna med alla konton som en viss kund har
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
-
-        
-        
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView

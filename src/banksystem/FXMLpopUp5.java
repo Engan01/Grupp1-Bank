@@ -18,8 +18,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp5 implements Initializable {
 
     private Singelton s;
-    @FXML
-    private Button confirmPop5, cancelPop5;
+  
 
     @FXML
     private Label balancePop5;
@@ -32,7 +31,7 @@ public class FXMLpopUp5 implements Initializable {
 
     @FXML
     private void confirmPop5(ActionEvent event) {
-
+       s.setB(Boolean.TRUE);
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
        
@@ -40,7 +39,7 @@ public class FXMLpopUp5 implements Initializable {
 
     @FXML
     private void cancelPop5(ActionEvent event) {
-
+        s.setB(Boolean.FALSE);
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
