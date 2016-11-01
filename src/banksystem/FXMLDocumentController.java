@@ -26,6 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -121,7 +122,7 @@ public class FXMLDocumentController implements Initializable {
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
         
         statusLabel.setText("");
-
+        
         Stage stage;
         Parent root;
 
@@ -132,8 +133,12 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addCustomerButton.getScene().getWindow());
+        stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
         stage.showAndWait();
-        
+     
        
         boolean b1 = s.getB();
         if (b1) {
@@ -261,6 +266,10 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(deleteCustomerButton.getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
             stage.showAndWait();
 
             boolean b = s.getB();

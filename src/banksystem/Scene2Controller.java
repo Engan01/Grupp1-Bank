@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -257,6 +258,10 @@ public class Scene2Controller implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(editNameButton.getScene().getWindow());
+        stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
         stage.showAndWait();
 
         if (s.getB()) {
@@ -323,6 +328,10 @@ public class Scene2Controller implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addAccountButton.getScene().getWindow());
+        stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
         stage.showAndWait();
         
         
@@ -369,6 +378,10 @@ public class Scene2Controller implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(addAccountButton.getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
             stage.showAndWait();
             
             
