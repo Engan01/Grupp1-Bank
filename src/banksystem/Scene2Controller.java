@@ -243,6 +243,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
+        if(accountList.getSelectionModel().getSelectedItem() != null)
+        accountList.getSelectionModel().select(-1);
 
         Stage stage;
         Parent root;

@@ -26,9 +26,11 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="269.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="187.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="107.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="125.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="228.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="381.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="381.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="150.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="134.0" minHeight="0.0" prefHeight="52.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -153,17 +155,17 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </GridPane>
-            <Button fx:id="back" mnemonicParsing="false" onAction="#back" style="-fx-background-radius: 0; -fx-background-color: #89be30;" text="Back" GridPane.rowIndex="3">
+            <Button fx:id="back" mnemonicParsing="false" onAction="#back" style="-fx-background-radius: 0; -fx-background-color: #89be30;" text="Back" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <ListView fx:id="accountList" prefHeight="172.0" prefWidth="256.0" GridPane.rowIndex="1">
+            <ListView fx:id="accountList" prefHeight="172.0" prefWidth="256.0" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </ListView>
-            <Label text="Customer all accounts:" textFill="WHITE" GridPane.rowIndex="1">
+            <Label text="Customer all accounts:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="13.0" />
                </font>
@@ -171,22 +173,22 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#deleteAccountEvent" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#deleteAccountEvent" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="addAccountButton" mnemonicParsing="false" onAction="#addAccountEvent" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Create" GridPane.rowIndex="2">
+            <Button fx:id="addAccountButton" mnemonicParsing="false" onAction="#addAccountEvent" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Create" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </Button>
-            <ListView fx:id="transactionList" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="391.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <ListView fx:id="transactionList" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="391.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="170.0" top="40.0" />
                </GridPane.margin>
             </ListView>
-            <Label alignment="BASELINE_CENTER" prefHeight="62.0" prefWidth="84.0" text="Transactions:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label text="Transactions:" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="13.0" />
                </font>
@@ -194,12 +196,19 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Export to file" textFill="#baf47c" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Export to file" textFill="#baf47c" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="125.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="exportStatus" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="694.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="272.0" textFill="#ff3e18" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Helvetica Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="exportStatus" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label fx:id="nameStatus" prefHeight="17.0" prefWidth="221.0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <GridPane prefHeight="57.0" prefWidth="760.0" style="-fx-background-color: #89be30;">
