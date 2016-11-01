@@ -61,7 +61,7 @@ public class Scene2Controller implements Initializable {
     private ChoiceBox transferFrom, transferTo;
 
     @FXML
-    private TextField amount;
+    private TextField amount, amountTransfer;
 
     @FXML
     private Label balance;
@@ -78,8 +78,7 @@ public class Scene2Controller implements Initializable {
            
         }
         
-       
-        
+    
         
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
 
@@ -205,7 +204,7 @@ public class Scene2Controller implements Initializable {
         int selectedToAccountNr=Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
         
         double selectedAccountsBalance=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance();
-        double transferAmount=Double.parseDouble(amount.getText());
+        double transferAmount=Double.parseDouble(amountTransfer.getText());
         
         //Om inte finns tillräckligt pengar på kontot
         if(selectedFromAccountNr ==selectedToAccountNr)
@@ -227,7 +226,11 @@ public class Scene2Controller implements Initializable {
             double newBalanceFromAccount=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount;
             getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
             
-            c.getSelectedAccount(selectedFromAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
+            
+            
+            
+            
+            c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
             String gg = Integer.toString(selectedFromAccountNr);
             setTransactions(gg);
             
@@ -237,7 +240,7 @@ public class Scene2Controller implements Initializable {
             double newBalanceToAccount=getThisObject().getSelectedAccount(selectedToAccountNr).getBalance()+transferAmount;
             getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
             
-            c.getSelectedAccount(selectedToAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
+            c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
             String gg2 = Integer.toString(selectedToAccountNr);
             setTransactions(gg2);
             
@@ -499,6 +502,11 @@ public class Scene2Controller implements Initializable {
         }
 
         transactionList.setItems(transactionObservable);
+        String total2 = Double.toString(c.getSelectedAccount(aNr).getBalance());
+        
+        balance.setText(total2);
+        
+        
 
     }
 
