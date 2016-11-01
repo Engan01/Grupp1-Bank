@@ -154,8 +154,6 @@ public class Scene2Controller implements Initializable {
         saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
         long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
         
-        System.out.println("PersonNr som skickas in i withdraw medod: " + l);
-        
         if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
 
             c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
@@ -172,7 +170,7 @@ public class Scene2Controller implements Initializable {
             if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
                 double newBalance = c.getAccountList().get(i).getBalance();
 
-                String newString = String.valueOf(newBalance);
+                String newString = String.format("%.2f", newBalance);
                 balance.setText(newString);
             }
         }
@@ -264,11 +262,12 @@ public class Scene2Controller implements Initializable {
         stage.initOwner(editNameButton.getScene().getWindow());
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
-            s.setB(false);
+            s.setB(false); // ifall användaren trycker på X istället för confirm eller cancel tar denna text hand om det
+            nameStatus.setText("No new name selected!");
         });
-        stage.showAndWait();
+        stage.showAndWait(); // popUp startar och nuvarande scen väntar
 
-        if (s.getB()) {
+        if (s.getB()) { // om användaren klickade confirm i popUpen
             try {
                 String newName = s.getN();
                 newName = newName.trim();
@@ -302,20 +301,13 @@ public class Scene2Controller implements Initializable {
                 String n = ssn.getText();
                 n = n.replaceAll("-", "").trim();
                 long l = Long.parseLong(n);
-
-                ArrayList<Customer> a = b.getCustomerList();
-
-                for (Customer c : a) {
-                    if (c.getPnr() == l) {
-                        c.setName(newName);
-                        name.setText(newName);
-                    }
-                }
+                name.setText(newName);
+                b.changeCustomerName(newName, l); // metod i bankLogic för att byta namn
 
             } catch (NullPointerException ex) {
 
             }
-        } else {
+        } else { // om användaen klickade cancel i popupen
             nameStatus.setText("No new name selected!");
         }
 
@@ -337,8 +329,7 @@ public class Scene2Controller implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-        
-        
+
 
         String s1 = ssn.getText();
         s1 = s1.replaceAll("-", "");
@@ -500,7 +491,9 @@ public class Scene2Controller implements Initializable {
         Customer c = getThisObject();
 
         ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
-        transactionObservable.add("Account number: " + aNr + "\t Balance: " + c.getSelectedAccount(aNr).getBalance());
+        String d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance());
+        
+        transactionObservable.add("Account number: " + aNr + "\t Balance: " + d);
 
         if (!arr.isEmpty()) {
 
@@ -508,10 +501,10 @@ public class Scene2Controller implements Initializable {
                 transactionObservable.add(t.toString());
             }
         }
-
-        String total2 = Double.toString(c.getSelectedAccount(aNr).getBalance());
         
-        balance.setText(total2);
+        d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance()); // hämtar balance och sätter till 2 decimaler
+        
+        balance.setText(d);
         
         
 

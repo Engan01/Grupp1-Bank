@@ -30,10 +30,12 @@ public class Transaction {
         String tid = datum.substring(11, 19);
         datum = datum.substring(0, 10);
         
+        String saldoFormat = String.format("%.2f", saldo); // sätter till 2 decimaler
+        
         if(b){
-            s = datum + " " + tid + " In: " + belopp + " Balance: " + saldo;
+            s = datum + " " + tid + " In: " + belopp + " Balance: " + saldoFormat;
         }else{
-            s = datum + " " + tid + " Out: -" + belopp + " Balance: " + saldo;
+            s = datum + " " + tid + " Out: -" + belopp + " Balance: " + saldoFormat;
         }
     
         return s;

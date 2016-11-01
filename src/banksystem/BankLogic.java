@@ -1,7 +1,7 @@
 package banksystem;
 
 // @author Anton
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 
 public class BankLogic {
@@ -63,8 +63,7 @@ public class BankLogic {
         Customer c1 = null;
 
         for (Customer c : customersList) {
-            long p = c.getPnr();
-            if (p == pNr) {
+            if (pNr == c.getPnr()) {
                 c1 = c;
                 break;
             }
@@ -135,8 +134,6 @@ public class BankLogic {
      
         for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
-                
-                System.out.println("Matchanden inne i withdraw met personNr: " + customersList.get(i).getPnr());
 
                 for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
                     if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
@@ -149,7 +146,7 @@ public class BankLogic {
 
                             if (currentBalance >= -5000) { // om det nya beloppet på kontot är mer än -5000
                                 
-                                customersList.get(i).getAccountList().get(j).setBalance(currentBalance);
+                                customersList.get(i).getAccountList().get(j).withdraw(amount);
                                 
                                 return true; // Det går bra att sätta in pengar
                             } else {
@@ -157,11 +154,18 @@ public class BankLogic {
                             }
 
                         } else {
-                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett kreditkonto
+                            double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett sparkonto
+                            SavingAccount sa = (SavingAccount) customersList.get(i).getAccountList().get(j);
+                            int ii = sa.getnumberOfWithdraw();
+                            if(ii < 1)
                             currentBalance = currentBalance - amount; // räknar ut nya beloppet
-
+                            else{
+                                double amount1 = amount * 0.02 + amount;
+                                currentBalance = currentBalance - amount1; // räknar ut nya beloppet med utagsränta
+                            System.out.println(currentBalance);
+                            }
                             if (currentBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
-                                customersList.get(i).getAccountList().get(j).setBalance(currentBalance);
+                                customersList.get(i).getAccountList().get(j).withdraw(amount);
                                 return true; // Accepteras
                             } else {
                                 return false; // Accepteras inte
@@ -192,7 +196,7 @@ public class BankLogic {
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
                             double newBalance = currentBalance + amount; // räknar ut nytt belopp
-                            customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            customersList.get(i).getAccountList().get(j).deposit(amount);
                             return true;
 //                            if (newBalance >= 5000) { // om det nya beloppet på kontot är mer än -5000
 //                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);
@@ -204,7 +208,7 @@ public class BankLogic {
                         } else {
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett kreditkonto
                             double newBalance = currentBalance + amount; // räknar ut nya beloppet
-                            customersList.get(i).getAccountList().get(j).setBalance(newBalance);
+                            customersList.get(i).getAccountList().get(j).deposit(amount);
                             return true;
 //                            if (newBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
 //                                customersList.get(i).getAccountList().get(j).setBalance(newBalance);

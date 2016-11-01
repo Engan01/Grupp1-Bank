@@ -6,8 +6,8 @@ package banksystem;
  */
 public class SavingAccount extends Account {
 
-    private int numberOfWithdraw = 1;
-    private static double interest = 0.02;
+    private int numberOfWithdraw = 0;
+    private static double interest = 0.01;
 //    private double amount;
 
     public SavingAccount() {
@@ -18,22 +18,34 @@ public class SavingAccount extends Account {
         super(balance);
     }
 
-    public double deposit(double balance, double amount) {
-        balance += amount;
-        return balance;
+    @Override
+    public double deposit(double amount) {
+        double b = super.getBalance(); 
+                b += amount;
+                super.setBalance(b);
+        return b;
     }
 
-    public double withdraw(double balance, double amount) {
+    @Override
+    public double withdraw(double amount) {
         if (numberOfWithdraw < 1) {
-            balance -= amount;
+            double d = super.getBalance(); 
+                   d -= amount;
+                   super.setBalance(d);
             numberOfWithdraw++;
         } else {
-            balance *= interest;
+            double balance = super.getBalance();
+            amount = amount * 0.02 + amount; // utagsränta efter första utaget = 2%
             balance -= amount;
             numberOfWithdraw++;
+            super.setBalance(balance);
         }
-        return balance;
+        return super.getBalance();
 
+    }
+    
+    public int getnumberOfWithdraw(){
+        return numberOfWithdraw;
     }
 
     @Override

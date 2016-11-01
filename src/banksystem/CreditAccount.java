@@ -7,7 +7,7 @@ package banksystem;
 public class CreditAccount extends Account {
 
     private final double creditLimit = 5000;
-    private final double debtInterest = 1.07;
+    private final double debtInterest = 0.07;
     private final double debtIncrease = 1.005;
     private static double interest = 0.005;
     // private double amount; //textfield value scene2
@@ -21,13 +21,19 @@ public class CreditAccount extends Account {
         super(balance);
     }
 
-    public double deposit(double balance, double amount) {
+    @Override
+    public double deposit(double amount) {
+        double balance = super.getBalance();
         balance += amount;
+        super.setBalance(balance);
         return balance;
     }
 
-    public double withdraw(double balance, double amount) {
+    @Override
+    public double withdraw(double amount) {
+        double balance = super.getBalance();
         balance -= amount;
+        super.setBalance(balance);
         return balance;
 
     }
@@ -49,7 +55,10 @@ public class CreditAccount extends Account {
 
     @Override
     public double getInterest() {
-        return interest;
+        if(super.getBalance() < 0)
+            return debtInterest;
+        else
+            return interest;   
     }
 
 }

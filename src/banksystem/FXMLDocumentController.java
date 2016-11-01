@@ -259,6 +259,33 @@ public class FXMLDocumentController implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
+            long pNr = Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim());
+            Customer c = null;
+            ArrayList<Customer> lista = b.getCustomerList();
+            for(Customer c1 : lista){
+                if(pNr == c1.getPnr())
+                    c = c1;
+            }
+            ArrayList<Account> arr = c.getAccountList();
+            double balance = 0;
+            int savingsAccounts = 0;
+            int creditAccountsPlus = 0;
+            int creditAccountsMinus = 0;
+            for(Account a : arr){
+                if(a.getAccountName().equals("Savings Account")){
+                    savingsAccounts++;
+                    balance = balance + a.getBalance()/100 * a.getInterest();
+                }else{
+                    double d = a.getBalance();
+                    if(d < 0)
+                       creditAccountsMinus++;
+                    else
+                        creditAccountsPlus++;
+                }
+            }
+            
+            
+           
 
             Stage stage;
             Parent root;
@@ -275,10 +302,9 @@ public class FXMLDocumentController implements Initializable {
         });
             stage.showAndWait();
 
-            boolean b = s.getB();
-            if (b) {
+            if (s.getB()) {
                 s1 = s1.replaceAll("[A-Za-z-]", "").trim();
-                long pNr = Long.parseLong(s1);
+                pNr = Long.parseLong(s1);
                 //metod i bankLogic för att ta bort kund (skicka long pNr)
             }
             setListView();

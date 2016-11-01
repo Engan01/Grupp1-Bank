@@ -74,5 +74,9 @@ public abstract class Account  {
     public abstract String getAccountName();
     
     public abstract double getInterest();
+    
+    public abstract double withdraw(double dd);
+    
+    public abstract double deposit(double dd);
 
 }
