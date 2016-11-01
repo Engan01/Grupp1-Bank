@@ -220,12 +220,12 @@
             </Label>
             <Button mnemonicParsing="false" onAction="#deleteAccountEvent" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Delete account" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets right="10.0" top="25.0" />
+                  <Insets right="10.0" top="35.0" />
                </GridPane.margin>
             </Button>
             <Button fx:id="addAccountButton" mnemonicParsing="false" onAction="#addAccountEvent" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #89be30; -fx-background-radius: 0;" text="Create" GridPane.rowIndex="5" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets left="10.0" top="25.0" />
+                  <Insets left="10.0" top="35.0" />
                </GridPane.margin>
             </Button>
             <ListView fx:id="transactionList" prefHeight="188.0" prefWidth="432.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
