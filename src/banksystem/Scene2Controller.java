@@ -364,16 +364,25 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
+        String s1=null;
+        
         try {
-            String s1 = (String) accountList.getSelectionModel().getSelectedItem();
+            s1 = (String) accountList.getSelectionModel().getSelectedItem();
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-
+            String selectedAccountNumber=s1.replaceAll("[A-Za-z ]", "").trim();
+            int selectedAccountNr=Integer.parseInt(selectedAccountNumber);
+            Account selectedAccount=getThisObject().getSelectedAccount(selectedAccountNr);
+            s.setD(selectedAccount.getBalance());
+            s.setD2(selectedAccount.getInterest());
+            b.calTotalAmount(selectedAccount.getBalance(), selectedAccount.getInterest());
             Stage stage;
             Parent root;
 
             stage = new Stage();
+            
+            stage.setTitle("Delete customer account");
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -388,6 +397,10 @@ public class Scene2Controller implements Initializable {
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
         }
+        
+                
+        int selectedAccountNumber=Integer.parseInt(s1);
+        System.out.println(selectedAccountNumber);
     }
 
     @FXML

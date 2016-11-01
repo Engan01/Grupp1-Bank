@@ -7,7 +7,7 @@ package banksystem;
 public class SavingAccount extends Account {
 
     private int numberOfWithdraw = 1;
-    private static double interest = 0.01;
+    private static double interest = 0.02;
 //    private double amount;
 
     public SavingAccount() {

@@ -17,11 +17,12 @@ import javafx.stage.Stage;
  */
 public class FXMLpopUp5 implements Initializable {
 
+    private Singelton s;
     @FXML
     private Button confirmPop5, cancelPop5;
 
     @FXML
-    private Label withdrawPop5;
+    private Label balancePop5;
 
     @FXML
     private Label interestRatePop5;
@@ -34,7 +35,7 @@ public class FXMLpopUp5 implements Initializable {
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
-
+       
     }
 
     @FXML
@@ -47,7 +48,11 @@ public class FXMLpopUp5 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         
+        s=Singelton.getInstance();
+        balancePop5.setText(String.valueOf(s.getD()));
+         interestRatePop5.setText(String.valueOf(s.getD2()));
+          totalAmountPop5.setText(String.valueOf(s.getdT()));
     }
 
 }
