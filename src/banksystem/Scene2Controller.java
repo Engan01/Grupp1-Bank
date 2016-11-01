@@ -81,7 +81,7 @@ public class Scene2Controller implements Initializable {
     
         
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-
+        
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
         
@@ -120,8 +120,8 @@ public class Scene2Controller implements Initializable {
                 mainStatus.setText("You must select a account.");
                 }
         
-        catch(Exception ex){
-            System.out.println("Error");
+        catch(NumberFormatException ex){
+            mainStatus.setText("Invalid amount!");
             
         }
         
@@ -182,8 +182,8 @@ public class Scene2Controller implements Initializable {
                 mainStatus.setText("You must select a account.");
                 }
         
-        catch(Exception ex){
-            System.out.println("Error");
+        catch(NumberFormatException ex){
+            mainStatus.setText("Invalid amount!");
             
         }
         
@@ -204,6 +204,7 @@ public class Scene2Controller implements Initializable {
         int selectedToAccountNr=Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
         
         double selectedAccountsBalance=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance();
+        try{
         double transferAmount=Double.parseDouble(amountTransfer.getText());
         
         //Om inte finns tillräckligt pengar på kontot
@@ -242,7 +243,11 @@ public class Scene2Controller implements Initializable {
             setTransactions();
             //Visa användaren att det gick att överföra pengar
             transferStatus.setText("The transfer has been done!");
-        }    
+            } 
+            }catch(NumberFormatException e){
+            transferStatus.setText("Invailed amount!");
+        }
+           
     }
 
     @FXML
