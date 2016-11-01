@@ -100,14 +100,30 @@ public class Scene2Controller implements Initializable {
     @FXML
     public void withdraw(ActionEvent e) {
         Customer c = getThisObject();
-
+     
+        
+        
         String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
+//        if(selectedAccount.equals("")){
+//            mainStatus.setText("No account selected!");
+//                    throw new NullPointerException();
+//        }
         selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-
+        System.out.println("Kontonummer för withdraw: " + selectedAccount);
+        
         int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
         double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-
-        if (b.withdraw(c.getPnr(), acountNR, amount2) == true) { // om det går bra
+        
+        String saveSSN = ssn.getText();
+        System.out.println(saveSSN);
+        
+        saveSSN = saveSSN.replaceAll("[-]", "");
+        System.out.println(saveSSN);
+        
+       
+        long l = Long.parseLong(saveSSN);
+        
+        if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
 
             c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
             String gg = Integer.toString(acountNR);
@@ -347,6 +363,8 @@ public class Scene2Controller implements Initializable {
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
 
+        
+        
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
@@ -366,7 +384,11 @@ public class Scene2Controller implements Initializable {
                 }
             }
         }
-
+        
+        // Fyllning i listorna med alla konton som en viss kund har
+        transferFrom.setItems(accountObservableList);
+        transferTo.setItems(accountObservableList);
+        
         accountList.setItems(accountObservableList);
     }
 
