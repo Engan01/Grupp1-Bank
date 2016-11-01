@@ -26,6 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -121,7 +122,7 @@ public class FXMLDocumentController implements Initializable {
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
         
         statusLabel.setText("");
-
+        
         Stage stage;
         Parent root;
 
@@ -132,8 +133,12 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addCustomerButton.getScene().getWindow());
+        stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
         stage.showAndWait();
-        
+     
        
         boolean b1 = s.getB();
         if (b1) {
@@ -261,6 +266,10 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(deleteCustomerButton.getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+            stage.close();
+            s.setB(false);
+        });
             stage.showAndWait();
 
             boolean b = s.getB();
@@ -315,6 +324,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
+        oList = FXCollections.observableArrayList();
 
         setListView(); // fyller lista med kunder
 
@@ -341,7 +351,7 @@ public class FXMLDocumentController implements Initializable {
                        customerDetailList.setText(str + "\n\nNumber of savings account(s): "+counter +"\nNumber of credit account(s): "+counter1);
                    }
                } 
-                
+               customersList.getSelectionModel().setSelectionMode(null); 
             }
         });
 
@@ -349,7 +359,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
 
-        oList = FXCollections.observableArrayList();
+        oList.clear();
 
         for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
 

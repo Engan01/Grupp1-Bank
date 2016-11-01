@@ -20,6 +20,8 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     private String n2;
     private Long l;
     private int i;
+    
+
     private double d;
     private double d2;
     private double dT;

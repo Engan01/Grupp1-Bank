@@ -2,6 +2,7 @@ package banksystem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +26,6 @@ public class FXMLpopUp1 implements Initializable {
     @FXML
     private TextField labelSsnPop1;
 
-    
     
     @FXML
     private void confirmPop1(ActionEvent event) {
@@ -51,6 +51,7 @@ public class FXMLpopUp1 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         s = Singelton.getInstance();
+        
 
     }
 

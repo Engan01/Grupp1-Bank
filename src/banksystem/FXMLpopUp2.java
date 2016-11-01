@@ -17,9 +17,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp2 implements Initializable {
     
     Singelton s;
-    
-    
-    
+
 
     @FXML
     private void confirmPop2(ActionEvent event) {
