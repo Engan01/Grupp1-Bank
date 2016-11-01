@@ -274,15 +274,25 @@ public class FXMLDocumentController implements Initializable {
             for(Account a : arr){
                 if(a.getAccountName().equals("Savings Account")){
                     savingsAccounts++;
-                    balance = balance + a.getBalance()/100 * a.getInterest();
+                    balance += a.getBalance() * 0.01 + a.getBalance();
                 }else{
                     double d = a.getBalance();
-                    if(d < 0)
+                    if(d < 0){
+                       String b = String.valueOf(a.getBalance());
+                       b = b.substring(1,b.length());
+                       double bb = Double.parseDouble(b);
+                       bb = bb * 0.07 + bb; 
+                       balance -= bb;
                        creditAccountsMinus++;
-                    else
+                    }
+                    else{
+                        balance += a.getBalance() * 0.005 + a.getBalance();
                         creditAccountsPlus++;
+                    }
                 }
             }
+            
+            
             
             
            
