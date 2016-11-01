@@ -28,9 +28,9 @@
           <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="133.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="381.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="381.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="185.0" minHeight="0.0" prefHeight="141.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="381.0" minHeight="0.0" prefHeight="184.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="185.0" minHeight="0.0" prefHeight="165.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <GridPane prefHeight="186.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.valignment="CENTER">
@@ -146,18 +146,18 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="145.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="57.2149658203125" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.2149658203125" minHeight="19.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="27.0" minHeight="15.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="43.0" minHeight="26.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="39.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0" minHeight="40.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="From:" GridPane.rowIndex="1" />
                   <Label text="Amount:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label text="To:" GridPane.rowIndex="3" />
-                  <ChoiceBox fx:id="transferFrom" prefWidth="150.0" style="-fx-background-radius: 0;" GridPane.rowIndex="2">
+                  <ChoiceBox fx:id="transferFrom" prefWidth="200.0" style="-fx-background-radius: 0;" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="3.0" />
                      </GridPane.margin>
@@ -167,7 +167,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ChoiceBox fx:id="transferTo" prefWidth="150.0" style="-fx-background-radius: 0;" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="transferTo" prefWidth="200.0" style="-fx-background-radius: 0;" GridPane.rowIndex="4" />
                   <Label minWidth="50.0" prefHeight="19.0" prefWidth="87.0" text="Transfer:" GridPane.valignment="TOP">
                      <font>
                         <Font size="13.0" />
@@ -181,7 +181,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="243.0" textFill="#0a0a0a" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="243.0" textFill="#0a0a0a" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Helvetica Bold" size="12.0" />
                      </font>
@@ -228,7 +228,7 @@
                   <Insets left="10.0" top="25.0" />
                </GridPane.margin>
             </Button>
-            <ListView fx:id="transactionList" prefHeight="198.0" prefWidth="307.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <ListView fx:id="transactionList" prefHeight="188.0" prefWidth="432.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
@@ -246,7 +246,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="694.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="231.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
