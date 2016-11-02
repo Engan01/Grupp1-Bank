@@ -118,7 +118,7 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="name" alignment="CENTER" prefHeight="17.0" prefWidth="155.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="name" prefHeight="17.0" prefWidth="155.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
@@ -128,14 +128,14 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="ssn" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="ssn" prefHeight="17.0" prefWidth="154.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="25.0" prefWidth="80.0" stylesheets="@greenStyleSheet.css" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Button fx:id="editNameButton" mnemonicParsing="false" onAction="#editName" prefHeight="0.0" prefWidth="80.0" stylesheets="@greenStyleSheet.css" text="Edit name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
-                        <Insets top="14.0" />
+                        <Insets left="60.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Label minWidth="-Infinity" prefWidth="150.0" text="Customer details:" textFill="WHITE" GridPane.halignment="LEFT">
@@ -255,12 +255,12 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="231.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="228.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="nameStatus" prefHeight="17.0" prefWidth="221.0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="nameStatus" prefHeight="24.0" prefWidth="221.0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>

@@ -28,6 +28,9 @@ public class FXMLpopUp5 implements Initializable {
 
     @FXML
     private Label totalAmountPop5;
+    
+    @FXML
+    private Label creditAccountLabel;
 
     @FXML
     private void confirmPop5(ActionEvent event) {
@@ -52,6 +55,10 @@ public class FXMLpopUp5 implements Initializable {
         balancePop5.setText(s.getD()+" SEK");
          interestRatePop5.setText(Math.round(s.getD2())+" %");
           totalAmountPop5.setText(s.getdT()+" SEK");
+          
+          if(s.getB2()){
+              creditAccountLabel.setText("You have a debt of "+-1*s.getdT()+" SEK");
+          }
     }
 
 }

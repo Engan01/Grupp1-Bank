@@ -25,6 +25,7 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     private double d;
     private double d2;
     private double dT;
+    private Boolean b2;
     
     public void setToNull(){
         b = false;
@@ -118,6 +119,14 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
 
     public void setdT(double dT) {
         this.dT = dT;
+    }
+
+    public Boolean getB2() {
+        return b2;
+    }
+
+    public void setB2(Boolean b2) {
+        this.b2 = b2;
     }
     
     
