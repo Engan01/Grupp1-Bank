@@ -42,6 +42,9 @@ public class Scene2Controller implements Initializable {
     private Label ssn;
 
     @FXML
+    private Label rate;
+
+    @FXML
     private Label transferStatus, nameStatus, mainStatus, accountNr;
 
     @FXML
@@ -136,7 +139,10 @@ public class Scene2Controller implements Initializable {
                 c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
                 String gg = Integer.toString(acountNR);
                 setTransactions();
-
+                if("SavingAccount".equals(c.getSelectedAccount(acountNR).getClass().getSimpleName())){
+                    rate.setText("2%");
+                }
+               
                 mainStatus.setText("Withdraw succesfull!");
             } else {
                 mainStatus.setText("Withdraw not possible!");
@@ -238,7 +244,7 @@ public class Scene2Controller implements Initializable {
         } else { // om användaen klickade cancel i popupen
             nameStatus.setText("No new name selected!");
         }
-        s.setToNull();  
+        s.setToNull();
     }
 
     @FXML
@@ -288,8 +294,7 @@ public class Scene2Controller implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-            
-            
+
             String selectedAccountNumber = s1.replaceAll("[A-Za-z ]", "").trim();
             int selectedAccountNr = Integer.parseInt(selectedAccountNumber);
             Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
@@ -355,6 +360,8 @@ public class Scene2Controller implements Initializable {
         accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                Customer c = getThisObject();
                 try {
                     String str = (String) accountList.getSelectionModel().getSelectedItem();
 
@@ -362,7 +369,31 @@ public class Scene2Controller implements Initializable {
                         str = str.replaceAll("[A-Za-z -]", "");
                         accountNr.setText(str);
                         setTransactions();
+                        // konvertera ac
+
+                        int accountNr2 = Integer.parseInt(str); // konverterar String till int
+                    
+                        if ("SavingAccount".equals(c.getSelectedAccount(accountNr2).getClass().getSimpleName())) {
+                            int ii = 0;
+                            for (Account a : getThisObject().getAccountList()) {
+                                if (a.getAccountNumber() == accountNr2) {
+                                    SavingAccount ss = (SavingAccount) a;
+                                    ii = ss.getnumberOfWithdraw();
+                                  
+                                }
+                            }
+                            if(ii > 0)
+                                rate.setText("2%");
+                            else
+                                rate.setText("0%");
+
+                        } else {
+                            rate.setText("0%");
+                        }
+                     
+
                         accountList.getSelectionModel().setSelectionMode(null);
+
                     }
                 } catch (NullPointerException e) {
                 }
