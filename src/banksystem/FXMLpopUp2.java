@@ -2,6 +2,7 @@ package banksystem;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +19,11 @@ import javafx.stage.Stage;
 public class FXMLpopUp2 implements Initializable {
     
     @FXML
-    private Label row1, row2, row3, row4, row5;
+    private Label row11, row12, row13, row14, row21, row22, row23, row24, row31, row32, row33, row34, row41, row42, row43, row44;
            
     
     Singelton s;
+    BankLogic b;
 
 
     @FXML
@@ -46,13 +48,75 @@ public class FXMLpopUp2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         s = Singelton.getInstance();
-        int i = s.getI1() + s.getI2();
-        row1.setText(Integer.toString(s.getI()));
-        row2.setText(Integer.toString(i));
-        row3.setText(Integer.toString(s.getI2()));
-        row4.setText(Integer.toString(s.getI1()));
-        String ss = String.format("%.2f", s.getD());
-        row5.setText(ss);
+        b = BankLogic.getInstance();
+        
+        long pNr = s.getL();
+        
+        Customer c = null;
+            ArrayList<Customer> lista = b.getCustomerList();
+            for(Customer c1 : lista){
+                if(pNr == c1.getPnr())
+                    c = c1;
+            }
+            ArrayList<Account> arr = c.getAccountList();
+            
+            int savingsAccounts = 0;
+            double savingsBalance = 0;
+            double savingTotal = 0;
+            
+            int creditAccountsPlus = 0;
+            double plusBalance = 0;
+            double plusTotal = 0;
+            
+            int creditAccountsMinus = 0;
+            double minusBalance = 0;
+            double minusTotal = 0;
+            
+  
+            for(Account a : arr){
+                if(a.getAccountName().equals("Saving Account")){
+                    savingsAccounts++;
+                    savingsBalance += a.getBalance();
+                    savingTotal += a.getBalance() * 0.01 + a.getBalance();
+                }else{
+                    
+                    double d = a.getBalance();
+                    
+                    if(d < 0){
+                       minusBalance += a.getBalance();
+                       double bb = a.getBalance();
+                       bb = bb * 0.07;
+                       minusTotal += minusBalance + bb;
+                       creditAccountsMinus++;
+                    }
+                    else{
+                        plusBalance += a.getBalance();
+                        plusTotal += a.getBalance() * 0.005 + a.getBalance();
+                        creditAccountsPlus++;
+                    }
+                }
+            }
+            row11.setText(Integer.toString(savingsAccounts));
+            row12.setText(String.format("%.2f", savingsBalance));
+            row13.setText("1%");
+            row14.setText(String.format("%.2f", savingTotal));
+            row21.setText(Integer.toString(creditAccountsPlus));
+            row22.setText(String.format("%.2f", plusBalance));
+            row23.setText("0,5%");
+            row24.setText(String.format("%.2f", plusTotal));
+            row31.setText(Integer.toString(creditAccountsMinus));
+            row32.setText(String.format("%.2f", minusBalance));
+            row33.setText("-7%");
+            row34.setText(String.format("%.2f", minusTotal));
+            
+            row41.setText(Integer.toString(savingsAccounts + creditAccountsPlus + creditAccountsMinus));
+        
+            row44.setText(String.format("%.2f", savingTotal + plusTotal + minusTotal));
+            
+            
+            
+            
+            
     }    
     
 }

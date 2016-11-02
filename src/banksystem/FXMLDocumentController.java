@@ -260,45 +260,8 @@ public class FXMLDocumentController implements Initializable {
                 throw new NullPointerException();
             }
             long pNr = Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim());
-            Customer c = null;
-            ArrayList<Customer> lista = b.getCustomerList();
-            for(Customer c1 : lista){
-                if(pNr == c1.getPnr())
-                    c = c1;
-            }
-            ArrayList<Account> arr = c.getAccountList();
-            
-            double balance = 0;
-            int savingsAccounts = 0;
-            int creditAccountsPlus = 0;
-            int creditAccountsMinus = 0;
-            
-            for(Account a : arr){
-                if(a.getAccountName().equals("Saving Account")){
-                    savingsAccounts++;
-                    balance += a.getBalance() * 0.01 + a.getBalance();
-                }else{
-                    double d = a.getBalance();
-                    if(d < 0){
-                       String b = String.valueOf(a.getBalance());
-                       b = b.substring(1,b.length());
-                       double bb = Double.parseDouble(b);
-                       bb = bb * 0.07 + bb; 
-                       balance -= bb;
-                       creditAccountsMinus++;
-                    }
-                    else{
-                        balance += a.getBalance() * 0.005 + a.getBalance();
-                        creditAccountsPlus++;
-                    }
-                }
-            }
-            
-            s.setD(balance);
-            s.setI(savingsAccounts);
-            s.setI1(creditAccountsPlus);
-            s.setI2(creditAccountsMinus);
-
+            s.setL(pNr);
+           
             Stage stage;
             Parent root;
 
@@ -313,23 +276,25 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
             stage.showAndWait();
+            
+            
 
             if (s.getB()) {
-                s1 = s1.replaceAll("[A-Za-z-]", "").trim();
-                pNr = Long.parseLong(s1);
                 String[] ss = b.removeCustomer(pNr);
+                customerDetailList.setText("");
             }
-            customerDetailList.setText("");
+            
             
             
             s.setB(Boolean.FALSE);
+            s.setL(null);
             
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
         setListView();
-
     }
+    
 
     @FXML
     private void clearSearch(ActionEvent event) throws NullPointerException{
