@@ -186,14 +186,38 @@ public class Scene2Controller implements Initializable {
             if (selectedFromAccountNr == selectedToAccountNr) {
                 transferStatus.setText("You can not transfer money \nto the same account!");
             } //I fall av fel inmatning
+            
+            else if("CreditAccount".equals(c.getSelectedAccount(selectedFromAccountNr).getClass().getSimpleName())) {
+                   if(c.getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount >= -5000){
+                       
+                double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
+                getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
+
+                c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
+                String gg = Integer.toString(selectedFromAccountNr);
+                       
+                       
+                double newBalanceToAccount = getThisObject().getSelectedAccount(selectedToAccountNr).getBalance() + transferAmount;
+                getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
+
+                c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
+                String gg2 = Integer.toString(selectedFromAccountNr);
+                
+                       setTransactions();
+                       
+                        }}
+            
+            
             else if (transferAmount <= 0) {
                 transferStatus.setText("The amount to be transfered can \nnot be negative or zero!");
             } //Om användaren väljer att skicka pengar till ett och samma konto
             else if (transferAmount > selectedAccountsBalance) {
 
                 transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
-
-            } else {
+            }
+            
+            
+             else {
                 //Uppdatering saldo på första konto efter att överföra ett visst belopp
                 double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
                 getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
