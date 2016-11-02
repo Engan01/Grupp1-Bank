@@ -49,9 +49,9 @@ public class FXMLpopUp5 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          
         s=Singelton.getInstance();
-        balancePop5.setText(String.valueOf(s.getD())+" SEK");
-         interestRatePop5.setText(String.valueOf(s.getD2())+" %");
-          totalAmountPop5.setText(String.valueOf(s.getdT())+" SEK");
+        balancePop5.setText(s.getD()+" SEK");
+         interestRatePop5.setText(Math.round(s.getD2())+" %");
+          totalAmountPop5.setText(s.getdT()+" SEK");
     }
 
 }

@@ -64,11 +64,7 @@ public class Customer {
         return null;
     }
     
-//    public String[] closeAllAccounts(){
-//        
-//    }
-    //
-    public void deleteAccount(int aNr){
+    public void closeAccount(int aNr){
         accounts.remove(getSelectedAccount(aNr));
     }
 }

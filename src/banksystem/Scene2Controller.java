@@ -313,12 +313,12 @@ public class Scene2Controller implements Initializable {
             stage.showAndWait();
 
             if (s.getB()) {
-                getThisObject().deleteAccount(selectedAccountNr);
+                getThisObject().closeAccount(selectedAccountNr);
                 accountObservableList.remove(s2);
             }
 
         } catch (NullPointerException ex) {
-            mainStatus.setText("You have to select a account!");
+            mainStatus.setText("You have to select an account!");
         }
 
     }
