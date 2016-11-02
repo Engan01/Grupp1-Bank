@@ -89,17 +89,36 @@ public class BankLogic {
             if(pNr == cc.getPnr())
                 c = cc;
         }
-        int antal = c.getAccountList().size() + 1;
+        int antal = c.getAccountList().size() + 2;
         String[] lista = new String[antal];
         
         lista[0] = c.getName() + " " + c.getPnr();
-        for(int i = 0, j = 1; i < c.getNumberOfAccounts(); i++){
-            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName() + " ";
+        double tot = 0;
+        for(int i = 0, j = 1; i < c.getNumberOfAccounts(); i++, j++){
+            double dd = c.getAccountList().get(i).getInterest();
+            double l = 0;
+            if(dd == 0)
+                l = 1;
+            else if(dd == 0.07)
+                l = 7;
+            else
+                l = 0.5;
+            
+            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName() 
+                    + " Balance: " + c.getAccountList().get(i).getBalance() + " Interest: " + l 
+                    + " Total: " + c.getAccountList().get(i).getTotalBalance();
+            
+            tot += c.getAccountList().get(i).getTotalBalance();
+        }
+        
+        if(tot < 0){
+            lista[lista.length-1] = String.format("The customer has to pay: " + "%.2f", tot);
+        }else{
+            lista[lista.length-1] = String.format("Pay the customer: " + "%.2f", tot);
         }
         
         customersList.remove(c); // tar bort kunden
         return lista;
-        
 
     }
 //

@@ -179,6 +179,9 @@ public class FXMLDocumentController implements Initializable {
             if (s.getB()) {
                 String[] ss = b.removeCustomer(pNr); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
                 customerDetailList.setText("");
+                for(int i = 0; i < ss.length; i++){
+                    System.out.println(ss[i]);
+                }
             }
 
             s.setB(Boolean.FALSE);
