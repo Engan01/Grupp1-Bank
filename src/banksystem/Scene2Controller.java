@@ -328,8 +328,8 @@ public class Scene2Controller implements Initializable {
             int selectedAccountNr = Integer.parseInt(selectedAccountNumber);
             Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
             s.setD(selectedAccount.getBalance());
-            s.setD2(selectedAccount.getInterest());
-            b.calTotalAmount(selectedAccount.getBalance(), selectedAccount.getInterest());
+            s.setD2(selectedAccount.getInterest()*100);
+            s.setdT(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
             Stage stage;
             Parent root;
 

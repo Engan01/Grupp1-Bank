@@ -1,12 +1,12 @@
 package banksystem;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -49,9 +49,9 @@ public class FXMLpopUp5 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          
         s=Singelton.getInstance();
-        balancePop5.setText(String.valueOf(s.getD()));
-         interestRatePop5.setText(String.valueOf(s.getD2()));
-          totalAmountPop5.setText(String.valueOf(s.getdT()));
+        balancePop5.setText(String.valueOf(s.getD())+" SEK");
+         interestRatePop5.setText(String.valueOf(s.getD2())+" %");
+          totalAmountPop5.setText(String.valueOf(s.getdT())+" SEK");
     }
 
 }

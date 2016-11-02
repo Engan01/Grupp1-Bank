@@ -262,9 +262,4 @@ public class BankLogic {
     } // slut på metod
 
 
-public double calTotalAmount(double balance, double interestRate){
-    double totalAmount=balance+ balance*interestRate;
-    return totalAmount;
-}
-
 }
