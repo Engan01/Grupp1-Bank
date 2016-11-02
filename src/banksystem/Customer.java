@@ -41,7 +41,7 @@ public class Customer {
     } 
     
     public int addSavingAccount(double balance){
-        SavingAccount sA = new SavingAccount(balance);
+        SavingsAccount sA = new SavingsAccount(balance);
         int nr = sA.getAccountNumber();
         accounts.add(sA);
         return nr;    
@@ -64,11 +64,7 @@ public class Customer {
         return null;
     }
     
-//    public String[] closeAllAccounts(){
-//        
-//    }
-    //
-    public void deleteAccount(int aNr){
+    public void closeAccount(int aNr){
         accounts.remove(getSelectedAccount(aNr));
     }
 }

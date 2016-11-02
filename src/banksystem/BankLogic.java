@@ -121,10 +121,37 @@ public class BankLogic {
         return lista;
 
     }
-//
-//    public int getAccountNumber(){
-//
-//    }
+
+    public String getAccount(long pNr, int accountId){
+        Customer c = null;
+        Account a = null;
+        for(Customer cc : customersList){
+            if(cc.getPnr() == pNr){
+                c = cc;
+                for(Account aa : c.getAccountList()){
+                    if(aa.getAccountNumber() == accountId){
+                        a = aa;
+                    }
+                }
+            }
+        }
+        String intrest;
+        if(a.getAccountName().equals("Saving Account")){
+            intrest = "1%";
+        }else{
+            if(a.getBalance() < 0)
+                intrest = "-7%";
+            else
+                intrest = "0,5%";
+        }
+        
+        
+        String s = "Customer: " + c.getName() + " Ssn: " + c.getPnr() + " " + a.getAccountName()  
+                + " Number: " + a.getAccountNumber() + " Balance: " + a.getBalance() + " Interest: " + intrest;
+        
+        return s;     
+    }
+    
     public boolean changeCustomerName(String name, long pNR) {
 
         for (int i = 0; i < customersList.size(); i++) {
@@ -188,7 +215,7 @@ public class BankLogic {
 
                         } else {
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett sparkonto
-                            SavingAccount sa = (SavingAccount) customersList.get(i).getAccountList().get(j);
+                            SavingsAccount sa = (SavingsAccount) customersList.get(i).getAccountList().get(j);
                             int ii = sa.getnumberOfWithdraw();
                             if(ii < 1)
                             currentBalance = currentBalance - amount; // räknar ut nya beloppet
@@ -253,10 +280,5 @@ public class BankLogic {
         return false;
     } // slut på metod
 
-
-public double calTotalAmount(double balance, double interestRate){
-    double totalAmount=balance+ balance*interestRate;
-    return totalAmount;
-}
 
 }

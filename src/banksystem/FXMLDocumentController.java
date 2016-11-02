@@ -294,7 +294,7 @@ public class FXMLDocumentController implements Initializable {
                 int counter = 0;
                 int counter1 = 0;
                 for (Account a : c.getAccountList()) {//loopar igenom accountList
-                    if (a instanceof SavingAccount) {// kollar om det finns en savings account 
+                    if (a instanceof SavingsAccount) {// kollar om det finns en savings account 
                         counter++;
                     } else if (a instanceof CreditAccount) {// kollar om det finns en credit account
                         counter1++;
