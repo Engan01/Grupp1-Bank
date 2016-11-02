@@ -26,11 +26,11 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <Button layoutX="50.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmPop2" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Confirm" textFill="#bddad6">
+            <Button layoutX="50.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmPop2" stylesheets="@darkStyleSheet.css" text="Confirm" textFill="#bddad6">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>
-            <Button layoutX="247.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancelPop2" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6">
+            <Button layoutX="247.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancelPop2" stylesheets="@darkStyleSheet.css" text="Cancel" textFill="#bddad6">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>

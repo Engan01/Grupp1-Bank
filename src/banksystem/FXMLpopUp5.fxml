@@ -21,11 +21,11 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Button layoutX="65.0" layoutY="3.0" mnemonicParsing="false" onAction="#cancelPop5" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6" AnchorPane.rightAnchor="80.0">
+            <Button layoutX="65.0" layoutY="3.0" mnemonicParsing="false" onAction="#cancelPop5" stylesheets="@darkStyleSheet.css" text="Cancel" textFill="#bddad6" AnchorPane.rightAnchor="80.0">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="5.0" mnemonicParsing="false" onAction="#confirmPop5" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Confirm" textFill="#bddad6" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="3.0">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="5.0" mnemonicParsing="false" onAction="#confirmPop5" stylesheets="@darkStyleSheet.css" text="Confirm" textFill="#bddad6" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>
