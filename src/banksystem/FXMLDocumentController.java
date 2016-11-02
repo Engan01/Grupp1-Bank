@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -99,7 +97,7 @@ public class FXMLDocumentController implements Initializable {
                     break;
                 }
             }
-            ok = b.searchCustomer(Long.parseLong(str));
+            ok = b.searchCustomer(Long.parseLong(str)); // skickar personnr till metod i BankLogic
 
             if (ok) {
                 setSearchListView(Long.parseLong(str)); // anropar metoden setSearchListView
