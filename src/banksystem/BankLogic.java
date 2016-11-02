@@ -161,7 +161,7 @@ public class BankLogic {
 
 
 
- public boolean withdraw(long pNR, int accountNumber, double amount) {
+ public boolean withdraw(long pNR, int accountID, double amount) {
 
     
      
@@ -169,7 +169,7 @@ public class BankLogic {
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
 
                 for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
-                    if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
+                    if (accountID == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
 
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
@@ -198,10 +198,12 @@ public class BankLogic {
                             }
                             if (currentBalance >= 0) { // kontrollerar om det nya beloppet accepteras på sparkontot
                                 customersList.get(i).getAccountList().get(j).withdraw(amount);
-                                return true; // Accepteras
+                                return true;
+                                // Accepteras
                             } else {
                                 return false; // Accepteras inte
                             }
+                            
 
                         }
 
@@ -217,13 +219,13 @@ public class BankLogic {
     
     
     
-    public boolean deposit(long pNR, int accountNumber, double amount) {
+    public boolean deposit(long pNR, int accountID, double amount) {
 
         for (int i = 0; i < customersList.size(); i++) { // loppar igenom customerList
             if (pNR == customersList.get(i).getPnr()) { // matchar personnummer
 
                 for (int j = 0; j < customersList.get(i).getAccountList().size(); j++) { // går in i matchande person och hämtar storlek på accountList
-                    if (accountNumber == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
+                    if (accountID == customersList.get(i).getAccountList().get(j).getAccountNumber()) { // letar upp matchande kontonummer
 
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
