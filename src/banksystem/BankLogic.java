@@ -21,9 +21,9 @@ public class BankLogic {
 
     public String[] getCustomers() { // metod för att returnera samtliga namn på alla kunder i en lista
         String[] customers = new String[customersList.size()];
+        int i = 0;
         for (Customer c : customersList) {
-            int i = 0;
-            customers[i] = c.getName();
+            customers[i] = "Social security number: " + c.getPnr() + " Name: " + c.getName();
             i++;
         }
         return customers; // returnar en string list med alla namn
