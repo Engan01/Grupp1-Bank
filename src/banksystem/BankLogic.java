@@ -94,7 +94,7 @@ public class BankLogic {
         
         lista[0] = c.getName() + " " + c.getPnr();
         for(int i = 0, j = 1; i < c.getNumberOfAccounts(); i++){
-            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName();
+            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName() + " ";
         }
         
         customersList.remove(c); // tar bort kunden

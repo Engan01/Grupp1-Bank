@@ -77,7 +77,7 @@ public class FXMLpopUp2 implements Initializable {
                 if(a.getAccountName().equals("Saving Account")){
                     savingsAccounts++;
                     savingsBalance += a.getBalance();
-                    savingTotal += a.getBalance() * 0.01 + a.getBalance();
+                    savingTotal += a.getTotalBalance();
                 }else{
                     
                     double d = a.getBalance();
@@ -86,12 +86,12 @@ public class FXMLpopUp2 implements Initializable {
                        minusBalance += a.getBalance();
                        double bb = a.getBalance();
                        bb = bb * 0.07;
-                       minusTotal += minusBalance + bb;
+                       minusTotal += a.getTotalBalance();
                        creditAccountsMinus++;
                     }
                     else{
                         plusBalance += a.getBalance();
-                        plusTotal += a.getBalance() * 0.005 + a.getBalance();
+                        plusTotal += a.getTotalBalance();
                         creditAccountsPlus++;
                     }
                 }
