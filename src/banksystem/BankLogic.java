@@ -188,7 +188,7 @@ public class BankLogic {
 
                         } else {
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // om kontot är ett sparkonto
-                            SavingAccount sa = (SavingAccount) customersList.get(i).getAccountList().get(j);
+                            SavingsAccount sa = (SavingsAccount) customersList.get(i).getAccountList().get(j);
                             int ii = sa.getnumberOfWithdraw();
                             if(ii < 1)
                             currentBalance = currentBalance - amount; // räknar ut nya beloppet

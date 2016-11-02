@@ -4,17 +4,17 @@ package banksystem;
  *
  * @author asanilssonenglund
  */
-public class SavingAccount extends Account {
+public class SavingsAccount extends Account {
 
     private int numberOfWithdraw = 0;
     private static double interest = 0.01;
 //    private double amount;
 
-    public SavingAccount() {
+    public SavingsAccount() {
         super(); // default constructor
     }
 
-    public SavingAccount(double balance) {
+    public SavingsAccount(double balance) {
         super(balance);
     }
 

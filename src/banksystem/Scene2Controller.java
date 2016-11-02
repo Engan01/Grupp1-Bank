@@ -107,7 +107,7 @@ public class Scene2Controller implements Initializable {
                 }
             }
         } catch (NullPointerException ex2) {
-            mainStatus.setText("You must select a account.");
+            mainStatus.setText("You must select an account!");
         } catch (NumberFormatException ex) {
             mainStatus.setText("Invalid amount!");
         }
@@ -159,7 +159,7 @@ public class Scene2Controller implements Initializable {
             }
 
         } catch (NullPointerException ex2) {
-            mainStatus.setText("You must select a account.");
+            mainStatus.setText("You must select an account!");
         } catch (NumberFormatException ex) {
             mainStatus.setText("Invalid amount!");
         }
@@ -213,7 +213,7 @@ public class Scene2Controller implements Initializable {
                 transferStatus.setText("The transfer has been done!");
             }
         } catch (NumberFormatException e) {
-            transferStatus.setText("Invailed amount!");
+            transferStatus.setText("Invalid amount!");
         }
 
     }
@@ -228,6 +228,7 @@ public class Scene2Controller implements Initializable {
         Parent root;
 
         stage = new Stage();
+        stage.setTitle("Customer name editing");
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp3.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -254,6 +255,7 @@ public class Scene2Controller implements Initializable {
         Parent root;
 
         stage = new Stage();
+        stage.setTitle("Creating new account");
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp4.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -377,7 +379,7 @@ public class Scene2Controller implements Initializable {
                             int ii = 0;
                             for (Account a : getThisObject().getAccountList()) {
                                 if (a.getAccountNumber() == accountNr2) {
-                                    SavingAccount ss = (SavingAccount) a;
+                                    SavingsAccount ss = (SavingsAccount) a;
                                     ii = ss.getnumberOfWithdraw();
                                   
                                 }

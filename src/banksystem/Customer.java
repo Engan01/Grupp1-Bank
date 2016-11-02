@@ -41,7 +41,7 @@ public class Customer {
     } 
     
     public int addSavingAccount(double balance){
-        SavingAccount sA = new SavingAccount(balance);
+        SavingsAccount sA = new SavingsAccount(balance);
         int nr = sA.getAccountNumber();
         accounts.add(sA);
         return nr;    

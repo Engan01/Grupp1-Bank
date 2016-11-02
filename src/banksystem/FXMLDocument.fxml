@@ -107,7 +107,7 @@
                               <Font name="Helvetica Neue Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="15.0" prefWidth="119.0" text="YYYYMMDDXXXX" textAlignment="RIGHT" textFill="#8d8d8d">
+                        <Label prefHeight="15.0" prefWidth="119.0" text="YYYYMMDD-xxxx" textAlignment="RIGHT" textFill="#8d8d8d">
                            <GridPane.margin>
                               <Insets left="145.0" top="30.0" />
                            </GridPane.margin>
