@@ -60,5 +60,19 @@ public class CreditAccount extends Account {
         else
             return interest;   
     }
+    
+    @Override
+    public double getTotalBalance(){
+       double b = super.getBalance();
+       if(b < 0){
+          double bb = super.getBalance();
+          bb = bb * 0.07;
+          double minusTotal = super.getBalance() + bb;
+          return minusTotal;
+       }else{
+           double plusTotal = super.getBalance() * 0.005 + super.getBalance();
+           return plusTotal;
+       }
+    }
 
 }

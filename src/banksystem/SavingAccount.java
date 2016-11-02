@@ -57,4 +57,10 @@ public class SavingAccount extends Account {
     public double getInterest() {
         return interest;
     }
+    
+    @Override
+    public double getTotalBalance(){
+      Double b = super.getBalance() * 0.01 + super.getBalance();
+      return b;
+    }
 }
