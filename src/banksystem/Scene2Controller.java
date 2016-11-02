@@ -215,6 +215,8 @@ public class Scene2Controller implements Initializable {
     @FXML
     public void editName(ActionEvent e) throws IOException {
         nameStatus.setText("");
+        long l = getThisObject().getPnr();
+        s.setL(l);
 
         Stage stage;
         Parent root;
@@ -232,49 +234,11 @@ public class Scene2Controller implements Initializable {
         stage.showAndWait(); // popUp startar och nuvarande scen väntar
 
         if (s.getB()) { // om användaren klickade confirm i popUpen
-            try {
-                String newName = s.getN();
-                newName = newName.trim();
-                if (newName.isEmpty()) {
-                    nameStatus.setText("No new name selected!");
-                    throw new NullPointerException();
-                }
-                int i1 = 0;
-                int i2 = 0;
-                for (int i = 0; i < newName.length(); i++) {
-                    if (newName.charAt(i) == ' ') {
-                        i1++;
-                    } else if (newName.charAt(i) == '-') {
-                        i2++;
-                    }
-                }
-                if (i1 > 2 || i2 > 1) { // man kan max ha två mellanslag i sitt namn och ett "-"
-                    nameStatus.setText("Invalid name!");
-                    throw new NullPointerException();
-                }
-
-                String s1 = newName.replaceAll("[A-Za-z -]", "");
-                if (!s1.isEmpty()) {
-                    nameStatus.setText("Name can only contain letters!");
-                    throw new NullPointerException();
-                }
-
-                s.setN(null);
-                s.setB(Boolean.FALSE);
-
-                String n = ssn.getText();
-                n = n.replaceAll("-", "").trim();
-                long l = Long.parseLong(n);
-                name.setText(newName);
-                b.changeCustomerName(newName, l); // metod i bankLogic för att byta namn
-
-            } catch (NullPointerException ex) {
-
-            }
+            name.setText(s.getN());
         } else { // om användaen klickade cancel i popupen
             nameStatus.setText("No new name selected!");
         }
-
+        s.setToNull();  
     }
 
     @FXML
@@ -324,6 +288,8 @@ public class Scene2Controller implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
+            
+            
             String selectedAccountNumber = s1.replaceAll("[A-Za-z ]", "").trim();
             int selectedAccountNr = Integer.parseInt(selectedAccountNumber);
             Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
