@@ -65,7 +65,7 @@
                         <Insets right="40.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Interest rate:" GridPane.columnIndex="1">
+                  <Label text="Withdraw interest rate:" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
@@ -73,7 +73,7 @@
 
                               <Label fx:id="rate" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <GridPane.margin>
-                        <Insets right="100.0" top="10.0" />
+                        <Insets right="50.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
 
