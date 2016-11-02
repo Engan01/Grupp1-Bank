@@ -7,8 +7,6 @@ import java.util.ArrayList;
 public class BankLogic {
 
     private ArrayList<Customer> customersList = new ArrayList<>();
-
-    private int accountNumber;
     private static BankLogic instance;
 
     private BankLogic() {

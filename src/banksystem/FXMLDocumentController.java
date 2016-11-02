@@ -85,15 +85,15 @@ public class FXMLDocumentController implements Initializable {
     public void search(ActionEvent event) throws IOException {
         statusLabel.setText("");
 
-        String str = " ";
-        Boolean ok = true;
+        String str;
+        Boolean ok;
         try {
             str = ssnField.getText();
             str = str.trim();
             for (int i = 0; i < str.length(); i++) { // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton 
                 char c = str.charAt(i);
                 if (c == '-') { // det går bara att skriva ett '-'
-                    str = str.substring(0, i) + str.substring(i + 1, str.length());
+                    str = str.substring(0, 8) + str.substring(9, str.length());
                     break;
                 }
             }
@@ -112,7 +112,7 @@ public class FXMLDocumentController implements Initializable {
 
         } catch (IndexOutOfBoundsException ex) {
             statusLabel.setText("Invalid social security No!");
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             statusLabel.setText("Invalid! You need to type your social \nsecurity No.the right way, YYYYMMDDXXXX");
         }
 
@@ -136,14 +136,14 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-        
+
         if (s.getB()) {
             Boolean b1 = b.addCustomer(s.getN(), s.getL());
-            if(!b1){
+            if (!b1) {
                 statusLabel.setText("Invaild");
             }
         }
-        
+
         s.setB(Boolean.FALSE);
         s.setL(null);
         s.setN(null);
@@ -220,7 +220,7 @@ public class FXMLDocumentController implements Initializable {
             for (Customer c : lista1) {
                 writer.write(c.toString() + "\n");
             }
-            
+
         } catch (IOException e) {
         } finally {
             try {
@@ -232,9 +232,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
@@ -245,7 +242,7 @@ public class FXMLDocumentController implements Initializable {
         setListView(); // fyller lista med kunder
 
         // listener
-        customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
+        customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
@@ -255,34 +252,35 @@ public class FXMLDocumentController implements Initializable {
                         setCustomerDetails(str);
                         customersList.getSelectionModel().setSelectionMode(null);
                     }
-                } catch (NullPointerException e) {} // behöver inte hantera detta exceptionet
+                } catch (NullPointerException e) {
+                } // behöver inte hantera detta exceptionet
             }
         });
     }
 
-    public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
+    private void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
 
         oList.clear();
 
         for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
 
             if (ssn == c.getPnr()) {// om det inmatade personnummret finns i listan så körs resten av koden
-                String s = Long.toString(c.getPnr());
-                s = s.substring(0, 8) + "-" + s.substring(8, s.length());
-                String s1 = c.getName() + " " + s;
+                String ss = Long.toString(c.getPnr());
+                ss = ss.substring(0, 8) + "-" + ss.substring(8, ss.length());
+                String s1 = c.getName() + " " + ss;
                 oList.add(s1);
             }
         }
     }
 
-    public void setListView() {  // metod för att lägga samtliga kunders namn i listView
+    private void setListView() {  // metod för att lägga samtliga kunders namn i listView
         oList.clear();
         ArrayList<Customer> tC = b.getCustomerList();
         for (Customer c : tC) {
-            String s = Long.toString(c.getPnr());
-            s = s.substring(0, 8) + "-" + s.substring(8, s.length()); // lägger till ett "-" innan de sista fyra siffrorna!
+            String ss = Long.toString(c.getPnr());
+            ss = ss.substring(0, 8) + "-" + ss.substring(8, ss.length()); // lägger till ett "-" innan de sista fyra siffrorna!
 
-            String s1 = c.getName() + " " + s;
+            String s1 = c.getName() + " " + ss;
             oList.add(s1);
         }
     }
