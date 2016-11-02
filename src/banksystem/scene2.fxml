@@ -73,7 +73,7 @@
 
                               <Label fx:id="rate" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <GridPane.margin>
-                        <Insets right="150.0" top="10.0" />
+                        <Insets right="100.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
 

@@ -40,6 +40,9 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     private Label ssn;
+    
+    @FXML
+    private Label rate;
 
     @FXML
     private Label transferStatus, nameStatus, mainStatus, accountNr;
@@ -372,7 +375,8 @@ public class Scene2Controller implements Initializable {
 
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
-
+        
+        
         transactionObservable = FXCollections.observableArrayList();
         transactionList.setItems(transactionObservable);
         accountObservableList = FXCollections.observableArrayList();
@@ -384,6 +388,8 @@ public class Scene2Controller implements Initializable {
         accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                
+                Customer c = getThisObject();
                 try {
                     String str = (String) accountList.getSelectionModel().getSelectedItem();
 
@@ -391,7 +397,19 @@ public class Scene2Controller implements Initializable {
                         str = str.replaceAll("[A-Za-z -]", "");
                         accountNr.setText(str);
                         setTransactions();
+                        // konvertera ac
+                        
+                        
+                        int accountNr2 = Integer.parseInt(str); // konverterar String till int
+                        
+                        System.out.println(c.getSelectedAccount(accountNr2).getClass().getSimpleName());
+                        if(.equals())
+                        
+                        System.out.println(accountNr2);
+                        
                         accountList.getSelectionModel().setSelectionMode(null);
+                        
+                        
                     }
                 } catch (NullPointerException e) {
                 }
