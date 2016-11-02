@@ -72,7 +72,7 @@ public class BankLogic {
         lista[0] = c1.getName() + " " + c1.getPnr();
         int i = 1;
         for (Account l : a) {
-            lista[i] = Integer.toString(l.getAccountNumber());
+            lista[i] = l.getAccountName() + Integer.toString(l.getAccountNumber());
             i++;
         }
 
