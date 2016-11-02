@@ -32,7 +32,6 @@ public class Scene2Controller implements Initializable {
 
     private ObservableList<String> accountObservableList;
     private ObservableList<String> transactionObservable;
-    private ObservableList<String> updatedTransactionList;
     private BankLogic b;
     private Singelton s;
 
@@ -43,7 +42,7 @@ public class Scene2Controller implements Initializable {
     private Label ssn;
 
     @FXML
-    private Label transferStatus, nameStatus, exportStatus, mainStatus, accountNr;
+    private Label transferStatus, nameStatus, mainStatus, accountNr;
 
     @FXML
     private Button editNameButton;
@@ -67,125 +66,97 @@ public class Scene2Controller implements Initializable {
     private Label balance;
 
     @FXML
-    public void deposit(ActionEvent e) throws Exception{
-        
-        try{
-        Customer c = getThisObject();
-        String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
-        
-        if(selectedAccount.isEmpty()){
-           throw new NullPointerException();
-           
-        }
-        
-    
-        
-        selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        
-        int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
-        double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-        
-        
-        
-        String saveSSN = ssn.getText(); // hämtar personNr
-        saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
-        long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
+    public void deposit(ActionEvent e) throws Exception {
 
-        //drar pengar från spcifikt konto
-        if (b.deposit(l, acountNR, amount2) == true) { // om det går bra
-            c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
-            String gg = Integer.toString(acountNR);
-            setTransactions();
-            mainStatus.setText("Deposit succesfull!");
-        } else {
-            mainStatus.setText("Error. Deposit failed.");
-        }
+        try {
+            Customer c = getThisObject();
+            String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
 
-        // *** skrive ut nytt belopp på "balance" label
-        for (int i = 0; i < c.getAccountList().size(); i++) {
-            if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
-                double newBalance = c.getAccountList().get(i).getBalance();
-
-                String newString = String.valueOf(newBalance);
-                balance.setText(newString);
+            if (selectedAccount.isEmpty()) {
+                throw new NullPointerException();
 
             }
-            
-            
-        }
-        
+            selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
 
-        }
-        catch(NullPointerException ex2){
-                mainStatus.setText("You must select a account.");
+            int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+            double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+
+            String saveSSN = ssn.getText(); // hämtar personNr
+            saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
+            long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
+
+            //drar pengar från spcifikt konto
+            if (b.deposit(l, acountNR, amount2) == true) { // om det går bra
+                c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
+                String gg = Integer.toString(acountNR);
+                setTransactions();
+                mainStatus.setText("Deposit succesfull!");
+            } else {
+                mainStatus.setText("Error. Deposit failed.");
+            }
+
+            // *** skrive ut nytt belopp på "balance" label
+            for (int i = 0; i < c.getAccountList().size(); i++) {
+                if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
+                    double newBalance = c.getAccountList().get(i).getBalance();
+
+                    balance.setText(String.format("%.2f", newBalance));
                 }
-        
-        catch(NumberFormatException ex){
+            }
+        } catch (NullPointerException ex2) {
+            mainStatus.setText("You must select a account.");
+        } catch (NumberFormatException ex) {
             mainStatus.setText("Invalid amount!");
-            
         }
-        
-        
-        
-        }
-        
-    
+    }
 
     @FXML
     public void withdraw(ActionEvent e) throws Exception {
-        
-        try{
-        Customer c = getThisObject();
-    
-        String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
-        
-        if(selectedAccount.isEmpty()){
-           throw new NullPointerException();
-           
-        }
-        
 
-        selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-        int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
-        
-        double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-        
-        String saveSSN = ssn.getText(); // hämtar personNr
-        saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
-        long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
-        
-        if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
+        try {
+            Customer c = getThisObject();
 
-            c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
-            String gg = Integer.toString(acountNR);
-            setTransactions();
+            String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
 
-            mainStatus.setText("Withdraw succesfull!");
-        } else {
-            mainStatus.setText("Withdraw not possible!");
-        }
-
-        // *** skrive ut nytt belopp på "balance" label
-        for (int i = 0; i < c.getAccountList().size(); i++) {
-            if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
-                double newBalance = c.getAccountList().get(i).getBalance();
-
-                String newString = String.format("%.2f", newBalance);
-                balance.setText(newString);
+            if (selectedAccount.isEmpty()) {
+                throw new NullPointerException();
             }
-        }
 
-         }
-        catch(NullPointerException ex2){
-                mainStatus.setText("You must select a account.");
+            selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
+            int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+
+            double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+
+            String saveSSN = ssn.getText(); // hämtar personNr
+            saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
+            long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
+
+            if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
+
+                c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
+                String gg = Integer.toString(acountNR);
+                setTransactions();
+
+                mainStatus.setText("Withdraw succesfull!");
+            } else {
+                mainStatus.setText("Withdraw not possible!");
+            }
+
+            // *** skrive ut nytt belopp på "balance" label
+            for (int i = 0; i < c.getAccountList().size(); i++) {
+                if (acountNR == c.getAccountList().get(i).getAccountNumber()) {
+                    double newBalance = c.getAccountList().get(i).getBalance();
+
+                    String newString = String.format("%.2f", newBalance);
+                    balance.setText(newString);
                 }
-        
-        catch(NumberFormatException ex){
+            }
+
+        } catch (NullPointerException ex2) {
+            mainStatus.setText("You must select a account.");
+        } catch (NumberFormatException ex) {
             mainStatus.setText("Invalid amount!");
-            
         }
-        
-        
     }
 
     @FXML
@@ -196,56 +167,49 @@ public class Scene2Controller implements Initializable {
     @FXML
     public void transferButton() {
         Customer c = getThisObject();
-        
-        int selectedFromAccountNr=Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
-        
-        int selectedToAccountNr=Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
-        
-        double selectedAccountsBalance=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance();
-        try{
-        double transferAmount=Double.parseDouble(amountTransfer.getText());
-        
-        //Om inte finns tillräckligt pengar på kontot
-        if(selectedFromAccountNr ==selectedToAccountNr)
-        {
-             transferStatus.setText("You can not transfer money \nto the same account!");
-        }
-        //I fall av fel inmatning
-        else if(transferAmount<=0){
-            transferStatus.setText("The amount to be transfered can \nnot be negative or zero!");
-        }
-        //Om användaren väljer att skicka pengar till ett och samma konto
-        else if (transferAmount>selectedAccountsBalance){
-     
-            transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
-    
-        }
-        else{
-            //Uppdatering saldo på första konto efter att överföra ett visst belopp
-            double newBalanceFromAccount=getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount;
-            getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
 
-            c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
-            String gg = Integer.toString(selectedFromAccountNr);
-           
-          
-            //Uppdatering saldo på andra konto efter att överföra ett visst belopp
-            double newBalanceToAccount=getThisObject().getSelectedAccount(selectedToAccountNr).getBalance()+transferAmount;
-            getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
-        
-            c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
-            String gg2 = Integer.toString(selectedFromAccountNr);
-           
-           
-            
-            setTransactions();
-            //Visa användaren att det gick att överföra pengar
-            transferStatus.setText("The transfer has been done!");
-            } 
-            }catch(NumberFormatException e){
+        int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
+
+        int selectedToAccountNr = Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
+
+        double selectedAccountsBalance = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance();
+        try {
+            double transferAmount = Double.parseDouble(amountTransfer.getText());
+
+            //Om inte finns tillräckligt pengar på kontot
+            if (selectedFromAccountNr == selectedToAccountNr) {
+                transferStatus.setText("You can not transfer money \nto the same account!");
+            } //I fall av fel inmatning
+            else if (transferAmount <= 0) {
+                transferStatus.setText("The amount to be transfered can \nnot be negative or zero!");
+            } //Om användaren väljer att skicka pengar till ett och samma konto
+            else if (transferAmount > selectedAccountsBalance) {
+
+                transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
+
+            } else {
+                //Uppdatering saldo på första konto efter att överföra ett visst belopp
+                double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
+                getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
+
+                c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
+                String gg = Integer.toString(selectedFromAccountNr);
+
+                //Uppdatering saldo på andra konto efter att överföra ett visst belopp
+                double newBalanceToAccount = getThisObject().getSelectedAccount(selectedToAccountNr).getBalance() + transferAmount;
+                getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
+
+                c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
+                String gg2 = Integer.toString(selectedFromAccountNr);
+
+                setTransactions();
+                //Visa användaren att det gick att överföra pengar
+                transferStatus.setText("The transfer has been done!");
+            }
+        } catch (NumberFormatException e) {
             transferStatus.setText("Invailed amount!");
         }
-           
+
     }
 
     @FXML
@@ -315,7 +279,7 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
-      
+
         Stage stage;
         Parent root;
 
@@ -330,46 +294,39 @@ public class Scene2Controller implements Initializable {
         });
         stage.showAndWait();
 
-
-        String s1 = ssn.getText();
-        s1 = s1.replaceAll("-", "");
-        long l = Long.parseLong(s1);
-
-        if (s.getB()) {
+        if (s.getB()) { // om man vill skapa ett konto
+            long l = getThisObject().getPnr(); // hämtar personNr på kunden vi befinner oss fördjupad i
             int i = s.getI();
-            String s4;
             switch (i) {
                 case (1):
-                    int g = b.addSavingsAccount(l);
-                    s4 = Integer.toString(g) + " Savings Account";
-                    accountObservableList.add(s4);
+                    int g = b.addSavingsAccount(l); // skapar ett savingsaccount samt initierar g till kontoNr
+                    String s4 = Integer.toString(g) + " Savings Account";
+                    accountObservableList.add(s4); // lägger till i observableList
                     break;
                 case (-1):
-                    g = b.addCreditAccount(l);
+                    g = b.addCreditAccount(l); // skapar ett credit account samt initierar g till kontoNr
                     s4 = Integer.toString(g) + " Credit Account";
-                    accountObservableList.add(s4);
+                    accountObservableList.add(s4); // lägger till i observableList
                     break;
             }
         }
         s.setB(Boolean.FALSE);
         s.setI(0);
-        
-        
+
     }
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
-     
-        
+
         try {
             String s1 = (String) accountList.getSelectionModel().getSelectedItem();
             String s2 = s1;
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-            String selectedAccountNumber=s1.replaceAll("[A-Za-z ]", "").trim();
-            int selectedAccountNr=Integer.parseInt(selectedAccountNumber);
-            Account selectedAccount=getThisObject().getSelectedAccount(selectedAccountNr);
+            String selectedAccountNumber = s1.replaceAll("[A-Za-z ]", "").trim();
+            int selectedAccountNr = Integer.parseInt(selectedAccountNumber);
+            Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
             s.setD(selectedAccount.getBalance());
             s.setD2(selectedAccount.getInterest());
             b.calTotalAmount(selectedAccount.getBalance(), selectedAccount.getInterest());
@@ -377,30 +334,27 @@ public class Scene2Controller implements Initializable {
             Parent root;
 
             stage = new Stage();
-            
+
             stage.setTitle("Delete customer account");
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(addAccountButton.getScene().getWindow());
             stage.setOnCloseRequest((WindowEvent we) -> {
-            stage.close();
-            s.setB(false);
-        });
+                stage.close();
+                s.setB(false);
+            });
             stage.showAndWait();
-            
-            if(s.getB()){
+
+            if (s.getB()) {
                 getThisObject().deleteAccount(selectedAccountNr);
                 accountObservableList.remove(s2);
             }
-            
-            
-            
+
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select a account!");
         }
-        
-    
+
     }
 
     @FXML
@@ -418,28 +372,29 @@ public class Scene2Controller implements Initializable {
 
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
-        
+
         transactionObservable = FXCollections.observableArrayList();
         transactionList.setItems(transactionObservable);
         accountObservableList = FXCollections.observableArrayList();
         transferFrom.setItems(accountObservableList);
         transferTo.setItems(accountObservableList);
         accountList.setItems(accountObservableList);
-    
-       accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {      
-           @Override
+
+        //Listener
+        accountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                try{
-                String str = (String) accountList.getSelectionModel().getSelectedItem();
-                
-                
-                if(!str.isEmpty()){ 
-                str = str.replaceAll("[A-Za-z -]", "");
-                accountNr.setText(str);
-                setTransactions();
-                accountList.getSelectionModel().setSelectionMode(null);
+                try {
+                    String str = (String) accountList.getSelectionModel().getSelectedItem();
+
+                    if (!str.isEmpty()) {
+                        str = str.replaceAll("[A-Za-z -]", "");
+                        accountNr.setText(str);
+                        setTransactions();
+                        accountList.getSelectionModel().setSelectionMode(null);
+                    }
+                } catch (NullPointerException e) {
                 }
-                }catch(NullPointerException e){}
             }
         });
 
@@ -463,7 +418,7 @@ public class Scene2Controller implements Initializable {
     public void setListView() {  // metod för att lägga samtliga kunders konto i listView
         accountObservableList.clear();
         String g = ssn.getText();
-        
+
         g = g.replaceAll("-", "");
         long pNr = Long.parseLong(g);
 
@@ -472,18 +427,18 @@ public class Scene2Controller implements Initializable {
         for (Customer c : tC) {
             if (c.getPnr() == pNr) {
                 ArrayList<Account> a = c.getAccountList();
-                if(!a.isEmpty()){
-                for (Account a1 : a) {
-                    accountObservableList.add(a1.getAccountNumber() + " " + a1.getAccountName());
-                }
+                if (!a.isEmpty()) {
+                    for (Account a1 : a) {
+                        accountObservableList.add(a1.getAccountNumber() + " " + a1.getAccountName());
+                    }
                 }
             }
         }
-        
+
     }
 
     public void setTransactions() {
-        
+
         String str = accountNr.getText().trim();
         transactionObservable.clear();
         int aNr = Integer.parseInt(str);
@@ -492,7 +447,7 @@ public class Scene2Controller implements Initializable {
 
         ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
         String d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance());
-        
+
         transactionObservable.add("Account number: " + aNr + "\t Balance: " + d);
 
         if (!arr.isEmpty()) {
@@ -501,16 +456,12 @@ public class Scene2Controller implements Initializable {
                 transactionObservable.add(t.toString());
             }
         }
-        
         d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance()); // hämtar balance och sätter till 2 decimaler
-        
         balance.setText(d);
-        
-        
 
     }
 
-    public Customer getThisObject() {
+    public Customer getThisObject() { // metod för att returnera kunden vi befinner oss fördjupad i!
         String sn = ssn.getText();
         sn = sn.replaceAll("-", "").trim();
         long l = Long.parseLong(sn);
