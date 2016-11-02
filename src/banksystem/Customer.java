@@ -38,14 +38,7 @@ public class Customer {
     
     public ArrayList<Account> getAccountList(){
         return accounts;
-    }
-   
-    @Override
-    public String toString(){
-        
-        String str= "Name: "+this.getName()+", Social security No: "+this.getPnr();
-        return str;
-    }
+    } 
     
     public int addSavingAccount(double balance){
         SavingAccount sA = new SavingAccount(balance);

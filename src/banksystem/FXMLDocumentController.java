@@ -215,13 +215,13 @@ public class FXMLDocumentController implements Initializable {
 
         BufferedWriter writer = null;
         try {
-            ArrayList<Customer> lista1 = b.getCustomerList();
+            String[] lista1 = b.getCustomers();
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
             mainStatus.setText("File exported.");
             writer = new BufferedWriter(new FileWriter(textFile));
-            for (Customer c : lista1) {
-                writer.write(c.toString() + "\n");
+            for (int i = 0; i < lista1.length; i++) {
+                writer.write(lista1[i] + "\n");
             }
 
         } catch (IOException e) {
