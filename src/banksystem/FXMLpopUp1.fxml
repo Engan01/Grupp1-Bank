@@ -35,7 +35,13 @@
          </font></Label>
       <TextField fx:id="labelNamePop1" style="-fx-background-radius: 0;" GridPane.columnIndex="1" />
       <TextField fx:id="labelSsnPop1" style="-fx-background-radius: 0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Label fx:id="error" layoutX="-2.0" layoutY="2.0" prefHeight="27.0" prefWidth="192.0" textFill="#e10e0e">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+         </children></AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <Button layoutX="65.0" layoutY="3.0" mnemonicParsing="false" onAction="#cancelPop1" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6" AnchorPane.rightAnchor="0.0">

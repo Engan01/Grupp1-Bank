@@ -138,99 +138,17 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-
+        
         if (s.getB()) {
-            try {
-                String n = s.getN(); // namn
-                String n2 = s.getN2(); // SSN
-                n = n.trim();
-                n2 = n2.trim();
-
-                if (n.isEmpty()) {
-                    statusLabel.setText("Please type a name!");
-                    throw new NullPointerException();
-                }
-
-                int i1 = 0;
-                int i2 = 0;
-                for (int i = 0; i < n.length(); i++) {
-                    if (n.charAt(i) == ' ') {
-                        i1++;
-                    } else if (n.charAt(i) == '-') {
-                        i2++;
-                    }
-                }
-                if (i1 > 2 || i2 > 1) { // man kan max ha två mellanslag i sitt namn och ett "-"
-                    statusLabel.setText("Invalid name!");
-                    throw new NullPointerException();
-                }
-
-                String s1 = n.replaceAll("[A-Za-z -]", "");
-                if (!s1.isEmpty()) {
-                    statusLabel.setText("Name can only contain letters!");
-                    throw new NullPointerException();
-                }
-
-                int i3 = n2.length();
-                if (i3 == 13) { // ssn +  ett tecken
-                    int l = 0;
-                    for (int k = 0; k < n2.length(); k++) {
-                        if (n2.charAt(k) == '-') {
-                            l++; // om tecknet är "-"
-                        }
-                    } // om man skrivit någor annat tecken än "-" ska det inte gå 
-                    if (l > 0) // tar bort "-" förutsat att det sitter på rätt plats
-                    {
-                        n2 = n2.substring(0, 8) + n2.substring(9, n2.length());
-                    }
-                }
-
-                i3 = n2.length();
-                long l = Long.parseLong(n2);
-
-                LocalDate d = LocalDate.now();
-                LocalDate dd = d.minusYears(18);
-                String tooYoung = dd.toString();
-                dd = d.minusYears(120);
-                String tooOld = dd.toString();
-
-                int tY = Integer.parseInt(tooYoung.replaceAll("-", "").trim());
-                int tO = Integer.parseInt(tooOld.replaceAll("-", "").trim());
-                String n3 = n2.substring(0, 8);
-                n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length());
-
-                LocalDate date = LocalDate.parse(n3);
-
-                n3 = n3.replaceAll("-", "");
-                int customer = Integer.parseInt(n3);
-
-                if (customer > tY) {
-                    statusLabel.setText("The customer can't be younger \nthan 18 years old!");
-                    throw new NullPointerException();
-                } else if (customer < tO) {
-                    statusLabel.setText("The customer can't be older \nthan 120 years old!");
-                    throw new NullPointerException();
-                }
-
-                if (i3 != 12) {
-                    statusLabel.setText("Please type full social security number!");
-                    throw new NullPointerException();
-                }
-
-                boolean a = b.addCustomer(n, l);
-                if (!a) {
-                    statusLabel.setText("User already exists!");
-                }
-
-            } catch (NullPointerException ex) {
-            } catch (NumberFormatException | DateTimeParseException ex) {
-                statusLabel.setText("Invalid social security number!");
+            Boolean b1 = b.addCustomer(s.getN(), s.getL());
+            if(!b1){
+                statusLabel.setText("Invaild");
             }
         }
+        
         s.setB(Boolean.FALSE);
         s.setL(null);
         s.setN(null);
-        s.setN2(null);
         setListView();
 
     }
