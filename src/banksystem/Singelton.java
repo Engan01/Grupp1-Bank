@@ -25,6 +25,21 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     private double d;
     private double d2;
     private double dT;
+    
+    public void setToNull(){
+        b = false;
+        n = null;
+        n2 = null;
+        l = null;
+        i = 0;
+        i1 = 0;
+        i2 = 0;
+        d = 0;
+        d2 = 0;
+        dT = 0;      
+    }
+    
+    
     public Boolean getB() {
         return b;
     }

@@ -24,15 +24,15 @@
       <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#saving" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Savings Account" textFill="#baf47c">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#saving" prefHeight="27.0" prefWidth="139.0" stylesheets="@brightStyleSheet.css" text="Savings Account" textFill="#baf47c">
          <font>
             <Font name="Helvetica Bold" size="12.0" />
          </font></Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#cancelPop4" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6" GridPane.rowIndex="2">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#cancelPop4" prefHeight="27.0" prefWidth="144.0" stylesheets="@darkStyleSheet.css" text="Cancel" textFill="#bddad6" GridPane.rowIndex="2">
          <font>
             <Font name="Helvetica Bold" size="12.0" />
          </font></Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#credit" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: #617780; -fx-background-radius: 0;" text="Credit Account" textFill="#baf47c" GridPane.rowIndex="1">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#credit" prefHeight="27.0" prefWidth="140.0" stylesheets="@brightStyleSheet.css" text="Credit Account" textFill="#baf47c" GridPane.rowIndex="1">
          <font>
             <Font name="Helvetica Bold" size="12.0" />
          </font>

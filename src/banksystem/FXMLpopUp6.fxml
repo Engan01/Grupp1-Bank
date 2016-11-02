@@ -8,15 +8,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="288.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp6">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="288.0" style="-fx-background-color: #dce1e4;" stylesheets="@darkStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp6">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#confirmPop6" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Confirm" textFill="#bddad6">
+            <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#confirmPop6" stylesheets="@darkStyleSheet.css" text="Confirm" textFill="#bddad6">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>
-            <Button layoutX="173.0" layoutY="4.0" mnemonicParsing="false" onAction="#cancelPop6" style="-fx-background-color: #1c2f36; -fx-background-radius: 0;" text="Cancel" textFill="#bddad6">
+            <Button layoutX="173.0" layoutY="4.0" mnemonicParsing="false" onAction="#cancelPop6" text="Cancel" textFill="#bddad6">
                <font>
                   <Font name="Helvetica Bold" size="12.0" />
                </font></Button>
