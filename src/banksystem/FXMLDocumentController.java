@@ -56,7 +56,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextArea customerDetailList;
-    
+
     @FXML
     private Label mainStatus;
 
@@ -80,7 +80,6 @@ public class FXMLDocumentController implements Initializable {
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
-
     }
 
     // search method
@@ -123,14 +122,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
-        
+
         statusLabel.setText("");
-        
         Stage stage;
         Parent root;
 
         stage = new Stage();
-        
         stage.setTitle("Adding new customer");
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp1.fxml"));
         stage.setScene(new Scene(root));
@@ -141,10 +138,8 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-     
-       
-        boolean b1 = s.getB();
-        if (b1) {
+
+        if (s.getB()) {
             try {
                 String n = s.getN(); // namn
                 String n2 = s.getN2(); // SSN
@@ -192,35 +187,31 @@ public class FXMLDocumentController implements Initializable {
 
                 i3 = n2.length();
                 long l = Long.parseLong(n2);
-              
+
                 LocalDate d = LocalDate.now();
                 LocalDate dd = d.minusYears(18);
                 String tooYoung = dd.toString();
                 dd = d.minusYears(120);
                 String tooOld = dd.toString();
-               
+
                 int tY = Integer.parseInt(tooYoung.replaceAll("-", "").trim());
                 int tO = Integer.parseInt(tooOld.replaceAll("-", "").trim());
                 String n3 = n2.substring(0, 8);
                 n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length());
-                
+
                 LocalDate date = LocalDate.parse(n3);
-             
+
                 n3 = n3.replaceAll("-", "");
                 int customer = Integer.parseInt(n3);
-                
-                
-                if(customer > tY){
+
+                if (customer > tY) {
                     statusLabel.setText("The customer can't be younger \nthan 18 years old!");
-                    throw new NullPointerException();          
-                }else if(customer < tO){
+                    throw new NullPointerException();
+                } else if (customer < tO) {
                     statusLabel.setText("The customer can't be older \nthan 120 years old!");
-                    throw new NullPointerException(); 
+                    throw new NullPointerException();
                 }
-                
-      
-                
-                
+
                 if (i3 != 12) {
                     statusLabel.setText("Please type full social security number!");
                     throw new NullPointerException();
@@ -245,74 +236,60 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void customersList(ActionEvent event) throws IOException {
-
-        customerDetailList.setText("hej");
-
-    }
-
-    @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
         try {
-
             String s1 = (String) customersList.getSelectionModel().getSelectedItem();
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
             long pNr = Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim());
             s.setL(pNr);
-           
+
             Stage stage;
             Parent root;
 
             stage = new Stage();
-            stage.setTitle("Delete existing customer");
+            stage.setTitle("Delete selected customer");
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(deleteCustomerButton.getScene().getWindow());
             stage.setOnCloseRequest((WindowEvent we) -> {
-            stage.close();
-            s.setB(false);
-        });
+                stage.close();
+                s.setB(false);
+            });
             stage.showAndWait();
-            
-            
 
             if (s.getB()) {
-                String[] ss = b.removeCustomer(pNr);
+                String[] ss = b.removeCustomer(pNr); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
                 customerDetailList.setText("");
             }
-            
-            
-            
+
             s.setB(Boolean.FALSE);
             s.setL(null);
-            
+
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
         setListView();
     }
-    
 
     @FXML
-    private void clearSearch(ActionEvent event) throws NullPointerException{
-        
-        try{
-            
-            if(ssnField.getText().isEmpty()){
+    private void clearSearch(ActionEvent event) throws NullPointerException {
+
+        try {
+
+            if (ssnField.getText().isEmpty()) {
                 throw new NullPointerException();
             }
-            
-        ssnField.clear();
-        setListView();
-        
-        }catch(NullPointerException e){
+
+            ssnField.clear();
+            setListView();
+
+        } catch (NullPointerException e) {
             statusLabel.setText("Searched cleared!");
         }
     }
-
 
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
@@ -326,9 +303,8 @@ public class FXMLDocumentController implements Initializable {
             writer = new BufferedWriter(new FileWriter(textFile));
             for (Customer c : lista1) {
                 writer.write(c.toString() + "\n");
-
             }
-
+            
         } catch (IOException e) {
         } finally {
             try {
@@ -338,51 +314,34 @@ public class FXMLDocumentController implements Initializable {
             } catch (IOException e) {
             }
         }
-
     }
 
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
         oList = FXCollections.observableArrayList();
+        customersList.setItems(oList);
 
         setListView(); // fyller lista med kunder
 
-        customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-
+        // listener
+        customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                try{
-                String str = (String) customersList.getSelectionModel().getSelectedItem();
-                
-                if(!str.isEmpty()){
-       
-                
-                 // Customer Detail  
-               for (Customer c: (ArrayList<Customer>) b.getCustomerList()){// loopa igenom customerList för att hitta rätt objekt genom att jämföra personnummre
-                   if (Long.parseLong(str.replaceAll("[^0-9]", ""))==c.getPnr()){// str.length-12 vi backar 12 steg i personnummret
-                       int counter=0;
-                       int counter1=0;
-                       for(Account a: c.getAccountList()){//loopar igenom accountList
-                        if (a instanceof SavingAccount){// kollar om det finns en savings account 
-                            counter++;
-                        }  
-                        else if(a instanceof CreditAccount){// kollar om det finns en credit account
-                           counter1++; 
-                        }
-                       }
-                       
-                       customerDetailList.setText(str + "\n\nNumber of savings account(s): "+counter +"\nNumber of credit account(s): "+counter1);
-                   }
-               } 
-               customersList.getSelectionModel().setSelectionMode(null); 
-               }
-                
-                }catch(NullPointerException e){}
+                try {
+                    String str = (String) customersList.getSelectionModel().getSelectedItem();
+
+                    if (!str.isEmpty()) {
+                        setCustomerDetails(str);
+                        customersList.getSelectionModel().setSelectionMode(null);
+                    }
+                } catch (NullPointerException e) {} // behöver inte hantera detta exceptionet
             }
         });
-
     }
 
     public void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
@@ -397,27 +356,35 @@ public class FXMLDocumentController implements Initializable {
                 String s1 = c.getName() + " " + s;
                 oList.add(s1);
             }
-
         }
-
-        customersList.setItems(oList);
     }
 
     public void setListView() {  // metod för att lägga samtliga kunders namn i listView
         oList.clear();
-
         ArrayList<Customer> tC = b.getCustomerList();
-
         for (Customer c : tC) {
             String s = Long.toString(c.getPnr());
             s = s.substring(0, 8) + "-" + s.substring(8, s.length()); // lägger till ett "-" innan de sista fyra siffrorna!
 
             String s1 = c.getName() + " " + s;
             oList.add(s1);
-
         }
-
-        customersList.setItems(oList);
     }
 
+    private void setCustomerDetails(String str) {
+        for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopa igenom customerList för att hitta rätt objekt genom att jämföra personnummre
+            if (Long.parseLong(str.replaceAll("[^0-9]", "")) == c.getPnr()) {// str.length-12 vi backar 12 steg i personnummret
+                int counter = 0;
+                int counter1 = 0;
+                for (Account a : c.getAccountList()) {//loopar igenom accountList
+                    if (a instanceof SavingAccount) {// kollar om det finns en savings account 
+                        counter++;
+                    } else if (a instanceof CreditAccount) {// kollar om det finns en credit account
+                        counter1++;
+                    }
+                }
+                customerDetailList.setText(str + "\n\nNumber of savings account(s): " + counter + "\nNumber of credit account(s): " + counter1);
+            }
+        }
+    }
 }
