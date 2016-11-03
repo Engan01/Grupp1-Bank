@@ -85,7 +85,7 @@ public class BankLogic {
         
         int i = 4;
         for (Account l : a) {
-            lista[i] = "Account number: " + l.getAccountNumber() + " " + l.getAccountName() + " Balance: " + l.getBalance();
+            lista[i] = l.getAccountNumber() + " " + l.getAccountName() + "\tBalance: " + String.format("%.2f", l.getBalance());
             i++;
         }
 

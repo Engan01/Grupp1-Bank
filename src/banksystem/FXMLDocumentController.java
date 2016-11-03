@@ -230,13 +230,16 @@ public class FXMLDocumentController implements Initializable {
             }
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
-            mainStatus.setText("File exported.");
+            
             writer = new BufferedWriter(new FileWriter(textFile));
             for (int i = 0; i < lista1.length; i++) {
                 writer.write(lista1[i] + "\n");
             }
+            mainStatus.setText("File successfully exported.");
 
         } catch (IOException e) {
+            mainStatus.setTextFill(Color.RED);
+            mainStatus.setText("Transfer file is not accessible!");
         } finally {
             try {
                 if (writer != null) {

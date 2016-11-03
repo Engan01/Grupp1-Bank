@@ -73,6 +73,9 @@ public class Scene2Controller implements Initializable {
 
             int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+            if(amount2 < 1){
+                throw new NumberFormatException();
+            }
 
             String saveSSN = ssn.getText(); // hämtar personNr
             saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
