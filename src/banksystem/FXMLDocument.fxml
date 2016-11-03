@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -142,7 +143,7 @@
                   </Button>
                </children>
             </GridPane>
-            <Label prefHeight="57.0" prefWidth="721.0" style="-fx-background-color: #89be30;" text="   BANKING SYSTEM" textFill="WHITE">
+            <Label prefHeight="57.0" prefWidth="721.0" style="-fx-background-color: #89be30;" text="   " textFill="WHITE">
                <font>
                   <Font name="Regencie Light" size="19.0" />
                </font>
@@ -160,6 +161,11 @@
                   <Insets left="260.0" />
                </GridPane.margin>
             </Label>
+            <ImageView fitHeight="69.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../14964192_10209597273843182_299990008_o.jpg" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
     </children>
