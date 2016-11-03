@@ -77,8 +77,9 @@ public class FXMLDocumentController implements Initializable {
             stg.setScene(s1);
             stg.show();
         } catch (NullPointerException ex) {
-            //viewProfileLabel.setTextFiller(Color.RED);
-            viewProfileLabel.setText("Select customer!");
+            // när Ramona pushat sin version ska vi ändra denna setText till
+            // viewProfileLabel.setText("Select customer!");
+            statusLabel.setText("Select customer!");
         }
     }
 
