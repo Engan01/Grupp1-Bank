@@ -378,8 +378,7 @@ catch (NumberFormatException e) {
                     break;
             }
         }
-        s.setB(Boolean.FALSE);
-        s.setI(0);
+        s.setToNull();
 
     }
 
@@ -400,10 +399,10 @@ catch (NumberFormatException e) {
             Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
             s.setD(selectedAccount.getBalance());
             s.setD2(selectedAccount.getInterest()*100);
-            s.setdT(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
-            s.setB2(false);
-            if(s.getdT()<0){
-                s.setB2(true);
+            s.setD1(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
+            s.setB(false);
+            if(s.getD1()<0){
+                s.setB(true);
             }
             
             Stage stage;
@@ -434,6 +433,7 @@ catch (NumberFormatException e) {
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
         }
+        s.setToNull();
 
     }
 
