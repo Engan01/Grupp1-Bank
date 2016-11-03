@@ -319,23 +319,6 @@ public class Scene2Controller implements Initializable {
                         
                     }
                     
-                    
-                    
-                    
-//                //Uppdatering saldo på första konto efter att överföra ett visst belopp
-//                double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
-//                getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
-//
-//                c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
-//                String gg = Integer.toString(selectedFromAccountNr);
-//
-//                //Uppdatering saldo på andra konto efter att överföra ett visst belopp
-//                double newBalanceToAccount = getThisObject().getSelectedAccount(selectedToAccountNr).getBalance() + transferAmount;
-//                getThisObject().getSelectedAccount(selectedToAccountNr).setBalance(newBalanceToAccount);
-//
-//                c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
-//                String gg2 = Integer.toString(selectedFromAccountNr);
-
 
 
 setTransactions();

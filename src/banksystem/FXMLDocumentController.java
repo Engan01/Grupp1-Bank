@@ -42,7 +42,7 @@ public class FXMLDocumentController implements Initializable {
     private TextField ssnField;
 
     @FXML
-    private Label statusLabel;
+    private Label statusLabel, viewProfileLabel;
 
     @FXML
     private ListView customersList;
@@ -77,7 +77,8 @@ public class FXMLDocumentController implements Initializable {
             stg.setScene(s1);
             stg.show();
         } catch (NullPointerException ex) {
-            statusLabel.setText("Select customer!");
+            //viewProfileLabel.setTextFiller(Color.RED);
+            viewProfileLabel.setText("Select customer!");
         }
     }
 
