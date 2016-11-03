@@ -6,7 +6,6 @@ package banksystem;
  */
 public class CreditAccount extends Account {
 
-    private final double creditLimit = 5000;
     private final double debtInterest = 0.07;
     private final double debtIncrease = 1.005;
     private static double interest = 0.005;

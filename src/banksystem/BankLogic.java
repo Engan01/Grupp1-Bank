@@ -68,11 +68,24 @@ public class BankLogic {
         }
 
         a = c1.getAccountList();
-        lista = new String[a.size() + 1];
+        int counter = 0;
+        int counter1 = 0;
+        for (Account aa : a) {//loopar igenom accountList
+            if (aa instanceof SavingsAccount) {// kollar om det finns en savings account 
+                counter++;
+            } else if (aa instanceof CreditAccount) {// kollar om det finns en credit account
+                counter1++;
+            }
+        }
+        lista = new String[a.size() + 4];
         lista[0] = c1.getName() + " " + c1.getPnr();
-        int i = 1;
+        lista[1] = "Number of savings account(s): " + counter;
+        lista[2] = "Number of credit account(s): " + counter1;
+        lista[3] = ""; // tom rad
+        
+        int i = 4;
         for (Account l : a) {
-            lista[i] = l.getAccountName() + Integer.toString(l.getAccountNumber());
+            lista[i] = "Account number: " + l.getAccountNumber() + " " + l.getAccountName() + " Balance: " + l.getBalance();
             i++;
         }
 

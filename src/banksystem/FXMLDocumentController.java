@@ -292,19 +292,13 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void setCustomerDetails(String str) {
-        for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopa igenom customerList för att hitta rätt objekt genom att jämföra personnummre
-            if (Long.parseLong(str.replaceAll("[^0-9]", "")) == c.getPnr()) {// str.length-12 vi backar 12 steg i personnummret
-                int counter = 0;
-                int counter1 = 0;
-                for (Account a : c.getAccountList()) {//loopar igenom accountList
-                    if (a instanceof SavingsAccount) {// kollar om det finns en savings account 
-                        counter++;
-                    } else if (a instanceof CreditAccount) {// kollar om det finns en credit account
-                        counter1++;
-                    }
-                }
-                customerDetailList.setText(str + "\n\nNumber of savings account(s): " + counter + "\nNumber of credit account(s): " + counter1);
-            }
+        long pNr = Long.parseLong(str.replaceAll("[^0-9]", ""));
+        String[] lista = b.getCustomer(pNr);
+        
+        String utskrift = "";
+        for(int i = 0; i < lista.length; i++){
+            utskrift  += lista[i] + "\n";
         }
-    }
+        customerDetailList.setText(utskrift);
+     }
 }

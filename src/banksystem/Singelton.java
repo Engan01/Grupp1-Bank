@@ -128,7 +128,5 @@ public class Singelton { // klass för att hålla värden mellan controllers!!!
     public void setB2(Boolean b2) {
         this.b2 = b2;
     }
-    
-    
 
 }
