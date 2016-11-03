@@ -127,6 +127,7 @@ public class FXMLDocumentController implements Initializable {
 
         stage = new Stage();
         stage.setTitle("Adding new customer");
+        stage.setResizable(false);
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp1.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -167,6 +168,7 @@ public class FXMLDocumentController implements Initializable {
 
             stage = new Stage();
             stage.setTitle("Delete selected customer");
+            stage.setResizable(false);
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);

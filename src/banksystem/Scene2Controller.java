@@ -305,6 +305,7 @@ catch (NumberFormatException e) {
 
         stage = new Stage();
         stage.setTitle("Customer name editing");
+        stage.setResizable(false);
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp3.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -332,6 +333,7 @@ catch (NumberFormatException e) {
 
         stage = new Stage();
         stage.setTitle("Creating new account");
+        stage.setResizable(false);
         root = FXMLLoader.load(getClass().getResource("FXMLpopUp4.fxml"));
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -392,6 +394,7 @@ catch (NumberFormatException e) {
             stage = new Stage();
 
             stage.setTitle("Delete customer account");
+            stage.setResizable(false);
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
