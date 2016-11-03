@@ -36,28 +36,14 @@ public class Scene2Controller implements Initializable {
     private Singelton s;
 
     @FXML
-    private Label name;
+    private Label name, ssn, rate, transferStatus, nameStatus, mainStatus, accountNr, balance;
 
     @FXML
-    private Label ssn;
-
-    @FXML
-    private Label rate;
-
-    @FXML
-    private Label transferStatus, nameStatus, mainStatus, accountNr;
-
-    @FXML
-    private Button editNameButton;
+    private Button editNameButton, addAccountButton, back;
 
     @FXML
     private ListView accountList, transactionList;
 
-    @FXML
-    private Button addAccountButton;
-
-    @FXML
-    private Button back;
 
     @FXML
     private ChoiceBox transferFrom, transferTo;
@@ -66,11 +52,10 @@ public class Scene2Controller implements Initializable {
     private TextField amount, amountTransfer;
 
     @FXML
-    private Label balance;
-
-    @FXML
     public void deposit(ActionEvent e) throws Exception {
-
+        transferStatus.setText("");
+        mainStatus.setText("");
+        
         try {
             Customer c = getThisObject();
             String selectedAccount = (String) accountList.getSelectionModel().getSelectedItem();
@@ -115,6 +100,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void withdraw(ActionEvent e) throws Exception {
+        transferStatus.setText("");
+        mainStatus.setText("");
 
         try {
             Customer c = getThisObject();
@@ -139,7 +126,8 @@ public class Scene2Controller implements Initializable {
                 c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
                 String gg = Integer.toString(acountNR);
                 setTransactions();
-                if("SavingAccount".equals(c.getSelectedAccount(acountNR).getClass().getSimpleName())){
+                
+                if("SavingsAccount".equals(c.getSelectedAccount(acountNR).getClass().getSimpleName())){
                     rate.setText("2%");
                 }
                
@@ -172,6 +160,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void transferButton() {
+        transferStatus.setText("");
+        mainStatus.setText("");
         Customer c = getThisObject();
 
         int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
@@ -244,6 +234,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void editName(ActionEvent e) throws IOException {
+        transferStatus.setText("");
+        mainStatus.setText("");
         nameStatus.setText("");
         long l = getThisObject().getPnr();
         s.setL(l);
@@ -274,6 +266,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
+        transferStatus.setText("");
+        mainStatus.setText("");
 
         Stage stage;
         Parent root;
@@ -313,6 +307,8 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
+        transferStatus.setText("");
+        mainStatus.setText("");
 
         try {
             String s1 = (String) accountList.getSelectionModel().getSelectedItem();
@@ -327,7 +323,7 @@ public class Scene2Controller implements Initializable {
             s.setD(selectedAccount.getBalance());
             s.setD2(selectedAccount.getInterest()*100);
             s.setdT(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
-            
+            s.setB2(false);
             if(s.getdT()<0){
                 s.setB2(true);
             }
@@ -352,6 +348,7 @@ public class Scene2Controller implements Initializable {
                 getThisObject().closeAccount(selectedAccountNr);
                 accountObservableList.remove(s2);
             }
+            transactionObservable.clear();
 
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
