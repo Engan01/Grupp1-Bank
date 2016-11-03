@@ -57,7 +57,7 @@ public class FXMLpopUp5 implements Initializable {
           totalAmountPop5.setText(s.getdT()+" SEK");
           
           if(s.getB2()){
-              creditAccountLabel.setText("You have a debt of "+-1*s.getdT()+" SEK");
+              creditAccountLabel.setText("You have a debt of " + -1 * s.getdT() + " SEK");
           }
     }
 
