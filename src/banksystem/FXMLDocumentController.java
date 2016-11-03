@@ -225,8 +225,8 @@ public class FXMLDocumentController implements Initializable {
             String[] lista1 = b.getCustomers();
             if(lista1.length==0){
                mainStatus.setTextFill(Color.RED);
-               mainStatus.setText("The list with customers is empty, you can't do an export");
-               throw new IOException();
+               mainStatus.setText("There is no customers to export!");
+               throw new NullPointerException();
             }
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
@@ -236,7 +236,8 @@ public class FXMLDocumentController implements Initializable {
                 writer.write(lista1[i] + "\n");
             }
             mainStatus.setText("File successfully exported.");
-
+            
+        }catch(NullPointerException e){
         } catch (IOException e) {
             mainStatus.setTextFill(Color.RED);
             mainStatus.setText("Transfer file is not accessible!");

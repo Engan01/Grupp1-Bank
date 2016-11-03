@@ -165,7 +165,7 @@ public class Scene2Controller implements Initializable {
 
    @FXML
     public void exportToFile() throws Exception {
-            
+        exportStatus.setTextFill(Color.BLACK);
        
         BufferedWriter writer = null;
         try {
@@ -174,6 +174,11 @@ public class Scene2Controller implements Initializable {
             Customer c = getThisObject();
             long p = c.getPnr();
             String ss = accountNr.getText();
+            if(ss.isEmpty()){
+                exportStatus.setTextFill(Color.RED);
+                exportStatus.setText("You have to select an account!");
+                throw new NullPointerException();
+            }
             int ii = Integer.parseInt(ss);
             ArrayList<Transaction> t = c.getSelectedAccount(ii).getTransaction();
             Account aa = c.getSelectedAccount(ii);
@@ -183,9 +188,8 @@ public class Scene2Controller implements Initializable {
             writer = new BufferedWriter(new FileWriter(textFile));
             
              if(t.isEmpty()){
-                
+                exportStatus.setTextFill(Color.RED);
                 exportStatus.setText("No transactions to export.");
-                
                 throw new NullPointerException();
              }
             
@@ -198,23 +202,25 @@ public class Scene2Controller implements Initializable {
             
             for (Transaction t1 : t) {
                 writer.write(t1.toString() + "\n");
-                exportStatus.setText("Transaction file exported.");
+                exportStatus.setText("Transactionslist successfully exported to file");
                
            }
 
-        
-        
-        } catch (IOException | NullPointerException e) {
-        } finally {
+        }catch(NullPointerException e){
+        }catch (IOException e) {
+            exportStatus.setTextFill(Color.RED);
+            exportStatus.setText("Transfer file is not accessible!");
+        }finally {
             try {
                 if (writer != null) {
                     writer.close();
                 }
             } catch (IOException e) {
-            }
+            
         }
         
         }
+    }
 
     @FXML
     public void transferButton() {
