@@ -57,6 +57,7 @@
                 <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -96,13 +97,13 @@
                   </Label>
 
                               
-                              <Button mnemonicParsing="false" onAction="#deposit" prefHeight="40.0" prefWidth="80.0" stylesheets="@brightStyleSheet.css" text="Deposit" textFill="#baf47c" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                              <Button mnemonicParsing="false" onAction="#deposit" prefHeight="40.0" prefWidth="80.0" stylesheets="@brightStyleSheet.css" text="Deposit" textFill="#baf47c" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="30.0" top="23.0" />
                      </GridPane.margin>
                   </Button>
 
-                              <Button mnemonicParsing="false" onAction="#withdraw" prefHeight="43.0" prefWidth="80.0" stylesheets="@brightStyleSheet.css" text="Withdraw" textFill="#baf47c" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                              <Button mnemonicParsing="false" onAction="#withdraw" prefHeight="43.0" prefWidth="80.0" stylesheets="@brightStyleSheet.css" text="Withdraw" textFill="#baf47c" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets top="23.0" />
                      </GridPane.margin>
@@ -117,6 +118,11 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
+                  <Line endY="100.0" startY="-500.0" stroke="#1c2f36" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="195.0" top="200.0" />
+                     </GridPane.margin>
+                  </Line>
                </children>
             </GridPane>
             <GridPane prefHeight="160.0" prefWidth="238.0">
@@ -295,6 +301,11 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
+            <Line endY="100.0" startY="-100.0" stroke="#dce1e4" strokeWidth="3.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="2.0" />
+               </GridPane.margin>
+            </Line>
          </children>
       </GridPane>
       <GridPane prefHeight="102.0" prefWidth="700.0" style="-fx-background-color: #1c2f36;">

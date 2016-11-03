@@ -183,6 +183,11 @@
                   <Insets left="20.0" top="-45.0" />
                </GridPane.margin>
             </ImageView>
+            <Line endY="100.0" startY="-900.0" stroke="#1c2f36" strokeWidth="5.0">
+               <GridPane.margin>
+                  <Insets left="695.0" top="290.0" />
+               </GridPane.margin>
+            </Line>
          </children>
       </GridPane>
     </children>
