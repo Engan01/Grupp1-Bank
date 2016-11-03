@@ -47,6 +47,10 @@ public class SavingsAccount extends Account {
     public int getnumberOfWithdraw(){
         return numberOfWithdraw;
     }
+    
+    public void setnumberOfWithdraw(int numberOfWithdraw){
+        this.numberOfWithdraw=numberOfWithdraw;
+    }
 
     @Override
     public String getAccountName() {

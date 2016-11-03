@@ -231,6 +231,8 @@ public class Scene2Controller implements Initializable {
         try{
             Customer c = getThisObject();
             
+            
+            
             int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
             
             int selectedToAccountNr = Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
@@ -244,6 +246,13 @@ public class Scene2Controller implements Initializable {
                     transferStatus.setText("You can not transfer money to the same account!");
                 } //I fall av fel inmatning
                 
+                else if (transferAmount <= 0) {
+                    transferStatus.setText("The amount to be transfered can not be negative or zero!");
+                } //Om användaren väljer att skicka pengar till ett och samma konto
+                else if (transferAmount > selectedAccountsBalance) {
+                    
+                    transferStatus.setText("There is not enough money in this account to perform this transfer!");
+                }
                 else if("CreditAccount".equals(c.getSelectedAccount(selectedFromAccountNr).getClass().getSimpleName())) {
                     if(c.getSelectedAccount(selectedFromAccountNr).getBalance()-transferAmount >= -5000){
                         
@@ -268,30 +277,17 @@ public class Scene2Controller implements Initializable {
                         transferStatus.setText("Transfer not possible!\nYou have reached your credit limit!");
                     }}
                 
-                
-                else if (transferAmount <= 0) {
-                    transferStatus.setText("The amount to be transfered can not be negative or zero!");
-                } //Om användaren väljer att skicka pengar till ett och samma konto
-                else if (transferAmount > selectedAccountsBalance) {
-                    
-                    transferStatus.setText("There is not enough money in this account to perform this transfer!");
-                }
-                
-                
                 else { // Detta är för Savingaccount
                     
-                    int pp = 0;
                     Account ff = c.getSelectedAccount(selectedFromAccountNr);
-                    SavingsAccount gg = (SavingsAccount) ff;
-                    pp = gg.getnumberOfWithdraw();
+                    SavingsAccount ggg = (SavingsAccount) ff;
                     
-                    
-                    if(pp >1){
+                    if(ggg.getnumberOfWithdraw() >=1){
                         
-                        
+                        System.out.println("1");
                         rate.setText("2%");
                         //Uppdatering saldo på första konto efter att överföra ett visst belopp
-                        double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount*1,02;
+                        double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount*1.02;
                         getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
                         
                         c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance());
@@ -305,6 +301,7 @@ public class Scene2Controller implements Initializable {
                         String gg2 = Integer.toString(selectedFromAccountNr);
                         // ändra ränta
                     }else{
+                        System.out.println("2");
                         //Uppdatering saldo på första konto efter att överföra ett visst belopp
                         double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
                         getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
@@ -318,6 +315,8 @@ public class Scene2Controller implements Initializable {
                         
                         c.getSelectedAccount(selectedToAccountNr).addTransaction(true, transferAmount, c.getSelectedAccount(selectedToAccountNr).getBalance());
                         String gg2 = Integer.toString(selectedFromAccountNr);
+                        ggg.setnumberOfWithdraw(1);
+                        
                     }
                     
                     
@@ -424,8 +423,7 @@ transferStatus.setText("Transfer successful!");
                     break;
             }
         }
-        s.setB(Boolean.FALSE);
-        s.setI(0);
+        s.setToNull();
         
     }
     
@@ -446,10 +444,10 @@ transferStatus.setText("Transfer successful!");
             Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
             s.setD(selectedAccount.getBalance());
             s.setD2(selectedAccount.getInterest()*100);
-            s.setdT(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
-            s.setB2(false);
-            if(s.getdT()<0){
-                s.setB2(true);
+            s.setD1(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
+            s.setB(false);
+            if(s.getD1()<0){
+                s.setB(true);
             }
             
             Stage stage;
@@ -480,6 +478,7 @@ transferStatus.setText("Transfer successful!");
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
         }
+        s.setToNull();
         
     }
     

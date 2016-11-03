@@ -146,9 +146,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
 
-        s.setB(Boolean.FALSE);
-        s.setL(null);
-        s.setN(null);
+        s.setToNull();
         setListView();
 
     }
@@ -188,8 +186,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
 
-            s.setB(Boolean.FALSE);
-            s.setL(null);
+            s.setToNull();
 
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
