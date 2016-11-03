@@ -111,9 +111,9 @@ public class FXMLDocumentController implements Initializable {
             }
 
         } catch (IndexOutOfBoundsException ex) {
-            statusLabel.setText("Invalid social security No!");
+            statusLabel.setText("Invalid social security number!");
         } catch (NumberFormatException ex) {
-            statusLabel.setText("Invalid! You need to type your social \nsecurity No.the right way, YYYYMMDDXXXX");
+            statusLabel.setText("Invalid! You need to type your social \nsecurity No. the right way, YYYYMMDDXXXX");
         }
 
     }

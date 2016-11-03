@@ -266,15 +266,13 @@ public class Scene2Controller implements Initializable {
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
             s.setB(false); // ifall användaren trycker på X istället för confirm eller cancel tar denna text hand om det
-            nameStatus.setText("No new name selected!");
+           
         });
         stage.showAndWait(); // popUp startar och nuvarande scen väntar
 
         if (s.getB()) { // om användaren klickade confirm i popUpen
             name.setText(s.getN());
-        } else { // om användaen klickade cancel i popupen
-            nameStatus.setText("No new name selected!");
-        }
+        } 
         s.setToNull();
     }
 
