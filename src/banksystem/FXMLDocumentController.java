@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -216,11 +217,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
+        mainStatus.setTextFill(Color.BLACK);
         statusLabel.setText("");
 
         BufferedWriter writer = null;
         try {
             String[] lista1 = b.getCustomers();
+            if(lista1.length==0){
+               mainStatus.setTextFill(Color.RED);
+               mainStatus.setText("The list with customers is empty, you can't do an export");
+               throw new IOException();
+            }
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
             mainStatus.setText("File exported.");
