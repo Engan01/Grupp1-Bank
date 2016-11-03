@@ -19,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -55,6 +56,7 @@ public class Scene2Controller implements Initializable {
     public void deposit(ActionEvent e) throws Exception {
         transferStatus.setText("");
         mainStatus.setText("");
+        mainStatus.setTextFill(Color.RED);
         
         try {
             Customer c = getThisObject();
@@ -78,6 +80,7 @@ public class Scene2Controller implements Initializable {
                 c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
                 String gg = Integer.toString(acountNR);
                 setTransactions();
+                mainStatus.setTextFill(Color.GREEN);
                 mainStatus.setText("Deposit succesfull!");
             } else {
                 mainStatus.setText("Error. Deposit failed.");
@@ -102,6 +105,7 @@ public class Scene2Controller implements Initializable {
     public void withdraw(ActionEvent e) throws Exception {
         transferStatus.setText("");
         mainStatus.setText("");
+        mainStatus.setTextFill(Color.RED);
 
         try {
             Customer c = getThisObject();
@@ -130,7 +134,7 @@ public class Scene2Controller implements Initializable {
                 if("SavingsAccount".equals(c.getSelectedAccount(acountNR).getClass().getSimpleName())){
                     rate.setText("2%");
                 }
-               
+               mainStatus.setTextFill(Color.GREEN);
                 mainStatus.setText("Withdraw succesfull!");
             } else {
                 mainStatus.setText("Withdraw not possible!");
@@ -160,8 +164,11 @@ public class Scene2Controller implements Initializable {
 
     @FXML
     public void transferButton() {
+        
         transferStatus.setText("");
         mainStatus.setText("");
+        transferStatus.setTextFill(Color.RED);
+        
         Customer c = getThisObject();
 
         int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
@@ -194,8 +201,12 @@ public class Scene2Controller implements Initializable {
                 String gg2 = Integer.toString(selectedFromAccountNr);
                 
                        setTransactions();
+                       transferStatus.setTextFill(Color.GREEN);
+                       transferStatus.setText("Transfer successful");
                        
-                        }}
+                        }else{
+                       transferStatus.setText("Transfer not possible!\nYou have reached your credit limit!");
+                   }}
             
             
             else if (transferAmount <= 0) {
@@ -224,7 +235,10 @@ public class Scene2Controller implements Initializable {
 
                 setTransactions();
                 //Visa användaren att det gick att överföra pengar
-                transferStatus.setText("The transfer has been done!");
+                
+                transferStatus.setTextFill(Color.GREEN);
+                transferStatus.setText("Transfer successful!");
+                
             }
         } catch (NumberFormatException e) {
             transferStatus.setText("Invalid amount!");
