@@ -12,7 +12,6 @@ public abstract class Account  {
     
     private int accountNumber;
     private double balance = 0;
-    private double totalBalance; // saldo + ränta då man stänger kontot
     private ArrayList <Transaction> transaction = new ArrayList<>();
     private String accountType;
    
@@ -23,7 +22,6 @@ public abstract class Account  {
     }
     
     public Account(double balance){
-        this.totalBalance = 0;
         this.balance = balance;
         setAccountNumber();
     }
@@ -70,6 +68,8 @@ public abstract class Account  {
     public void addTransaction(boolean b, double belopp, double saldo){
         transaction.add(new Transaction(b, belopp, saldo));
     }
+    
+   
     
     public abstract String getAccountName();
     
