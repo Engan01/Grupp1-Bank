@@ -8,14 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="416.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp3">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="416.0" style="-fx-background-color: #dce1e4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banksystem.FXMLpopUp3">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="203.0" text="New name:">
          <font>
             <Font name="Helvetica" size="12.0" />
          </font></Label>
       <TextField fx:id="textFieldPop3" style="-fx-background-radius: 0;" GridPane.columnIndex="1" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <Button layoutX="85.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancelPop3" stylesheets="@darkStyleSheet.css" text="Cancel" textFill="#bddad6" AnchorPane.rightAnchor="0.0">
                <font>
@@ -27,9 +27,9 @@
                </font></Button>
          </children>
       </AnchorPane>
-      <Label fx:id="error" prefHeight="43.0" prefWidth="145.0" textFill="#d01b1b" GridPane.rowIndex="1">
+      <Label fx:id="error" prefHeight="37.0" prefWidth="236.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
-            <Font size="10.0" />
+            <Font size="12.0" />
          </font>
       </Label>
    </children>
@@ -44,6 +44,7 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
