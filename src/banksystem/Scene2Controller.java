@@ -174,7 +174,7 @@ public class Scene2Controller implements Initializable {
 
             //Om inte finns tillräckligt pengar på kontot
             if (selectedFromAccountNr == selectedToAccountNr) {
-                transferStatus.setText("You can not transfer money \nto the same account!");
+                transferStatus.setText("You can not transfer money to the same account!");
             } //I fall av fel inmatning
             
             else if("CreditAccount".equals(c.getSelectedAccount(selectedFromAccountNr).getClass().getSimpleName())) {
@@ -199,11 +199,11 @@ public class Scene2Controller implements Initializable {
             
             
             else if (transferAmount <= 0) {
-                transferStatus.setText("The amount to be transfered can \nnot be negative or zero!");
+                transferStatus.setText("The amount to be transfered can not be negative or zero!");
             } //Om användaren väljer att skicka pengar till ett och samma konto
             else if (transferAmount > selectedAccountsBalance) {
 
-                transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
+                transferStatus.setText("There is not enough money in this account to perform this transfer!");
             }
             
             

@@ -34,6 +34,11 @@
             <RowConstraints maxHeight="185.0" minHeight="0.0" prefHeight="165.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <Line endX="100.0" startX="-360.0" stroke="#89be30" strokeWidth="3.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="-18.0" top="40.0" />
+               </GridPane.margin>
+            </Line>
             <GridPane prefHeight="186.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.valignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="197.0" />
@@ -191,12 +196,12 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="transferStatus" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="243.0" textFill="#e40000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <Label fx:id="transferStatus" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="391.0" textFill="#e40000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="Helvetica Bold" size="12.0" />
+                        <Font name="Helvetica" size="12.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="8.0" right="20.0" />
+                        <Insets bottom="8.0" left="-30.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
                </children>
@@ -256,7 +261,7 @@
                   <Insets right="10.0" top="-5.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="228.0" textFill="#e40000" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Label fx:id="mainStatus" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="228.0" textFill="#e40000" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
@@ -280,11 +285,6 @@
                   <Insets left="100.0" top="10.0" />
                </GridPane.margin>
             </Label>
-            <Line endX="100.0" startX="-330.0" stroke="#89be30" strokeWidth="3.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets top="40.0" />
-               </GridPane.margin>
-            </Line>
          </children>
       </GridPane>
       <GridPane prefHeight="47.0" prefWidth="700.0" style="-fx-background-color: #89be30;">
