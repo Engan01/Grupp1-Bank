@@ -256,7 +256,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" stylesheets="@brightStyleSheet.css" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#exportToFile" prefHeight="25.0" prefWidth="130.0" stylesheets="@brightStyleSheet.css" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="10.0" top="-5.0" />
                </GridPane.margin>

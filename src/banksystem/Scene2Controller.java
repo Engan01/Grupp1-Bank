@@ -1,5 +1,8 @@
 package banksystem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -157,10 +160,39 @@ public class Scene2Controller implements Initializable {
         }
     }
 
-    @FXML
+   @FXML
     public void exportToFile() {
+              
 
-    }
+//        BufferedWriter writer = null;
+//        try {
+            
+            Customer c = getThisObject();
+            long p = c.getPnr();
+            String ss = accountNr.getText();
+            int ii = Integer.parseInt(ss);
+       
+            System.out.println(b.getAccount(p, ii));
+            
+//            //String[] lista1 = b.getCustomers();
+//            String userHomeFolder = System.getProperty("user.home");
+//            File textFile = new File(userHomeFolder, "transactions.txt"); // lägger filen i hem mappen istället för i projektmappen
+//            mainStatus.setText("File exported.");
+//            writer = new BufferedWriter(new FileWriter(textFile));
+////            for (int i = 0; i < lista1.length; i++) {
+//            String ss = transactionObservable;
+//                writer.write(transactionObservable);
+//          //  }
+//
+//        } catch (IOException e) {
+//        } finally {
+//            try {
+//                if (writer != null) {
+//                    writer.close();
+//                }
+//            } catch (IOException e) {
+ //         }
+        }
 
     @FXML
     public void transferButton() {
