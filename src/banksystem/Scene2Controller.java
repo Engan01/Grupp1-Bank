@@ -173,15 +173,25 @@ public class Scene2Controller implements Initializable {
             String ss = accountNr.getText();
             int ii = Integer.parseInt(ss);
             ArrayList<Transaction> t = c.getSelectedAccount(ii).getTransaction();
+            Account aa = c.getSelectedAccount(ii);
            
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "transactions.txt"); // lägger filen i hem mappen istället för i projektmappen
            // mainStatus.setText("File exported.");
             writer = new BufferedWriter(new FileWriter(textFile));
-            for (Transaction t1 : t) {
-                writer.write(t.toString() + "\n");
-                System.out.println(t.toString());
+           
+            if(aa.getAccountName().equals("Credit Account")){
+                writer.write("Credit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
+            }else{
+                writer.write("Saving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
+            
+            
+            
+            for (Transaction t1 : t) {
+                writer.write(t1.toString() + "\n");
+                System.out.println(t1.toString());
+           }
 
         } catch (IOException e) {
         } finally {
