@@ -32,33 +32,27 @@ import javafx.stage.WindowEvent;
  * @author asanilssonenglund
  */
 public class FXMLDocumentController implements Initializable {
-
+    
     private BankLogic b;
     private Singelton s;
-
+    
     private ObservableList<String> oList;
-
+    
     @FXML
     private TextField ssnField;
-
+    
     @FXML
-    private Label statusLabel, viewProfileLabel;
-
+    private Label statusLabel, viewProfileLabel, mainStatus;
+    
     @FXML
     private ListView customersList;
-
+    
     @FXML
-    private Button addCustomerButton;
-
-    @FXML
-    private Button deleteCustomerButton;
-
+    private Button addCustomerButton, deleteCustomerButton;
+    
     @FXML
     private TextArea customerDetailList;
-
-    @FXML
-    private Label mainStatus;
-
+    
     @FXML
     public void viewProfile(ActionEvent event) throws IOException {
         try {
@@ -68,32 +62,33 @@ public class FXMLDocumentController implements Initializable {
             }
             customer = customer.replaceAll("[A-Za-z -]", "").trim();
             long l = Long.parseLong(customer);
-
+            
             s.setL(l);
-
+            
             Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
             Scene s1 = new Scene(root);
             Stage stg = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stg.setScene(s1);
             stg.show();
         } catch (NullPointerException ex) {
-            // när Ramona pushat sin version ska vi ändra denna setText till
-            // viewProfileLabel.setText("Select customer!");
-            statusLabel.setText("Select customer!");
+            
+            viewProfileLabel.setTextFill(Color.RED);
+            viewProfileLabel.setText("Select customer!");
+            
         }
     }
-
+    
     // search method
     @FXML
     public void search(ActionEvent event) throws IOException {
         statusLabel.setText("");
-
+        
         String str;
         Boolean ok;
         try {
             str = ssnField.getText();
             str = str.trim();
-            for (int i = 0; i < str.length(); i++) { // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton 
+            for (int i = 0; i < str.length(); i++) { // nu går det även att skriva yyyymmdd-xxxx samt om man råkar få in ett mellanslag efter eller före // Anton
                 char c = str.charAt(i);
                 if (c == '-') { // det går bara att skriva ett '-'
                     str = str.substring(0, 8) + str.substring(9, str.length());
@@ -101,33 +96,33 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
             ok = b.searchCustomer(Long.parseLong(str)); // skickar personnr till metod i BankLogic
-
+            
             if (ok) {
                 setSearchListView(Long.parseLong(str)); // anropar metoden setSearchListView
-
+                
             } else {
                 statusLabel.setText("This customer doesn't exist in the system!");
             }
-
+            
             if (str.length() != 12) { // större eller mindre än 12 // Anton
                 throw new IndexOutOfBoundsException();
             }
-
+            
         } catch (IndexOutOfBoundsException ex) {
             statusLabel.setText("Invalid social security number!");
         } catch (NumberFormatException ex) {
             statusLabel.setText("Invalid! You need to type your social \nsecurity No. the right way, YYYYMMDDXXXX");
         }
-
+        
     }
-
+    
     @FXML
-    private void addCustomer(ActionEvent event) throws IOException { // lägger till kunder
-
+    private void addCustomer() throws IOException { // lägger till kunder
+        
         statusLabel.setText("");
         Stage stage;
         Parent root;
-
+        
         stage = new Stage();
         stage.setTitle("Adding new customer");
         stage.setResizable(false);
@@ -140,21 +135,21 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-
+        
         if (s.getB()) {
             Boolean b1 = b.addCustomer(s.getN(), s.getL());
             if (!b1) {
                 statusLabel.setText("Invaild");
             }
         }
-
+        
         s.setToNull();
         setListView();
-
+        
     }
-
+    
     @FXML
-    private void deleteCustomer(ActionEvent event) throws IOException {
+    private void deleteCustomer() throws IOException {
         statusLabel.setText("");
         try {
             String s1 = (String) customersList.getSelectionModel().getSelectedItem();
@@ -163,10 +158,10 @@ public class FXMLDocumentController implements Initializable {
             }
             long pNr = Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim());
             s.setL(pNr);
-
+            
             Stage stage;
             Parent root;
-
+            
             stage = new Stage();
             stage.setTitle("Delete selected customer");
             stage.setResizable(false);
@@ -179,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
                 s.setB(false);
             });
             stage.showAndWait();
-
+            
             if (s.getB()) {
                 String[] ss = b.removeCustomer(pNr); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
                 customerDetailList.setText("");
@@ -187,45 +182,35 @@ public class FXMLDocumentController implements Initializable {
                     System.out.println(ss[i]);
                 }
             }
-
+            
             s.setToNull();
-
+            
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
         setListView();
     }
-
+    
     @FXML
-    private void clearSearch(ActionEvent event) throws NullPointerException {
+    private void clearSearch()  {
         statusLabel.setText("");
-
-        try {
-
-            if (ssnField.getText().isEmpty()) {
-                throw new NullPointerException();
-            }
-
+        if (!ssnField.getText().isEmpty())
             ssnField.clear();
-            setListView();
-
-        } catch (NullPointerException e) {
-            statusLabel.setText("Searched cleared!");
-        }
+        setListView();
     }
-
+    
     @FXML
-    private void exportToFile(ActionEvent event) throws IOException {
+    private void exportToFile() throws IOException {
         mainStatus.setTextFill(Color.BLACK);
         statusLabel.setText("");
-
+        
         BufferedWriter writer = null;
         try {
             String[] lista1 = b.getCustomers();
             if(lista1.length==0){
-               mainStatus.setTextFill(Color.RED);
-               mainStatus.setText("There is no customers to export!");
-               throw new NullPointerException();
+                mainStatus.setTextFill(Color.RED);
+                mainStatus.setText("There is no customers to export!");
+                throw new NullPointerException();
             }
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
@@ -249,23 +234,23 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
         s = Singelton.getInstance();
         oList = FXCollections.observableArrayList();
         customersList.setItems(oList);
-
+        
         setListView(); // fyller lista med kunder
-
+        
         // listener
         customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
                     String str = (String) customersList.getSelectionModel().getSelectedItem();
-
+                    
                     if (!str.isEmpty()) {
                         setCustomerDetails(str);
                         customersList.getSelectionModel().setSelectionMode(null);
@@ -275,13 +260,13 @@ public class FXMLDocumentController implements Initializable {
             }
         });
     }
-
-    private void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan 
-
+    
+    private void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan
+        
         oList.clear();
-
+        
         for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
-
+            
             if (ssn == c.getPnr()) {// om det inmatade personnummret finns i listan så körs resten av koden
                 String ss = Long.toString(c.getPnr());
                 ss = ss.substring(0, 8) + "-" + ss.substring(8, ss.length());
@@ -290,19 +275,19 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
-
+    
     private void setListView() {  // metod för att lägga samtliga kunders namn i listView
         oList.clear();
         ArrayList<Customer> tC = b.getCustomerList();
         for (Customer c : tC) {
             String ss = Long.toString(c.getPnr());
             ss = ss.substring(0, 8) + "-" + ss.substring(8, ss.length()); // lägger till ett "-" innan de sista fyra siffrorna!
-
+            
             String s1 = c.getName() + " " + ss;
             oList.add(s1);
         }
     }
-
+    
     private void setCustomerDetails(String str) {
         long pNr = Long.parseLong(str.replaceAll("[^0-9]", ""));
         String[] lista = b.getCustomer(pNr);
@@ -312,5 +297,5 @@ public class FXMLDocumentController implements Initializable {
             utskrift  += lista[i] + "\n";
         }
         customerDetailList.setText(utskrift);
-     }
+    }
 }
