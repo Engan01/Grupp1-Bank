@@ -284,7 +284,7 @@ public class Scene2Controller implements Initializable {
                     
                     if(ggg.getnumberOfWithdraw() >=1){
                         
-                        System.out.println("1");
+                        
                         rate.setText("2%");
                         //Uppdatering saldo på första konto efter att överföra ett visst belopp
                         double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount*1.02;
@@ -301,7 +301,7 @@ public class Scene2Controller implements Initializable {
                         String gg2 = Integer.toString(selectedFromAccountNr);
                         // ändra ränta
                     }else{
-                        System.out.println("2");
+                        
                         //Uppdatering saldo på första konto efter att överföra ett visst belopp
                         double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
                         getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount);
