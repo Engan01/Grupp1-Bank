@@ -280,9 +280,9 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Label fx:id="exportStatus" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+            <Label fx:id="exportStatus" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets left="100.0" top="10.0" />
+                  <Insets />
                </GridPane.margin>
             </Label>
          </children>

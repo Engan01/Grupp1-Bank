@@ -471,6 +471,7 @@ catch (NumberFormatException e) {
                         str = str.replaceAll("[A-Za-z -]", "");
                         accountNr.setText(str);
                         setTransactions();
+                        exportStatus.setText("");
                         // konvertera ac
 
                         int accountNr2 = Integer.parseInt(str); // konverterar String till int
