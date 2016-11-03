@@ -77,6 +77,7 @@ public class FXMLDocumentController implements Initializable {
             stg.setScene(s1);
             stg.show();
         } catch (NullPointerException ex) {
+            
             // när Ramona pushat sin version ska vi ändra denna setText till
             // viewProfileLabel.setText("Select customer!");
             statusLabel.setText("Select customer!");
@@ -197,21 +198,11 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void clearSearch(ActionEvent event) throws NullPointerException {
+    private void clearSearch()  {
         statusLabel.setText("");
-
-        try {
-
-            if (ssnField.getText().isEmpty()) {
-                throw new NullPointerException();
-            }
-
+            if (!ssnField.getText().isEmpty()) 
             ssnField.clear();
             setListView();
-
-        } catch (NullPointerException e) {
-            statusLabel.setText("Searched cleared!");
-        }
     }
 
     @FXML
