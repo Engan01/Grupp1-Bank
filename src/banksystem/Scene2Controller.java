@@ -19,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -194,8 +195,12 @@ public class Scene2Controller implements Initializable {
                 String gg2 = Integer.toString(selectedFromAccountNr);
                 
                        setTransactions();
-                       
-                        }}
+                       transferStatus.setTextFill(Color.BLACK);
+                       transferStatus.setText("Transfer successful");
+                       transferStatus.setTextFill(Color.RED);
+                        }else{
+                       transferStatus.setText("Transfer not possible!\nYou have reached your credit limit!");
+                   }}
             
             
             else if (transferAmount <= 0) {
@@ -204,6 +209,7 @@ public class Scene2Controller implements Initializable {
             else if (transferAmount > selectedAccountsBalance) {
 
                 transferStatus.setText("There is no enough money in this account \nto perform this transfer!");
+                
             }
             
             
@@ -224,7 +230,9 @@ public class Scene2Controller implements Initializable {
 
                 setTransactions();
                 //Visa användaren att det gick att överföra pengar
-                transferStatus.setText("The transfer has been done!");
+                transferStatus.setTextFill(Color.BLACK);
+                transferStatus.setText("Transfer successful!");
+                transferStatus.setTextFill(Color.RED);
             }
         } catch (NumberFormatException e) {
             transferStatus.setText("Invalid amount!");
