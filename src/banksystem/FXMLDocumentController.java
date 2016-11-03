@@ -153,6 +153,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
+        statusLabel.setText("");
         try {
             String s1 = (String) customersList.getSelectionModel().getSelectedItem();
             if (s1.isEmpty()) {
@@ -195,6 +196,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void clearSearch(ActionEvent event) throws NullPointerException {
+        statusLabel.setText("");
 
         try {
 
@@ -212,6 +214,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void exportToFile(ActionEvent event) throws IOException {
+        statusLabel.setText("");
 
         BufferedWriter writer = null;
         try {
