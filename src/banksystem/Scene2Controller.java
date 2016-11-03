@@ -424,10 +424,12 @@ catch (NumberFormatException e) {
             stage.showAndWait();
 
             if (s.getB()) {
+                if(!getThisObject().getSelectedAccount(selectedAccountNr).getTransaction().isEmpty())
+                    transactionObservable.clear();
                 getThisObject().closeAccount(selectedAccountNr);
                 accountObservableList.remove(s2);
             }
-            transactionObservable.clear();
+            
 
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
