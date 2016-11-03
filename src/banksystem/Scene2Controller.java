@@ -161,7 +161,7 @@ public class Scene2Controller implements Initializable {
     }
 
    @FXML
-    public void exportToFile() {
+    public void exportToFile() throws Exception {
             
        
         BufferedWriter writer = null;
@@ -174,11 +174,18 @@ public class Scene2Controller implements Initializable {
             int ii = Integer.parseInt(ss);
             ArrayList<Transaction> t = c.getSelectedAccount(ii).getTransaction();
             Account aa = c.getSelectedAccount(ii);
-           
+         
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "transactions.txt"); // lägger filen i hem mappen istället för i projektmappen
-            exportStatus.setText("Transaction file exported.");
             writer = new BufferedWriter(new FileWriter(textFile));
+            
+             if(t.isEmpty()){
+                
+                exportStatus.setText("No transactions to export.");
+                
+                throw new NullPointerException();
+             }
+            
            
             if(aa.getAccountName().equals("Credit Account")){
                 writer.write("Credit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
@@ -188,10 +195,13 @@ public class Scene2Controller implements Initializable {
             
             for (Transaction t1 : t) {
                 writer.write(t1.toString() + "\n");
+                exportStatus.setText("Transaction file exported.");
                
            }
 
-        } catch (IOException e) {
+        
+        
+        } catch (IOException | NullPointerException e) {
         } finally {
             try {
                 if (writer != null) {
@@ -200,6 +210,7 @@ public class Scene2Controller implements Initializable {
             } catch (IOException e) {
             }
         }
+        
         }
 
     @FXML
