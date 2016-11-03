@@ -40,7 +40,7 @@ public class Scene2Controller implements Initializable {
     private Singelton s;
 
     @FXML
-    private Label name, ssn, rate, transferStatus, nameStatus, mainStatus, accountNr, balance;
+    private Label name, ssn, rate, transferStatus, nameStatus, mainStatus, accountNr, balance, exportStatus;
 
     @FXML
     private Button editNameButton, addAccountButton, back;
@@ -177,7 +177,7 @@ public class Scene2Controller implements Initializable {
            
             String userHomeFolder = System.getProperty("user.home");
             File textFile = new File(userHomeFolder, "transactions.txt"); // lägger filen i hem mappen istället för i projektmappen
-           // mainStatus.setText("File exported.");
+            exportStatus.setText("Transaction file exported.");
             writer = new BufferedWriter(new FileWriter(textFile));
            
             if(aa.getAccountName().equals("Credit Account")){
@@ -186,11 +186,9 @@ public class Scene2Controller implements Initializable {
                 writer.write("Saving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
             
-            
-            
             for (Transaction t1 : t) {
                 writer.write(t1.toString() + "\n");
-                System.out.println(t1.toString());
+               
            }
 
         } catch (IOException e) {
