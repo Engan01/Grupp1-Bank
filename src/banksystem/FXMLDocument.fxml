@@ -24,6 +24,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <Label prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #1c2f36;" GridPane.rowIndex="2" />
             <GridPane prefHeight="508.0" prefWidth="694.0" GridPane.rowIndex="1">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="0.0" prefWidth="10.0" />
@@ -32,17 +33,17 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="10.0" prefWidth="372.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="248.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <ListView fx:id="customersList" prefHeight="382.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-                  <Label text="Customers list" textFill="WHITE" GridPane.columnIndex="1">
+                  <Label text="CUSTOMERS LIST" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="13.0" />
+                        <Font size="12.0" />
                      </font>
                      <GridPane.margin>
                         <Insets bottom="-8.0" />
@@ -71,7 +72,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <GridPane prefHeight="104.0" prefWidth="372.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <GridPane prefHeight="159.0" prefWidth="372.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="252.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="120.0" />
@@ -82,12 +83,17 @@
                       <RowConstraints maxHeight="38.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
+                        <Line endX="100.0" startX="-270.0" stroke="#1c2f36" strokeLineCap="BUTT" strokeWidth="20.0" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets top="-8.0" />
+                           </GridPane.margin>
+                        </Line>
                         <TextField fx:id="ssnField" prefHeight="23.0" prefWidth="215.0" promptText="Enter social security No." style="-fx-background-radius: 0;">
                            <font>
-                              <Font name="Helvetica Neue Light" size="12.0" />
+                              <Font name="Helvetica Light Oblique" size="12.0" />
                            </font>
                            <GridPane.margin>
-                              <Insets top="-10.0" />
+                              <Insets top="-30.0" />
                            </GridPane.margin>
                         </TextField>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="89.0" style=": 0;" stylesheets="@brightStyleSheet.css" text="Search" textFill="#566368" GridPane.columnIndex="1">
@@ -95,7 +101,7 @@
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                            <GridPane.margin>
-                              <Insets left="5.0" top="-10.0" />
+                              <Insets left="5.0" top="-30.0" />
                            </GridPane.margin>
                         </Button>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearSearch" prefHeight="25.0" prefWidth="89.0" stylesheets="@brightStyleSheet.css" text="Clear search" textFill="#baf47c" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -106,17 +112,17 @@
                               <Font name="Helvetica Neue Medium" size="12.0" />
                            </font>
                         </Button>
-                        <Label text="Customer details" GridPane.rowIndex="2">
+                        <Label text="   CUSTOMERS DETAILS" textFill="WHITE" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets top="-10.0" />
                            </GridPane.margin>
                            <font>
-                              <Font name="Helvetica Neue Bold" size="13.0" />
+                              <Font size="12.0" />
                            </font>
                         </Label>
                         <Label prefHeight="15.0" prefWidth="119.0" text="YYYYMMDD-xxxx" textAlignment="RIGHT" textFill="#8d8d8d">
                            <GridPane.margin>
-                              <Insets left="145.0" top="30.0" />
+                              <Insets left="145.0" top="10.0" />
                            </GridPane.margin>
                            <font>
                               <Font size="12.0" />
@@ -127,11 +133,19 @@
                               <Font name="Helvetica Neue" size="12.0" />
                            </font>
                         </Label>
-                        <Line endX="100.0" startX="-135.0" stroke="#1c2f36" strokeLineCap="BUTT" strokeWidth="1.5" GridPane.rowIndex="2">
+                        <Line endX="100.0" startX="-270.0" stroke="#1c2f36" strokeLineCap="BUTT" strokeWidth="20.0">
                            <GridPane.margin>
-                              <Insets left="110.0" top="-8.0" />
+                              <Insets top="-90.0" />
                            </GridPane.margin>
                         </Line>
+                        <Label text="   CUSTOMERS SEARCH" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets top="-90.0" />
+                           </GridPane.margin>
+                        </Label>
                      </children>
                   </GridPane>
                   <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="119.0" stylesheets="@brightStyleSheet.css" text="Add customer" textFill="#b2da83" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -147,11 +161,6 @@
                         <Insets left="130.0" />
                      </GridPane.margin>
                   </Button>
-                  <Line endX="100.0" startX="-50.0" stroke="WHITE" strokeWidth="1.5" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="96.0" top="10.0" />
-                     </GridPane.margin>
-                  </Line>
                </children>
             </GridPane>
             <Label prefHeight="102.0" prefWidth="700.0" style="-fx-background-color: #1c2f36;" textFill="WHITE">
@@ -170,7 +179,7 @@
                   <Font name="Helvetica Neue Medium" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="mainStatus" contentDisplay="CENTER" prefHeight="41.0" prefWidth="391.0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Label fx:id="mainStatus" contentDisplay="CENTER" prefHeight="41.0" prefWidth="391.0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="260.0" />
                </GridPane.margin>
@@ -186,6 +195,11 @@
             <Line endY="100.0" startY="-900.0" stroke="#1c2f36" strokeWidth="5.0">
                <GridPane.margin>
                   <Insets left="695.0" top="290.0" />
+               </GridPane.margin>
+            </Line>
+            <Line endY="100.0" startY="-100.0" stroke="#dce1e4" strokeWidth="3.0" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="275.0" />
                </GridPane.margin>
             </Line>
          </children>

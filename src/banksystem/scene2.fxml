@@ -55,9 +55,9 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -85,9 +85,6 @@
                      <GridPane.margin>
                         <Insets top="20.0" />
                      </GridPane.margin>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
                   </Label>
 
                               <Label fx:id="rate" prefHeight="17.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
@@ -132,8 +129,8 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="53.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="53.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="86.0" minHeight="15.0" prefHeight="26.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -162,7 +159,7 @@
                         <Insets left="60.0" top="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label minWidth="-Infinity" prefWidth="150.0" text="Customer details:" textFill="WHITE" GridPane.halignment="LEFT">
+                  <Label minWidth="-Infinity" prefWidth="150.0" text="CUSTOMER DETAILS" textFill="WHITE" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="10.0" top="20.0" />
                      </GridPane.margin>
@@ -193,7 +190,7 @@
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin></Label>
-                  <ChoiceBox fx:id="transferFrom" prefHeight="27.0" prefWidth="213.0" style="-fx-background-radius: 0;" GridPane.rowIndex="2">
+                  <ChoiceBox fx:id="transferFrom" prefHeight="27.0" prefWidth="188.0" style="-fx-background-radius: 0;" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="3.0" />
                      </GridPane.margin>
@@ -203,7 +200,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ChoiceBox fx:id="transferTo" prefHeight="27.0" prefWidth="172.0" style="-fx-background-radius: 0;" GridPane.rowIndex="4">
+                  <ChoiceBox fx:id="transferTo" prefHeight="27.0" prefWidth="164.0" style="-fx-background-radius: 0;" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin></ChoiceBox>
@@ -241,7 +238,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </ListView>
-            <Label text="Customer all accounts:" textFill="WHITE" GridPane.rowIndex="2">
+            <Label text="CUSTOMER ALL ACCOUNTS" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font size="13.0" />
                </font>
@@ -264,7 +261,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </ListView>
-            <Label text="Transactions:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label text="TRANSACTIONS" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="13.0" />
                </font>
@@ -272,7 +269,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#exportToFile" prefHeight="27.0" prefWidth="97.0" stylesheets="@darkStyleSheet.css" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#exportToFile" prefHeight="27.0" prefWidth="97.0" stylesheets="@greenStyleSheet.css" text="Export to file" textFill="#baf47c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="10.0" top="-5.0" />
                </GridPane.margin>
