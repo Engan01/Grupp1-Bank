@@ -1,10 +1,10 @@
 .button{
     -fx-text-fill:black;
-    -fx-background-color:#89be30;
+    -fx-background-color:#47797f;
     -fx-background-radius:0;
 }
 .button:hover{
-    -fx-background-color:#5d7f22;
+    -fx-background-color:#566368;
     
 }
 .button:active{
