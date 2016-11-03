@@ -26,7 +26,8 @@ public class BankSystem extends Application {
         
         stage.setTitle("RADER Banking System");
         
-        
+        stage.getFullScreenExitHint();
+        stage.setResizable(false);
     }
     
 

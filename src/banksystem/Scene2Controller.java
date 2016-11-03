@@ -200,7 +200,7 @@ public class Scene2Controller implements Initializable {
         transferStatus.setText("");
         mainStatus.setText("");
         transferStatus.setTextFill(Color.RED);
-        
+      try{  
         Customer c = getThisObject();
 
         int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
@@ -270,14 +270,18 @@ public class Scene2Controller implements Initializable {
                 
                 transferStatus.setTextFill(Color.GREEN);
                 transferStatus.setText("Transfer successful!");
-                
-            }
-        } catch (NumberFormatException e) {
+            }     
+    }
+catch (NumberFormatException e) {
             transferStatus.setText("Invalid amount!");
         }
-
+   
     }
-
+       catch(NullPointerException e){
+    
+           transferStatus.setText("You need to choose accounts!");
+}
+    }
     @FXML
     public void editName(ActionEvent e) throws IOException {
         transferStatus.setText("");
