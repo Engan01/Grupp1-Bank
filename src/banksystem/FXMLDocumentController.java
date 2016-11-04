@@ -168,7 +168,7 @@ public class FXMLDocumentController implements Initializable {
             if (s.getB()) { // om en kund tagits bort
                 customerDetailList.setText("");
                 setListView(); // listan uppdateras
-            }   
+            } 
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }

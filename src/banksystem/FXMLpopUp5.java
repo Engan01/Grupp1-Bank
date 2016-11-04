@@ -1,6 +1,7 @@
 package banksystem;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp5 implements Initializable {
 
     private Singelton s;
-  
+    private BankLogic b;  
 
     @FXML
     private Label balancePop5;
@@ -33,15 +34,19 @@ public class FXMLpopUp5 implements Initializable {
 
     @FXML
     private void confirmPop5(ActionEvent event) {
-       s.setB(Boolean.TRUE);
+        ArrayList<Customer> arr = b.getCustomerList();
+        for(Customer ss : arr){
+            if(ss.getPnr() == s.getL())
+                ss.closeAccount(s.getI());
+        }
+        
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
        
     }
 
     @FXML
-    private void cancelPop5(ActionEvent event) {
-        s.setB(Boolean.FALSE);
+    private void cancelPop5(ActionEvent event) {s.setB(Boolean.FALSE);
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -49,15 +54,23 @@ public class FXMLpopUp5 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         
-        s=Singelton.getInstance();
-        balancePop5.setText(s.getD()+" SEK");
-         interestRatePop5.setText(Math.round(s.getD2())+" %");
-          totalAmountPop5.setText(s.getD1()+" SEK");
+        s = Singelton.getInstance();
+        b = BankLogic.getInstance();
+        ArrayList<Customer> arr = b.getCustomerList();
+        Account selectedAccount = null;
+        for(Customer c : arr){
+            if(c.getPnr() == s.getL()){
+                selectedAccount = c.getSelectedAccount(s.getI());
+            }
+        }
+        
+        balancePop5.setText(selectedAccount.getBalance() + " SEK");
+        interestRatePop5.setText(String.format("%.1f", selectedAccount.getInterest() * 100) + " %");
+        totalAmountPop5.setText(selectedAccount.getTotalBalance() + " SEK");
           
-          if(s.getB()){
-              creditAccountLabel.setText("You have a debt of " + -1 * s.getD1() + " SEK");
-          }
+        if(selectedAccount.getTotalBalance() < 0)
+           creditAccountLabel.setText("You have a debt of " + -1 * selectedAccount.getTotalBalance() + " SEK");
+           
     }
 
 }

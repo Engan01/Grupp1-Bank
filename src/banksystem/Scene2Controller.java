@@ -384,27 +384,17 @@ public class Scene2Controller implements Initializable {
 
         try {
             String s1 = (String) accountList.getSelectionModel().getSelectedItem();
-            String s2 = s1;
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
 
-            String selectedAccountNumber = s1.replaceAll("[A-Za-z ]", "").trim();
-            int selectedAccountNr = Integer.parseInt(selectedAccountNumber);
-            Account selectedAccount = getThisObject().getSelectedAccount(selectedAccountNr);
-            s.setD(selectedAccount.getBalance());
-            s.setD2(selectedAccount.getInterest() * 100);
-            s.setD1(getThisObject().getSelectedAccount(selectedAccountNr).getTotalBalance());
-            s.setB(false);
-            if (s.getD1() < 0) {
-                s.setB(true);
-            }
-
+            s.setI(Integer.parseInt(s1.replaceAll("[A-Za-z ]", "").trim())); // kontonr
+            s.setL(getThisObject().getPnr());
+            
             Stage stage;
             Parent root;
 
             stage = new Stage();
-
             stage.setTitle("Delete customer account");
             stage.setResizable(false);
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp5.fxml"));
@@ -413,23 +403,17 @@ public class Scene2Controller implements Initializable {
             stage.initOwner(addAccountButton.getScene().getWindow());
             stage.setOnCloseRequest((WindowEvent we) -> {
                 stage.close();
-                s.setB(false);
             });
             stage.showAndWait();
+            
+            setListView();
+            setTransactions();
 
-            if (s.getB()) {
-                if (!getThisObject().getSelectedAccount(selectedAccountNr).getTransaction().isEmpty()) {
-                    transactionObservable.clear();
-                }
-                getThisObject().closeAccount(selectedAccountNr);
-                accountObservableList.remove(s2);
-            }
 
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
         }
         s.setToNull();
-
     }
 
     @FXML
@@ -518,8 +502,11 @@ public class Scene2Controller implements Initializable {
     }
 
     public void setTransactions() {
-
+        try{
+        transactionObservable.clear();    
         String str = accountNr.getText().trim();
+        if(str.isEmpty()) 
+            throw new NullPointerException();
 
         if (getThisObject().getSelectedAccount(Integer.parseInt(str)).getAccountName().equals("Saving Account")) {
             SavingsAccount sA = (SavingsAccount) getThisObject().getSelectedAccount(Integer.parseInt(str));
@@ -552,6 +539,7 @@ public class Scene2Controller implements Initializable {
         }
         d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance()); // hämtar balance och sätter till 2 decimaler
         balance.setText(d);
+        }catch(NullPointerException e){}
 
     }
 
