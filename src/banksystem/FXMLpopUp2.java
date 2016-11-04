@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp2 implements Initializable {
     
     @FXML
-    private Label row11, row12, row13, row14, row21, row22, row23, row24, row31, row32, row33, row34, row41, row42, row43, row44;
+    private Label row11, row12, row13, row14, row21, row22, row23, row24, row31, row32, row33, row34, row41, row44;
            
     
     Singelton s;
