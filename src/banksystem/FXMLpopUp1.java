@@ -19,7 +19,6 @@ import javafx.stage.Stage;
  */
 public class FXMLpopUp1 implements Initializable {
 
-    private Singelton s;
     private BankLogic b;
 
     @FXML
@@ -110,15 +109,12 @@ public class FXMLpopUp1 implements Initializable {
                 throw new NullPointerException();
             }
 
-            boolean a = b.searchCustomer(l);
-            if (a) {
-                error.setText("User already exists!");
+            Boolean b1 = b.addCustomer(n, l);
+            if(!b1){
+                error.setText("Customer already exists!");
                 throw new NullPointerException();
             }
             
-            s.setN(n);
-            s.setL(l);
-            s.setB(Boolean.TRUE);
             Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stg.close();
 
@@ -130,8 +126,6 @@ public class FXMLpopUp1 implements Initializable {
 
     @FXML
     private void cancelPop1(ActionEvent event) {
-        s.setB(Boolean.FALSE);
-
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -139,7 +133,6 @@ public class FXMLpopUp1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        s = Singelton.getInstance();
         b = BankLogic.getInstance();
 
     }

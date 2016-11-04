@@ -135,15 +135,6 @@ public class FXMLDocumentController implements Initializable {
             s.setB(false);
         });
         stage.showAndWait();
-        
-        if (s.getB()) {
-            Boolean b1 = b.addCustomer(s.getN(), s.getL());
-            if (!b1) {
-                statusLabel.setText("Invaild");
-            }
-        }
-        
-        s.setToNull();
         setListView();
         
     }
