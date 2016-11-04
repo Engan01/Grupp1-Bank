@@ -315,7 +315,6 @@ public class Scene2Controller implements Initializable {
 
                 setTransactions();
 //Visa användaren att det gick att överföra pengar
-
                 transferStatus.setTextFill(Color.GREEN);
                 transferStatus.setText("Transfer successful!");
             }
@@ -332,8 +331,7 @@ public class Scene2Controller implements Initializable {
         transferStatus.setText("");
         mainStatus.setText("");
         nameStatus.setText("");
-        long l = getThisObject().getPnr();
-        s.setL(l);
+        s.setL(getThisObject().getPnr());
 
         Stage stage;
         Parent root;
@@ -347,14 +345,10 @@ public class Scene2Controller implements Initializable {
         stage.initOwner(editNameButton.getScene().getWindow());
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
-            s.setB(false); // ifall användaren trycker på X istället för confirm eller cancel tar denna text hand om det
-
         });
         stage.showAndWait(); // popUp startar och nuvarande scen väntar
-
-        if (s.getB()) { // om användaren klickade confirm i popUpen
-            name.setText(s.getN());
-        }
+        
+        name.setText(getThisObject().getName());
         s.setToNull();
     }
 
@@ -362,6 +356,7 @@ public class Scene2Controller implements Initializable {
     public void addAccountEvent(ActionEvent e) throws IOException {
         transferStatus.setText("");
         mainStatus.setText("");
+        s.setL(getThisObject().getPnr());
 
         Stage stage;
         Parent root;
@@ -375,29 +370,12 @@ public class Scene2Controller implements Initializable {
         stage.initOwner(addAccountButton.getScene().getWindow());
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
-            s.setB(false);
         });
         stage.showAndWait();
-
-        if (s.getB()) { // om man vill skapa ett konto
-            long l = getThisObject().getPnr(); // hämtar personNr på kunden vi befinner oss fördjupad i
-            int i = s.getI();
-            switch (i) {
-                case (1):
-                    int g = b.addSavingsAccount(l); // skapar ett savingsaccount samt initierar g till kontoNr
-                    String s4 = Integer.toString(g) + " Savings Account";
-                    accountObservableList.add(s4); // lägger till i observableList
-                    break;
-                case (-1):
-                    g = b.addCreditAccount(l); // skapar ett credit account samt initierar g till kontoNr
-                    s4 = Integer.toString(g) + " Credit Account";
-                    accountObservableList.add(s4); // lägger till i observableList
-                    break;
-            }
-        }
+        setListView();
         s.setToNull();
-
     }
+    
 
     @FXML
     public void deleteAccountEvent(ActionEvent e) throws IOException {
