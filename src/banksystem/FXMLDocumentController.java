@@ -117,9 +117,9 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void addCustomer() throws IOException { // lägger till kunder
+    private void addCustomer() throws IOException { // läger till kunder i popUp1
         
-        statusLabel.setText("");
+        statusLabel.setText(""); 
         Stage stage;
         Parent root;
         
@@ -147,8 +147,7 @@ public class FXMLDocumentController implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-            long pNr = Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim());
-            s.setL(pNr);
+            s.setL(Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim()));
             
             Stage stage;
             Parent root;
@@ -166,20 +165,14 @@ public class FXMLDocumentController implements Initializable {
             });
             stage.showAndWait();
             
-            if (s.getB()) {
-                String[] ss = b.removeCustomer(pNr); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
+            if (s.getB()) { // om en kund tagits bort
                 customerDetailList.setText("");
-                for(int i = 0; i < ss.length; i++){
-                    System.out.println(ss[i]);
-                }
-            }
-            
-            s.setToNull();
-            
+                setListView(); // listan uppdateras
+            }   
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
-        setListView();
+        s.setToNull();
     }
     
     @FXML
