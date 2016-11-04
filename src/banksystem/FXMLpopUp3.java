@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class FXMLpopUp3 implements Initializable {
     
-    private Singelton s;
     private BankLogic b;
     
     @FXML
@@ -58,20 +57,15 @@ public class FXMLpopUp3 implements Initializable {
                     throw new NullPointerException();
                 }
 
-                long l = s.getL();
-                boolean b1 = b.changeCustomerName(newName, l); // metod i bankLogic för att byta namn
-                s.setN(newName);
-                s.setB(b1);
+                boolean b1 = b.changeCustomerName(newName, b.getpNr()); // metod i bankLogic för att byta namn
 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
         }catch(NullPointerException e){}
-
     }
 
     @FXML
     private void cancelPop3(ActionEvent event) {
-        s.setB(false);
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -79,7 +73,6 @@ public class FXMLpopUp3 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        s = Singelton.getInstance();
         b = BankLogic.getInstance();
     }
 

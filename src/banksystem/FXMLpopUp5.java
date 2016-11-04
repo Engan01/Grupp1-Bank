@@ -16,8 +16,7 @@ import javafx.stage.Stage;
  * @author Anton
  */
 public class FXMLpopUp5 implements Initializable {
-
-    private Singelton s;
+    
     private BankLogic b;  
 
     @FXML
@@ -36,8 +35,8 @@ public class FXMLpopUp5 implements Initializable {
     private void confirmPop5(ActionEvent event) {
         ArrayList<Customer> arr = b.getCustomerList();
         for(Customer ss : arr){
-            if(ss.getPnr() == s.getL())
-                ss.closeAccount(s.getI());
+            if(ss.getPnr() == b.getpNr())
+                ss.closeAccount(b.getAccountNr());
         }
         
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -46,7 +45,7 @@ public class FXMLpopUp5 implements Initializable {
     }
 
     @FXML
-    private void cancelPop5(ActionEvent event) {s.setB(Boolean.FALSE);
+    private void cancelPop5(ActionEvent event) {
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -54,13 +53,12 @@ public class FXMLpopUp5 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        s = Singelton.getInstance();
         b = BankLogic.getInstance();
         ArrayList<Customer> arr = b.getCustomerList();
         Account selectedAccount = null;
         for(Customer c : arr){
-            if(c.getPnr() == s.getL()){
-                selectedAccount = c.getSelectedAccount(s.getI());
+            if(c.getPnr() == b.getpNr()){
+                selectedAccount = c.getSelectedAccount(b.getAccountNr());
             }
         }
         

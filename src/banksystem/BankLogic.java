@@ -8,6 +8,9 @@ public class BankLogic {
 
     private ArrayList<Customer> customersList = new ArrayList<>();
     private static BankLogic instance;
+    private long pNr;
+    private int accountNr;
+    private boolean trueFalse;
 
     private BankLogic() {
     }
@@ -18,6 +21,32 @@ public class BankLogic {
         }
         return instance;
     }
+
+    public long getpNr() {
+        return pNr;
+    }
+
+    public void setpNr(long pNr) {
+        this.pNr = pNr;
+    }
+
+    public int getAccountNr() {
+        return accountNr;
+    }
+
+    public void setAccountNr(int accountNr) {
+        this.accountNr = accountNr;
+    }
+
+    public boolean isTrueFalse() {
+        return trueFalse;
+    }
+
+    public void setTrueFalse(boolean trueFalse) {
+        this.trueFalse = trueFalse;
+    }
+    
+    
 
     public String[] getCustomers() { // metod för att returnera samtliga namn på alla kunder i en lista
         String[] customers = new String[customersList.size()];

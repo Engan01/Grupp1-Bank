@@ -34,7 +34,6 @@ import javafx.stage.WindowEvent;
 public class FXMLDocumentController implements Initializable {
     
     private BankLogic b;
-    private Singelton s;
     
     private ObservableList<String> oList;
     
@@ -60,10 +59,7 @@ public class FXMLDocumentController implements Initializable {
             if (customer.isEmpty()) {
                 throw new NullPointerException();
             }
-            customer = customer.replaceAll("[A-Za-z -]", "").trim();
-            long l = Long.parseLong(customer);
-            
-            s.setL(l);
+            b.setpNr(Long.parseLong(customer.replaceAll("[A-Za-z -]", "").trim()));
             
             Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
             Scene s1 = new Scene(root);
@@ -132,7 +128,6 @@ public class FXMLDocumentController implements Initializable {
         stage.initOwner(addCustomerButton.getScene().getWindow());
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
-            s.setB(false);
         });
         stage.showAndWait();
         setListView();
@@ -147,7 +142,7 @@ public class FXMLDocumentController implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-            s.setL(Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim()));
+            b.setpNr(Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim()));
             
             Stage stage;
             Parent root;
@@ -161,18 +156,14 @@ public class FXMLDocumentController implements Initializable {
             stage.initOwner(deleteCustomerButton.getScene().getWindow());
             stage.setOnCloseRequest((WindowEvent we) -> {
                 stage.close();
-                s.setB(false);
             });
             stage.showAndWait();
             
-            if (s.getB()) { // om en kund tagits bort
-                customerDetailList.setText("");
-                setListView(); // listan uppdateras
-            } 
+            setListView(); // listan uppdateras
+            
         } catch (NullPointerException ex) {
             statusLabel.setText("Select customer!");
         }
-        s.setToNull();
     }
     
     @FXML
@@ -222,7 +213,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
-        s = Singelton.getInstance();
+        
         oList = FXCollections.observableArrayList();
         customersList.setItems(oList);
         

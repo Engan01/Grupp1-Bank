@@ -37,7 +37,6 @@ public class Scene2Controller implements Initializable {
     private ObservableList<String> accountObservableList;
     private ObservableList<String> transactionObservable;
     private BankLogic b;
-    private Singelton s;
 
     @FXML
     private Label name, ssn, rate, transferStatus, nameStatus, mainStatus, accountNr, balance, exportStatus;
@@ -331,7 +330,7 @@ public class Scene2Controller implements Initializable {
         transferStatus.setText("");
         mainStatus.setText("");
         nameStatus.setText("");
-        s.setL(getThisObject().getPnr());
+        b.setpNr(getThisObject().getPnr());
 
         Stage stage;
         Parent root;
@@ -349,14 +348,13 @@ public class Scene2Controller implements Initializable {
         stage.showAndWait(); // popUp startar och nuvarande scen väntar
         
         name.setText(getThisObject().getName());
-        s.setToNull();
     }
 
     @FXML
     public void addAccountEvent(ActionEvent e) throws IOException {
         transferStatus.setText("");
         mainStatus.setText("");
-        s.setL(getThisObject().getPnr());
+        b.setpNr(getThisObject().getPnr());
 
         Stage stage;
         Parent root;
@@ -373,7 +371,6 @@ public class Scene2Controller implements Initializable {
         });
         stage.showAndWait();
         setListView();
-        s.setToNull();
     }
     
 
@@ -388,8 +385,8 @@ public class Scene2Controller implements Initializable {
                 throw new NullPointerException();
             }
 
-            s.setI(Integer.parseInt(s1.replaceAll("[A-Za-z ]", "").trim())); // kontonr
-            s.setL(getThisObject().getPnr());
+            b.setAccountNr(Integer.parseInt(s1.replaceAll("[A-Za-z ]", "").trim())); // kontonr
+            b.setpNr(getThisObject().getPnr());
             
             Stage stage;
             Parent root;
@@ -413,7 +410,6 @@ public class Scene2Controller implements Initializable {
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
         }
-        s.setToNull();
     }
 
     @FXML
@@ -430,7 +426,6 @@ public class Scene2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         b = BankLogic.getInstance();
-        s = Singelton.getInstance();
 
         transactionObservable = FXCollections.observableArrayList();
         transactionList.setItems(transactionObservable);
@@ -462,14 +457,12 @@ public class Scene2Controller implements Initializable {
             }
         });
 
-        long l = s.getL();
-        String sl = Long.toString(l);
+        String sl = Long.toString(b.getpNr());
         sl = sl.substring(0, 8) + "-" + sl.substring(8, sl.length());
-        s.setL(null);
         String namn = null;
         ArrayList<Customer> a = b.getCustomerList();
         for (Customer c : a) {
-            if (c.getPnr() == l) {
+            if (c.getPnr() == b.getpNr()) {
                 namn = c.getName();
                 break;
             }
