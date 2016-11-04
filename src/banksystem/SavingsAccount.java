@@ -6,7 +6,7 @@ package banksystem;
  */
 public class SavingsAccount extends Account {
 
-    private int numberOfWithdraw = 0;
+    private int numberOfWithdraw;
     private static double interest = 0.01;
 //    private double amount;
 
@@ -16,6 +16,7 @@ public class SavingsAccount extends Account {
 
     public SavingsAccount(double balance) {
         super(balance);
+        numberOfWithdraw = 0;
     }
 
     @Override
@@ -48,8 +49,8 @@ public class SavingsAccount extends Account {
         return numberOfWithdraw;
     }
     
-    public void setnumberOfWithdraw(int numberOfWithdraw){
-        this.numberOfWithdraw=numberOfWithdraw;
+    public void setnumberOfWithdraw(){
+        numberOfWithdraw++;
     }
 
     @Override
