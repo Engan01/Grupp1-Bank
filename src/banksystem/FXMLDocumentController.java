@@ -130,8 +130,7 @@ public class FXMLDocumentController implements Initializable {
             stage.close();
         });
         stage.showAndWait();
-        setListView();
-        
+        setListView();    
     }
     
     @FXML
@@ -158,7 +157,6 @@ public class FXMLDocumentController implements Initializable {
                 stage.close();
             });
             stage.showAndWait();
-            
             setListView(); // listan uppdateras
             
         } catch (NullPointerException ex) {
