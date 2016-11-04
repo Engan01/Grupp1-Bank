@@ -16,13 +16,12 @@ import javafx.stage.Stage;
 
 public class FXMLpopUp4 implements Initializable {
     
-    private Singelton s;
     private BankLogic b;
 
 
     @FXML
     private void saving(ActionEvent event) {
-        int g = b.addSavingsAccount(s.getL());
+        int g = b.addSavingsAccount(b.getpNr());
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -30,7 +29,7 @@ public class FXMLpopUp4 implements Initializable {
     
         @FXML
     private void credit(ActionEvent event) {
-        int g = b.addCreditAccount(s.getL()); // skapar ett credit account samt initierar g till kontoNr
+        int g = b.addCreditAccount(b.getpNr()); // skapar ett credit account samt initierar g till kontoNr
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
@@ -46,7 +45,6 @@ public class FXMLpopUp4 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
-        s = Singelton.getInstance();
      
     }
 
