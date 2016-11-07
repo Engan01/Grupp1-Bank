@@ -117,6 +117,8 @@ public class Scene2Controller implements Initializable {
             int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Öa-ö ]", "").trim()); // konverterar String acount# till int
 
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
+            if(amount2 < 1)
+                throw new NumberFormatException();
 
             if (b.withdraw(c.getPnr(), acountNR, amount2) == true) { // om det går bra
 
