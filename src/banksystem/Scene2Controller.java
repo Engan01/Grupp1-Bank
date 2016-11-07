@@ -187,7 +187,10 @@ public class Scene2Controller implements Initializable {
             }
 
             for (Transaction t1 : t) {
-                writer.write(t1.toString() + "\n");
+                writer.newLine();
+                writer.write(t1.toString());
+                writer.newLine();
+                writer.newLine();
                 exportStatus.setTextFill(Color.GREEN);
                 exportStatus.setText("Transactionslist successfully exported to file");
 
