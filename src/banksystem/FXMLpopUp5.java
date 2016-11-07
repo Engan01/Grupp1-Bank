@@ -62,12 +62,12 @@ public class FXMLpopUp5 implements Initializable {
             }
         }
         
-        balancePop5.setText(selectedAccount.getBalance() + " SEK");
+        balancePop5.setText(String.format("%.2f", selectedAccount.getBalance()) + " SEK");
         interestRatePop5.setText(String.format("%.1f", selectedAccount.getInterest() * 100) + " %");
-        totalAmountPop5.setText(selectedAccount.getTotalBalance() + " SEK");
+        totalAmountPop5.setText(String.format("%.2f", selectedAccount.getTotalBalance()) + " SEK");
           
         if(selectedAccount.getTotalBalance() < 0)
-           creditAccountLabel.setText("You have a debt of " + -1 * selectedAccount.getTotalBalance() + " SEK");
+           creditAccountLabel.setText(String.format("You have a debt of %.2f SEK", -1 * selectedAccount.getTotalBalance()));
            
     }
 
