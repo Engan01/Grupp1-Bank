@@ -24,7 +24,7 @@ public class Customer {
     
     public void setName(String name){
         
-        String newName = name.replaceAll("[^A-Za-z ]","").trim();
+        String newName = name.replaceAll("[^A-Öa-ö ]","").trim();
         this.name=newName;
     }
 

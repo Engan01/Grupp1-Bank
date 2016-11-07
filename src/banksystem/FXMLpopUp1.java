@@ -55,6 +55,7 @@ public class FXMLpopUp1 implements Initializable {
             }
 
             String s1 = n.replaceAll("[A-Za-z -]", "");
+            s1 = s1.replaceAll("[ÅåÄäÖö]", "");
             if (!s1.isEmpty()) {
                 error.setText("Name can only contain letters!");
                 throw new NullPointerException();
