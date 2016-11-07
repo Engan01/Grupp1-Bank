@@ -67,7 +67,7 @@ public class Scene2Controller implements Initializable {
                 throw new NullPointerException();
             }
 
-            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Za-z ]", "").trim()); // konverterar String acount# till int
+            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Öa-ö ]", "").trim()); // konverterar String acount# till int
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
             if (amount2 < 1) {
                 throw new NumberFormatException();
@@ -114,7 +114,7 @@ public class Scene2Controller implements Initializable {
                 throw new NullPointerException();
             }
             
-            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Za-z ]", "").trim()); // konverterar String acount# till int
+            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Öa-ö ]", "").trim()); // konverterar String acount# till int
 
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
 
@@ -375,7 +375,7 @@ public class Scene2Controller implements Initializable {
                 throw new NullPointerException();
             }
 
-            b.setAccountNr(Integer.parseInt(s1.replaceAll("[A-Za-z ]", "").trim())); // kontonr
+            b.setAccountNr(Integer.parseInt(s1.replaceAll("[A-Öa-ö ]", "").trim())); // kontonr
             b.setpNr(getThisObject().getPnr());
             
             Stage stage;
@@ -434,7 +434,7 @@ public class Scene2Controller implements Initializable {
                     String str = (String) accountList.getSelectionModel().getSelectedItem();
 
                     if (!str.isEmpty()) {
-                        str = str.replaceAll("[A-Za-z -]", "");
+                        str = str.replaceAll("[A-Öa-ö -]", "");
                         accountNr.setText(str);
                         setTransactions();
                         exportStatus.setText("");

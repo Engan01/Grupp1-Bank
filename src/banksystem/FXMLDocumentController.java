@@ -59,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
             if (customer.isEmpty()) {
                 throw new NullPointerException();
             }
-            b.setpNr(Long.parseLong(customer.replaceAll("[A-Za-z -]", "").trim()));
+            b.setpNr(Long.parseLong(customer.replaceAll("[A-Öa-ö -]", "").trim()));
             
             Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
             Scene s1 = new Scene(root);
@@ -141,7 +141,7 @@ public class FXMLDocumentController implements Initializable {
             if (s1.isEmpty()) {
                 throw new NullPointerException();
             }
-            b.setpNr(Long.parseLong(s1.replaceAll("[A-Za-z-]", "").trim()));
+            b.setpNr(Long.parseLong(s1.replaceAll("[A-Öa-ö -]", "").trim()));
             
             Stage stage;
             Parent root;
