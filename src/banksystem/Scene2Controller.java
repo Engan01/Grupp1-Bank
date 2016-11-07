@@ -218,9 +218,8 @@ public class Scene2Controller implements Initializable {
         try {
             Customer c = getThisObject();
             int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
-            if (accountNr.getText().equals("")) {
                 accountNr.setText(Integer.toString(selectedFromAccountNr));
-            }
+            
 
             int selectedToAccountNr = Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", ""));
 
