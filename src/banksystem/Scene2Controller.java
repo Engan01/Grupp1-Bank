@@ -181,9 +181,9 @@ public class Scene2Controller implements Initializable {
             }
 
             if (aa.getAccountName().equals("Credit Account")) {
-                writer.write("Credit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
+                writer.write("Customer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nCredit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
             } else {
-                writer.write("Saving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
+                writer.write("Customer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
 
             for (Transaction t1 : t) {
