@@ -53,7 +53,7 @@ public class FXMLDocumentController implements Initializable {
     private TextArea customerDetailList;
     
     @FXML
-    public void viewProfile(ActionEvent event) throws IOException {
+    private void viewProfile(ActionEvent event) throws IOException {
         try {
             String customer = (String) customersList.getSelectionModel().getSelectedItem();
             if (customer.isEmpty()) {
@@ -76,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
     
     // search method
     @FXML
-    public void search(ActionEvent event) throws IOException {
+    private void search(ActionEvent event) throws IOException {
         statusLabel.setText("");
         
         String str;
