@@ -54,7 +54,7 @@ public class Scene2Controller implements Initializable {
     private TextField amount, amountTransfer;
 
     @FXML
-    public void deposit(ActionEvent e) throws Exception {
+    private void deposit(ActionEvent e) throws Exception {
         transferStatus.setText("");
         mainStatus.setText("");
         mainStatus.setTextFill(Color.RED);
@@ -100,7 +100,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void withdraw(ActionEvent e) throws Exception {
+    private void withdraw(ActionEvent e) throws Exception {
         transferStatus.setText("");
         mainStatus.setText("");
         mainStatus.setTextFill(Color.RED);
@@ -151,7 +151,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void exportToFile() throws Exception {
+    private void exportToFile() throws Exception {
         exportStatus.setTextFill(Color.BLACK);
 
         BufferedWriter writer = null;
@@ -210,7 +210,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void transferButton() {
+    private void transferButton() {
 
         transferStatus.setText("");
         mainStatus.setText("");
@@ -316,7 +316,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void editName(ActionEvent e) throws IOException {
+    private void editName(ActionEvent e) throws IOException {
         transferStatus.setText("");
         mainStatus.setText("");
         nameStatus.setText("");
@@ -341,7 +341,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void addAccountEvent(ActionEvent e) throws IOException {
+    private void addAccountEvent(ActionEvent e) throws IOException {
         transferStatus.setText("");
         mainStatus.setText("");
         b.setpNr(getThisObject().getPnr());
@@ -365,7 +365,7 @@ public class Scene2Controller implements Initializable {
     
 
     @FXML
-    public void deleteAccountEvent(ActionEvent e) throws IOException {
+    private void deleteAccountEvent(ActionEvent e) throws IOException {
         transferStatus.setText("");
         mainStatus.setText("");
 
@@ -403,7 +403,7 @@ public class Scene2Controller implements Initializable {
     }
 
     @FXML
-    public void back() throws IOException {
+    private void back() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
@@ -462,7 +462,7 @@ public class Scene2Controller implements Initializable {
         setListView();
     }
 
-    public void setListView() {  // metod för att lägga samtliga kunders konto i listView
+    private void setListView() {  // metod för att lägga samtliga kunders konto i listView
         accountObservableList.clear();
         String g = ssn.getText();
 
@@ -484,7 +484,7 @@ public class Scene2Controller implements Initializable {
 
     }
 
-    public void setTransactions() {
+    private void setTransactions() {
         try{
         transactionObservable.clear();    
         String str = accountNr.getText().trim();
@@ -526,7 +526,7 @@ public class Scene2Controller implements Initializable {
 
     }
 
-    public Customer getThisObject() { // metod för att returnera kunden vi befinner oss fördjupad i!
+    private Customer getThisObject() { // metod för att returnera kunden vi befinner oss fördjupad i!
         long l = Long.parseLong(ssn.getText().replaceAll("-", "").trim());
         ArrayList<Customer> cL = b.getCustomerList();
         Customer rC = null;
