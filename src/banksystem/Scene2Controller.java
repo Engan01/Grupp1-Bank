@@ -65,22 +65,16 @@ public class Scene2Controller implements Initializable {
 
             if (selectedAccount.isEmpty()) {
                 throw new NullPointerException();
-
             }
-            selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
 
-            int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Za-z ]", "").trim()); // konverterar String acount# till int
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
             if (amount2 < 1) {
                 throw new NumberFormatException();
             }
 
-            String saveSSN = ssn.getText(); // hämtar personNr
-            saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
-            long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
-
             //drar pengar från spcifikt konto
-            if (b.deposit(l, acountNR, amount2) == true) { // om det går bra
+            if (b.deposit(c.getPnr(), acountNR, amount2) == true) { // om det går bra
                 c.getSelectedAccount(acountNR).addTransaction(true, amount2, c.getSelectedAccount(acountNR).getBalance());
                 String gg = Integer.toString(acountNR);
                 setTransactions();
@@ -119,17 +113,12 @@ public class Scene2Controller implements Initializable {
             if (selectedAccount.isEmpty()) {
                 throw new NullPointerException();
             }
-
-            selectedAccount = selectedAccount.replaceAll("[A-Za-z ]", "").trim(); // tar bort namn. Kontonummer finns kvar
-            int acountNR = Integer.parseInt(selectedAccount); // konverterar String acount# till int
+            
+            int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Za-z ]", "").trim()); // konverterar String acount# till int
 
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
 
-            String saveSSN = ssn.getText(); // hämtar personNr
-            saveSSN = saveSSN.replaceAll("-", ""); // tar bort "-" från PersonNr
-            long l = Long.parseLong(saveSSN); // konverterar string PersonNr till long
-
-            if (b.withdraw(l, acountNR, amount2) == true) { // om det går bra
+            if (b.withdraw(c.getPnr(), acountNR, amount2) == true) { // om det går bra
 
                 c.getSelectedAccount(acountNR).addTransaction(false, amount2, c.getSelectedAccount(acountNR).getBalance());
                 String gg = Integer.toString(acountNR);
@@ -537,9 +526,7 @@ public class Scene2Controller implements Initializable {
     }
 
     public Customer getThisObject() { // metod för att returnera kunden vi befinner oss fördjupad i!
-        String sn = ssn.getText();
-        sn = sn.replaceAll("-", "").trim();
-        long l = Long.parseLong(sn);
+        long l = Long.parseLong(ssn.getText().replaceAll("-", "").trim());
         ArrayList<Customer> cL = b.getCustomerList();
         Customer rC = null;
         for (Customer c : cL) {
@@ -547,8 +534,6 @@ public class Scene2Controller implements Initializable {
                 rC = c;
             }
         }
-
         return rC;
     }
-
 }
