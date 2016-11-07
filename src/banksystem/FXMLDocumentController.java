@@ -192,6 +192,7 @@ public class FXMLDocumentController implements Initializable {
             for (int i = 0; i < lista1.length; i++) {
                 writer.write(lista1[i] + "\n");
             }
+             mainStatus.setTextFill(Color.GREEN);
             mainStatus.setText("CustomerList successfully exported to file");
             
         }catch(NullPointerException e){
