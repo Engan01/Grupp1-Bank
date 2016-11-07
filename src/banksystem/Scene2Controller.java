@@ -193,10 +193,10 @@ public class Scene2Controller implements Initializable {
                 writer.write(t1.toString());
                 writer.newLine();
                 writer.newLine();
+            }
                 exportStatus.setTextFill(Color.GREEN);
                 exportStatus.setText("Transactionslist successfully exported to file");
-
-            }
+           
 
         } catch (NullPointerException e) {
         } catch (IOException e) {
