@@ -32,9 +32,8 @@ public class FXMLpopUp2 implements Initializable {
 
     }
     @FXML
-    private void cancelPop2(ActionEvent event) {
-        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stg.close();
+    private void cancelPop2(ActionEvent event) { // avbryter borttagning av kund, återgår till föregeånde fönster
+        Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
 
     }
 
@@ -44,17 +43,17 @@ public class FXMLpopUp2 implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        b = BankLogic.getInstance();
+        b = BankLogic.getInstance(); 
         
-        Customer c = null;
-            ArrayList<Customer> lista = b.getCustomerList();
-            for(Customer c1 : lista){
-                if(b.getpNr() == c1.getPnr())
-                    c = c1;
+        Customer c = null; // skapar ett Customer object 
+            ArrayList<Customer> lista = b.getCustomerList(); // överför alla Customers till en ny lista 
+            for(Customer c1 : lista){ // loopar igenom listan
+                if(b.getpNr() == c1.getPnr()) // matchar personummer
+                    c = c1; 
             }
-            ArrayList<Account> arr = c.getAccountList();
+            ArrayList<Account> arr = c.getAccountList(); // hämtar accountList från object c och lägger in i en ny ArrayList arr
             
-            int savingsAccounts = 0;
+            int savingsAccounts = 0; // tilldelar startvärden till 0
             double savingsBalance = 0;
             double savingTotal = 0;
             
@@ -68,29 +67,34 @@ public class FXMLpopUp2 implements Initializable {
             
   
             for(Account a : arr){
-                if(a.getAccountName().equals("Saving Account")){
-                    savingsAccounts++;
-                    savingsBalance += a.getBalance();
-                    savingTotal += a.getTotalBalance();
-                }else{
+                if(a.getAccountName().equals("Saving Account")){ // om det är ett SavingsAccount
+                    savingsAccounts++; // tilldelar värde för hur många SavingsAccount som exsisterar 
+                    savingsBalance += a.getBalance(); // tilldelar balansvärde
+                    savingTotal += a.getTotalBalance(); // tilldelar nytt totalBelopp
+                }else{  // om det är ett CreditAccount
                     
-                    double d = a.getBalance();
+                    double d = a.getBalance(); // hämta balance på creditAccount
                     
-                    if(d < 0){
-                       minusBalance += a.getBalance();
+                    if(d < 0){                              // kontrollerar om balancen är negativ
+                       minusBalance += a.getBalance();  // tilldealar ny balans
                        double bb = a.getBalance();
-                       bb = bb * 0.07;
+                       bb = bb * 0.07;          // beräknar balans till hänsyn med ränta
                        minusTotal += a.getTotalBalance();
                        creditAccountsMinus++;
                     }
-                    else{
-                        plusBalance += a.getBalance();
+                    else{                               // om balansen är positiv
+                        plusBalance += a.getBalance();  // tilldela nya värden
                         plusTotal += a.getTotalBalance();
                         creditAccountsPlus++;
                     }
                 }
             }
-            row11.setText(Integer.toString(savingsAccounts));
+            /* Skriver ut information i tabellen. 
+            Formaterar även värden så att de endast består av 2st decimaler.
+            Detta gör vi med koden "%.2f"*/
+            
+            
+            row11.setText(Integer.toString(savingsAccounts)); 
             row12.setText(String.format("%.2f", savingsBalance));
             row13.setText("1%");
             row14.setText(String.format("%.2f", savingTotal));
@@ -103,7 +107,7 @@ public class FXMLpopUp2 implements Initializable {
             row33.setText("-7%");
             row34.setText(String.format("%.2f", minusTotal));
             
-            row41.setText(Integer.toString(savingsAccounts + creditAccountsPlus + creditAccountsMinus));
+            row41.setText(Integer.toString(savingsAccounts + creditAccountsPlus + creditAccountsMinus)); // Räknar ut totalt belopp på alla konton
         
             row44.setText(String.format("%.2f", savingTotal + plusTotal + minusTotal));      
     }    
