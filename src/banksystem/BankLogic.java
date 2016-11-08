@@ -114,16 +114,16 @@ public class BankLogic {
         return customersList;
     }
 
-    public String[] removeCustomer(long pNr){
+    public String[] removeCustomer(long pNr){ // metod för att ta bort en kund
         Customer c = null;
-        for(Customer cc : customersList){
+        for(Customer cc : customersList){ // löper igenom kundlistan för att matcha personnr
             if(pNr == cc.getPnr())
                 c = cc;
         }
         int antal = c.getAccountList().size() + 2;
-        String[] lista = new String[antal];
+        String[] lista = new String[antal]; // skapar en lista lika stor som antal accounts + 2
         
-        lista[0] = c.getName() + " " + c.getPnr();
+        lista[0] = c.getName() + " " + c.getPnr(); // lägger namn och personnr överst i listan
         double tot = 0;
         for(int i = 0, j = 1; i < c.getNumberOfAccounts(); i++, j++){
             double dd = c.getAccountList().get(i).getInterest();
@@ -135,31 +135,31 @@ public class BankLogic {
             else
                 l = 0.5;
             
-            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName() 
+            lista[j] = c.getAccountList().get(i).getAccountNumber() + " " + c.getAccountList().get(i).getAccountName() // på plats 2 i listan lägger vi in kontoNr och namn på kontot, saldo, ränta och till sist saldo+ränta 
                     + " Balance: " + c.getAccountList().get(i).getBalance() + " Interest: " + l 
                     + " Total: " + c.getAccountList().get(i).getTotalBalance();
             
-            tot += c.getAccountList().get(i).getTotalBalance();
+            tot += c.getAccountList().get(i).getTotalBalance(); // totalt saldo
         }
         
         if(tot < 0){
-            lista[lista.length-1] = String.format("The customer has to pay: " + "%.2f", tot);
+            lista[lista.length-1] = String.format("The customer has to pay: " + "%.2f", tot); // om det är minus saldo när alla konton lagts ihop
         }else{
-            lista[lista.length-1] = String.format("Pay the customer: " + "%.2f", tot);
+            lista[lista.length-1] = String.format("Pay the customer: " + "%.2f", tot); // positivt salto
         }
         
         customersList.remove(c); // tar bort kunden
-        return lista;
+        return lista; // returnerar listan
 
     }
 
-    public String getAccount(long pNr, int accountId){
-        Customer c = null;
+    public String getAccount(long pNr, int accountId){ // metod som returnerar en String med information om kund och valt konto
+        Customer c = null; 
         Account a = null;
-        for(Customer cc : customersList){
+        for(Customer cc : customersList){ // löper igenom kundlista och matchar rätt kund till valt personnr
             if(cc.getPnr() == pNr){
                 c = cc;
-                for(Account aa : c.getAccountList()){
+                for(Account aa : c.getAccountList()){ // när vi har hittat rätt kund löper jag igenom den rätta kundens kontoloista för att hitta det valda kontot
                     if(aa.getAccountNumber() == accountId){
                         a = aa;
                     }
@@ -167,59 +167,59 @@ public class BankLogic {
             }
         }
         String intrest;
-        if(a.getAccountName().equals("Saving Account")){
+        if(a.getAccountName().equals("Saving Account")){ // om det är ett savingsAccount 1% ränta
             intrest = "1%";
-        }else{
-            if(a.getBalance() < 0)
+        }else{ // credit account
+            if(a.getBalance() < 0) // saldo under 0 = skuldränta 7%
                 intrest = "-7%";
-            else
+            else // saldo 0 och uppåt = 0,5% ränta
                 intrest = "0,5%";
         }
         
         
         String s = "Customer: " + c.getName() + " Ssn: " + c.getPnr() + " " + a.getAccountName()  
-                + " Number: " + a.getAccountNumber() + " Balance: " + a.getBalance() + " Interest: " + intrest;
+                + " Number: " + a.getAccountNumber() + " Balance: " + a.getBalance() + " Interest: " + intrest; // lägger all information i en string 
         
-        return s;     
+        return s;   // returnerar string s   
     }
     
-    public boolean changeCustomerName(String name, long pNR) {
+    public boolean changeCustomerName(String name, long pNR) { // metod för att ändra namn på vald kund
 
         for (int i = 0; i < customersList.size(); i++) {
             if (pNR == customersList.get(i).getPnr()) {
-                customersList.get(i).setName(name);
-                return true;
+                customersList.get(i).setName(name); // löper igenom litan med kunder tills vi har rätt kund och kallar då på metoden setName
+                return true; // om vi lyckats returneras true
             }
 
         }
-        return false;
+        return false; // om vi misslyckats returneras false
     }
 
-    public int addSavingsAccount(long pNR) {
+    public int addSavingsAccount(long pNR) { // metod för att lägga till ett savingsAccount
             for(Customer c : customersList){ // loppar igenom customerList
             if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addSavingAccount(0.0);
+                int kontoNr = c.addSavingAccount(0.0); // skapar ett nytt konto på vald kund och får tillbaka en int med kontoNr
            return kontoNr; // returnenrar kontonummret
 
     }
             }
-            return -1;
+            return -1; // om det misslyckats returneras -1
     }
 
-    public int addCreditAccount(long pNR) {
+    public int addCreditAccount(long pNR) { // metod för att lägga till ett CreditAccount
             for(Customer c : customersList){ // loppar igenom customerList
             if(pNR == c.getPnr()){  // och hittar matchande pNR
-                int kontoNr = c.addCheckingAccount(0.0);
+                int kontoNr = c.addCheckingAccount(0.0); // skapar ett nytt konto på vald kund och får tillbaka en int med kontoNr
            return kontoNr; // returnenrar kontonummret
             }
 
         }
-        return -1;
+        return -1; // om det misslyckats returneras -1
     }
 
 
 
- public boolean withdraw(long pNR, int accountID, double amount) {
+ public boolean withdraw(long pNR, int accountID, double amount) { // metod för att ta ut pengar
 
     
      
