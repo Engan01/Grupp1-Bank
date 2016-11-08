@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class FXMLpopUp1 implements Initializable {
 
-    private BankLogic b;
+    private BankLogic b; // bankLogic
 
     @FXML
     private TextField labelNamePop1, labelSsnPop1;
@@ -36,13 +36,13 @@ public class FXMLpopUp1 implements Initializable {
             n2 = n2.trim();
 
             if (n.isEmpty()) {
-                error.setText("Please type a name!");
+                error.setText("Please type a name!"); // om man ej fylt i namn
                 throw new NullPointerException();
             }
 
             int i1 = 0;
             int i2 = 0;
-            for (int i = 0; i < n.length(); i++) {
+            for (int i = 0; i < n.length(); i++) { // for loop för att räkna mellanslag och '-'
                 if (n.charAt(i) == ' ') {
                     i1++;
                 } else if (n.charAt(i) == '-') {
@@ -55,7 +55,7 @@ public class FXMLpopUp1 implements Initializable {
             }
 
             String s1 = n.replaceAll("[A-Za-z -]", "");
-            s1 = s1.replaceAll("[ÅåÄäÖö]", "");
+            s1 = s1.replaceAll("[ÅåÄäÖö]", ""); // ÅÄÖåäö är också tillåtet
             if (!s1.isEmpty()) {
                 error.setText("Name can only contain letters!");
                 throw new NullPointerException();
@@ -86,38 +86,38 @@ public class FXMLpopUp1 implements Initializable {
             i3 = n2.length();
             long l = Long.parseLong(n2);
 
-            LocalDate d = LocalDate.now();
-            LocalDate dd = d.minusYears(18);
-            String tooYoung = dd.toString();
-            dd = d.minusYears(120);
+            LocalDate d = LocalDate.now(); // hämtar dagens datum
+            LocalDate dd = d.minusYears(18); // dagens datum minus 18 år
+            String tooYoung = dd.toString(); 
+            dd = d.minusYears(120); // dagensdatum minus 120 år 
             String tooOld = dd.toString();
 
             int tY = Integer.parseInt(tooYoung.replaceAll("-", "").trim());
             int tO = Integer.parseInt(tooOld.replaceAll("-", "").trim());
-            String n3 = n2.substring(0, 8);
-            n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length());
+            String n3 = n2.substring(0, 8); // sparar pesonner som datum utan de sista 4 siffrorna
+            n3 = n3.substring(0, 4) + "-" + n3.substring(4, 6) + "-" + n3.substring(6, n3.length()); // lägger in '-' mellan år-månad-datum
 
-            LocalDate date = LocalDate.parse(n3);
+            LocalDate date = LocalDate.parse(n3); // gör om till localDate - om det ej är ett giltigt datum kastas ett exception
 
             n3 = n3.replaceAll("-", "");
             int customer = Integer.parseInt(n3);
 
-            if (customer > tY) {
+            if (customer > tY) { // kollar om personnr är för ungt
                 error.setText("The customer can't be younger \nthan 18 years old!");
                 throw new NullPointerException();
-            } else if (customer < tO) {
+            } else if (customer < tO) { // kollar om personnr är för gammalt
                 error.setText("The customer can't be older \nthan 120 years old!");
                 throw new NullPointerException();
             }
 
-            Boolean b1 = b.addCustomer(n, l);
-            if(!b1){
+            Boolean b1 = b.addCustomer(n, l); // lägger till kund
+            if(!b1){ // om det inte gick finns kunden redan
                 error.setText("Customer already exists!");
                 throw new NullPointerException();
             }
             
             Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stg.close();
+            stg.close(); // stänger stage
 
         } catch (NullPointerException ex) {
         } catch (NumberFormatException | DateTimeParseException ex) {
@@ -126,7 +126,7 @@ public class FXMLpopUp1 implements Initializable {
     }
 
     @FXML
-    private void cancelPop1(ActionEvent event) {
+    private void cancelPop1(ActionEvent event) { // knapp cancel stänger stage
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
