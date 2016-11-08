@@ -6,13 +6,13 @@ import java.util.ArrayList;
  *
  * @author asanilssonenglund
  */
-public abstract class Account  {
+public abstract class Account  {        // abstrakt klass
     
-    private static int accountNumberAll = 1001;
+    private static int accountNumberAll = 1001; // startnummer för alla konton
     
     private int accountNumber;
-    private double balance = 0;
-    private ArrayList <Transaction> transaction = new ArrayList<>();
+    private double balance = 0; // tilldelar 0 som startbelopp för på alla konton som skapas
+    private ArrayList <Transaction> transaction = new ArrayList<>(); // skapar en lista där som innehåller objekt av klassen Transaction
     private String accountType;
    
     
@@ -21,56 +21,56 @@ public abstract class Account  {
         // default
     }
     
-    public Account(double balance){
+    public Account(double balance){ // konstuktor för Account
         this.balance = balance;
         setAccountNumber();
     }
     
     
-    public int getAccountNumber(){
+    public int getAccountNumber(){ // hämtar kontonummer
         return accountNumber;
     }
     
-    public void setAccountNumber() {
+    public void setAccountNumber() { // tilldelar nytt kontonummer
         this.accountNumber = accountNumberAll;
-        accountNumberAll++;
+        accountNumberAll++; // ökar variabeln med 1 så att varje kontonummer blir unikt
     }
 
 
-    public double getBalance() {
+    public double getBalance() { // hämtar balans på konto
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(double balance) { // tilldelar balans till respektive konto
         this.balance = balance;
     }
 
 
-    public ArrayList <Transaction> getTransaction() {
+    public ArrayList <Transaction> getTransaction() { // hämtar Lista på alla transactioner
         return transaction;
     }
 
 
-    public void setTransaction(ArrayList <Transaction> transaction) {
+    public void setTransaction(ArrayList <Transaction> transaction) { // tilldelar Lista till Transactions
         this.transaction = transaction;
     }
 
 
-    public String getAccountType() {
+    public String getAccountType() { // hämtar kontotyp
         return accountType;
     }
 
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(String accountType) { // tilldelar kontotyp
         this.accountType = accountType;
     }
     
     public void addTransaction(boolean b, double belopp, double saldo){
-        transaction.add(new Transaction(b, belopp, saldo));
+        transaction.add(new Transaction(b, belopp, saldo)); // lägger till en ny transaction i listan transactions
     }
     
    
-    
+    /* Abstrakta klasser som Credit Account & Savings Account ärver*/
     public abstract String getAccountName();
     
     public abstract double getInterest();
