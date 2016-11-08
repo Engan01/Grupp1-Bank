@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class BankLogic {
 
-    private ArrayList<Customer> customersList = new ArrayList<>();
+    private ArrayList<Customer> customersList = new ArrayList<>(); // Lista med samtliga kunder
     private static BankLogic instance;
-    private long pNr;
-    private int accountNr;
+    private long pNr; // variabel som vi vid olika tillfällern tilfälligt sparar personNr i
+    private int accountNr; // variabel som vi vid olika tillfällern tilfälligt sparar accountNr i 
 
     private BankLogic() {
     }
 
-    public static BankLogic getInstance() {
+    public static BankLogic getInstance() { 
         if (instance == null) {
             instance = new BankLogic();
         }
@@ -73,41 +73,41 @@ public class BankLogic {
         return false; // om kunden inte finns returneras false
     }
 
-    public String[] getCustomer(long pNr) {
+    public String[] getCustomer(long pNr) { // metod som returnerar en lista med information om vald kund och dennes konton
         String[] lista;
         ArrayList<Account> a;
         Customer c1 = null;
 
-        for (Customer c : customersList) {
+        for (Customer c : customersList) { // löper igenom kund listan och hittar rätt kund
             if (pNr == c.getPnr()) {
                 c1 = c;
-                break;
+                break; // när kunden hittas stoppas for-loopen och man hoppar vidare
             }
         }
 
-        a = c1.getAccountList();
+        a = c1.getAccountList(); // hämtar vald kunds kontolista
         int counter = 0;
         int counter1 = 0;
-        for (Account aa : a) {//loopar igenom accountList
+        for (Account aa : a) {//loopar igenom accountList och räknar savings och credit account
             if (aa instanceof SavingsAccount) {// kollar om det finns en savings account 
                 counter++;
             } else if (aa instanceof CreditAccount) {// kollar om det finns en credit account
                 counter1++;
             }
         }
-        lista = new String[a.size() + 4];
-        lista[0] = c1.getName() + " " + c1.getPnr();
-        lista[1] = "Number of savings account(s): " + counter;
-        lista[2] = "Number of credit account(s): " + counter1;
-        lista[3] = ""; // tom rad
+        lista = new String[a.size() + 4]; // initierar string lista med kontolistans storlek + 4 platser 
+        lista[0] = c1.getName() + " " + c1.getPnr(); // lägger namn och personnr överst
+        lista[1] = "Number of savings account(s): " + counter; // lägger in antal SavingsAccount
+        lista[2] = "Number of credit account(s): " + counter1; // Lägger in antal credit accounts
+        lista[3] = ""; // tom rad // en tom rad för snyggare utskrift
         
-        int i = 4;
-        for (Account l : a) {
+        int i = 4; // börjar från plats 4 i listan för att ej skriva över någor
+        for (Account l : a) { // löper igenom accoutList för att skriva ut nr, namn, saldo
             lista[i] = l.getAccountNumber() + " " + l.getAccountName() + "\tBalance: " + String.format("%.2f", l.getBalance());
             i++;
         }
 
-        return lista;
+        return lista; // returnerar listan
     }
 
     public ArrayList getCustomerList() { // metod som returnerar customersList
