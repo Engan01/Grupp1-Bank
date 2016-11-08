@@ -33,7 +33,7 @@ import javafx.stage.WindowEvent;
  */
 public class FXMLDocumentController implements Initializable {
     
-    private BankLogic b;
+    private BankLogic b; // Singelton class
     
     private ObservableList<String> oList;
     
@@ -53,10 +53,10 @@ public class FXMLDocumentController implements Initializable {
     private TextArea customerDetailList;
     
     @FXML
-    private void viewProfile(ActionEvent event) throws IOException {
+    private void viewProfile(ActionEvent event) throws IOException { // knapp för att gå till scen 2
         try {
             String customer = (String) customersList.getSelectionModel().getSelectedItem();
-            if (customer.isEmpty()) {
+            if (customer.isEmpty()) { // om man ej valt en kund Exception
                 throw new NullPointerException();
             }
             b.setpNr(Long.parseLong(customer.replaceAll("[A-Öa-ö -]", "").trim()));
@@ -69,14 +69,14 @@ public class FXMLDocumentController implements Initializable {
         } catch (NullPointerException ex) {
             
             viewProfileLabel.setTextFill(Color.RED);
-            viewProfileLabel.setText("Select customer!");
+            viewProfileLabel.setText("Select customer!"); // mna måset välja en kund
             
         }
     }
     
     // search method
     @FXML
-    private void search(ActionEvent event) throws IOException {
+    private void search(ActionEvent event) throws IOException { // metod för att söka efter en kund men hjälp av personnr
         statusLabel.setText("");
         
         String str;
@@ -129,19 +129,19 @@ public class FXMLDocumentController implements Initializable {
         stage.setOnCloseRequest((WindowEvent we) -> {
             stage.close();
         });
-        stage.showAndWait();
-        setListView();    
+        stage.showAndWait(); // öppnar popUp
+        setListView();     // uppdaterar kundlistan
     }
     
     @FXML
-    private void deleteCustomer() throws IOException {
+    private void deleteCustomer() throws IOException { // knapp för att ta bort vald kund
         statusLabel.setText("");
         try {
-            String s1 = (String) customersList.getSelectionModel().getSelectedItem();
-            if (s1.isEmpty()) {
+            String s1 = (String) customersList.getSelectionModel().getSelectedItem(); // hämtar markerad kund
+            if (s1.isEmpty()) { // om man ej valt exception
                 throw new NullPointerException();
             }
-            b.setpNr(Long.parseLong(s1.replaceAll("[A-Öa-ö -]", "").trim()));
+            b.setpNr(Long.parseLong(s1.replaceAll("[A-Öa-ö -]", "").trim())); // sparar personnr på vald kund till banklogic
             
             Stage stage;
             Parent root;
@@ -152,20 +152,20 @@ public class FXMLDocumentController implements Initializable {
             root = FXMLLoader.load(getClass().getResource("FXMLpopUp2.fxml"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(deleteCustomerButton.getScene().getWindow());
+            stage.initOwner(deleteCustomerButton.getScene().getWindow()); // bytar scen
             stage.setOnCloseRequest((WindowEvent we) -> {
-                stage.close();
+                stage.close(); // om någon trycker på x och inte på de knappar vi lagt till stängs scenen via detta
             });
             stage.showAndWait();
             setListView(); // listan uppdateras
             
-        } catch (NullPointerException ex) {
+        } catch (NullPointerException ex) { // om man ej markerat en kund
             statusLabel.setText("Select customer!");
         }
     }
     
     @FXML
-    private void clearSearch()  {
+    private void clearSearch()  { // metod för att återställa kundlista
         statusLabel.setText("");
         if (!ssnField.getText().isEmpty())
             ssnField.clear();
@@ -173,7 +173,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void exportToFile() throws IOException {
+    private void exportToFile() throws IOException { // metod för att exportera samtliga kunder till en txt fil på användarens hem mapp
         mainStatus.setTextFill(Color.BLACK);
         statusLabel.setText("");
         
@@ -182,27 +182,27 @@ public class FXMLDocumentController implements Initializable {
             String[] lista1 = b.getCustomers();
             if(lista1.length==0){
                 mainStatus.setTextFill(Color.RED);
-                mainStatus.setText("There is no customers to export!");
+                mainStatus.setText("There is no customers to export!"); // om listan är tom
                 throw new NullPointerException();
             }
-            String userHomeFolder = System.getProperty("user.home");
-            File textFile = new File(userHomeFolder, "customerpage.txt"); // lägger filen i hem mappen istället för i projektmappen
+            String userHomeFolder = System.getProperty("user.home"); // användarens hem mapp
+            File textFile = new File(userHomeFolder, "customerpage.txt"); // namn på filen
             
             writer = new BufferedWriter(new FileWriter(textFile));
             for (int i = 0; i < lista1.length; i++) {
                 writer.write(lista1[i] + "\n");
             }
              mainStatus.setTextFill(Color.GREEN);
-            mainStatus.setText("CustomerList successfully exported to file");
+            mainStatus.setText("CustomerList successfully exported to file"); // allt gick bra
             
         }catch(NullPointerException e){
         } catch (IOException e) {
             mainStatus.setTextFill(Color.RED);
-            mainStatus.setText("Transfer file is not accessible!");
+            mainStatus.setText("Transfer file is not accessible!"); // filen är låst eller skadad
         } finally {
             try {
                 if (writer != null) {
-                    writer.close();
+                    writer.close(); // stänger strömmen 
                 }
             } catch (IOException e) {
             }
@@ -218,26 +218,26 @@ public class FXMLDocumentController implements Initializable {
         
         setListView(); // fyller lista med kunder
         
-        // listener
+        // listener. kod som upptäcker förändring i listViewn tillexempel om man trycker på något
         customersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
                     String str = (String) customersList.getSelectionModel().getSelectedItem();
                     
-                    if (!str.isEmpty()) {
-                        setCustomerDetails(str);
+                    if (!str.isEmpty()) { // om man tryckt på något 
+                        setCustomerDetails(str); // om 
                         customersList.getSelectionModel().setSelectionMode(null);
                     }
                 } catch (NullPointerException e) {
-                } // behöver inte hantera detta exceptionet
+                } // behöver inte hantera detta exceptionet 
             }
         });
     }
     
     private void setSearchListView(long ssn) { //metod för att matcha det personnumret användaren matar in med personnummren som finns i listan
         
-        oList.clear();
+        oList.clear(); // tar bort alla i listan
         
         for (Customer c : (ArrayList<Customer>) b.getCustomerList()) {// loopar igenom lista med kunder
             
@@ -245,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
                 String ss = Long.toString(c.getPnr());
                 ss = ss.substring(0, 8) + "-" + ss.substring(8, ss.length());
                 String s1 = c.getName() + " " + ss;
-                oList.add(s1);
+                oList.add(s1); // sätter in rätt 
             }
         }
     }
@@ -262,7 +262,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    private void setCustomerDetails(String str) {
+    private void setCustomerDetails(String str) { // metod för att fylla customerDetailList med information om vald kund
         long pNr = Long.parseLong(str.replaceAll("[^0-9]", ""));
         String[] lista = b.getCustomer(pNr);
         
