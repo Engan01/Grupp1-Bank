@@ -2,8 +2,6 @@ package banksystem;
 
 import java.time.LocalDateTime;
 
-
-
 /**
  *
  * @author asanilssonenglund
@@ -15,30 +13,30 @@ public class Transaction {
     private final double belopp;
     private final double saldo;
     
-    public Transaction(boolean b, double belopp, double saldo){
-        this.date = LocalDateTime.now();
-        this.b = b;
+    public Transaction(boolean b, double belopp, double saldo){ // konstruktor
+        this.date = LocalDateTime.now(); // sätter date till nu
+        this.b = b; 
         this.belopp = belopp;
         this.saldo = saldo;
     }
     
     
     @Override
-    public String toString(){
+    public String toString(){ // metod för att skriva ut denna transaktion
         String s = "";
-        String datum = date.toString();
-        String tid = datum.substring(11, 19);
-        datum = datum.substring(0, 10);
+        String datum = date.toString(); // datumet för denna transaction
+        String tid = datum.substring(11, 19); // tar ut tiden med substring
+        datum = datum.substring(0, 10); // tar ut datumet med substring
         
         String saldoFormat = String.format("%.2f", saldo); // sätter till 2 decimaler
         
-        if(b){
+        if(b){ // om det är en insättning
             s = datum + " " + tid + " In: " + belopp + " Balance: " + saldoFormat;
-        }else{
+        }else{ // om det är ett uttag
             s = datum + " " + tid + " Out: -" + belopp + " Balance: " + saldoFormat;
         }
     
-        return s;
+        return s; // returnerar Stringen s
     }
     
 }

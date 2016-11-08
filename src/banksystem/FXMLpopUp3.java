@@ -34,11 +34,12 @@ public class FXMLpopUp3 implements Initializable {
         newName = newName.trim();
                 if (newName.isEmpty()) {
                     error.setText("No new name selected!");
-                    throw new NullPointerException();
+                    
+                    throw new NullPointerException();// Den här exception får man när man inte skriver något namn
                 }
                 
-                int i1 = 0;
-                int i2 = 0;
+                int i1 = 0;// en variabel för att räkna ut hur många mellanslag på namnet
+                int i2 = 0;// en variabel för att räkna ut hur många bindestreck på namnet
                 for (int i = 0; i < newName.length(); i++) {
                     if (newName.charAt(i) == ' ') {
                         i1++;
@@ -50,7 +51,7 @@ public class FXMLpopUp3 implements Initializable {
                     error.setText("Invalid name!");
                     throw new NullPointerException();
                 }
-
+                //Den här är för att se om namnet har något annat än bokstäver och bindestreck
                 String s1 = newName.replaceAll("[A-Za-z -]", "");
                 s1 = s1.replaceAll("[ÅÄÖåäö]", "");
                 if (!s1.isEmpty()) {
@@ -66,7 +67,7 @@ public class FXMLpopUp3 implements Initializable {
     }
 
     @FXML
-    private void cancelPop3(ActionEvent event) {
+    private void cancelPop3(ActionEvent event) { 
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
