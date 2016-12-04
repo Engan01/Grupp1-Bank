@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
  */
 
 public class BankSystem extends Application {
+    
+    private DBT dbt = DBT.getInstance();
     
 
     
@@ -28,6 +31,10 @@ public class BankSystem extends Application {
         
         stage.getFullScreenExitHint();
         stage.setResizable(false);
+        stage.setOnCloseRequest((WindowEvent we) -> {
+        dbt.closeConn();    // när jag stänger programmet kallar jag på metoden för att stänga alla connections till databasen
+        stage.close();
+        });
     }
     
 
