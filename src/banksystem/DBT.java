@@ -15,7 +15,7 @@ public class DBT {
     private Statement myStatement;
     private ResultSet result;
 
-    private String url = "jdbc:mysql://127.0.0.1:3306/RADER?user=Student&password=1234";
+    private String url = "jdbc:mysql://127.0.0.1:3306/RADER_test?user=Student&password=1234";
 
     private DBT() {
 
