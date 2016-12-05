@@ -15,12 +15,15 @@ import javafx.stage.WindowEvent;
 
 public class BankSystem extends Application {
     
-    private DBT dbt = DBT.getInstance();
+    private DBT dbt;
     
 
     
     @Override
     public void start(Stage stage) throws Exception {
+        dbt = DBT.getInstance();
+        dbt.getCustomerList();
+        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
@@ -44,6 +47,7 @@ public class BankSystem extends Application {
      */
     public static void main(String[] args) {   
         launch(args);
+        
         
     }
     

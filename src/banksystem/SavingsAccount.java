@@ -18,6 +18,10 @@ public class SavingsAccount extends Account {
         super(balance); 
         numberOfWithdraw = 0; // tilldelar startvärde för antal uttag
     }
+    
+        public SavingsAccount(int accountNr, double balance){
+        super(accountNr, balance);
+    }
 
     @Override
     public double deposit(double amount) {      // funktion för att sätta in pengar på ett SavingsAccount

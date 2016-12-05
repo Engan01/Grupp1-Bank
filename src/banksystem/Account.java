@@ -26,6 +26,12 @@ public abstract class Account  {        // abstrakt klass
         setAccountNumber();
     }
     
+    public Account(int accountNr, double balance){
+        this.accountNumber=accountNr;
+        this.balance=balance;
+        accountNumberAll = accountNr+1;      
+    }
+    
     
     public int getAccountNumber(){ // hämtar kontonummer
         return accountNumber;

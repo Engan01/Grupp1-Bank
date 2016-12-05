@@ -2,6 +2,7 @@ package banksystem;
 
 // @author Anton
 
+import DBrepository.DBT;
 import java.util.ArrayList;
 
  
@@ -10,11 +11,13 @@ public class Customer {
     private String name; 
     private long pNr;
     private ArrayList<Account> accounts = new ArrayList<>(); // ArrayList för att fylla i alla konton
+    private DBT dbt = DBT.getInstance();
     
     public Customer(String name, long pNr){ // Konstruktor som tar in namn och personnummer som parameter
         this.name = name;
-        this.pNr = pNr;
-        addSavingAccount(0);
+        this.pNr = pNr; 
+        accounts = dbt.getAccountList(pNr);
+        
         
     }
 
@@ -43,7 +46,8 @@ public class Customer {
     public int addSavingAccount(double balance){ //  metod för att skapa en savings account som tar emot saldo som är av typen double
         SavingsAccount sA = new SavingsAccount(balance);// skapar ett nytt objekt sA av typen SavingsAccount
         int nr = sA.getAccountNumber();// För att hämta kontonummer
-        accounts.add(sA);// För att hämta kontonummer
+        accounts.add(sA);
+        dbt.newAccount(pNr, nr, balance, true);
         return nr;    
     }
     
@@ -51,6 +55,7 @@ public class Customer {
         CreditAccount cA = new CreditAccount(balance);// skapar ett nytt objekt cA av typen CreditAccount
         int nr = cA.getAccountNumber();// För att hämta kontonummer
         accounts.add(cA);// För att hämta kontonummer
+        dbt.newAccount(pNr, nr, balance, false);
         return nr;
         
     }

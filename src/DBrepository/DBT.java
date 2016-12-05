@@ -3,6 +3,8 @@ package DBrepository;
 // @author Anton
 import banksystem.Account;
 import banksystem.BankLogic;
+import banksystem.CreditAccount;
+import banksystem.SavingsAccount;
 import banksystem.Transaction;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -83,9 +85,22 @@ public class DBT {
         
     }
     
-    public void newAccount(long pnr){
+    public void newAccount(long pnr, int accountNr, double balance, boolean type){
         
-        
+            try {
+
+            PreparedStatement addCustomer = myConnection.prepareStatement("INSERT INTO account (accountNr, balance, customer_pnr, sav_cred) VALUES (?, ?, ?, ?)");
+
+            addCustomer.setInt(1, accountNr);
+            addCustomer.setDouble(2, balance);
+            addCustomer.setLong(3, pnr);
+            addCustomer.setBoolean(4, type);
+            
+            addCustomer.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
     }
     
@@ -120,23 +135,36 @@ public class DBT {
         try {
 
             result = myStatement.executeQuery("SELECT name, pnr FROM Customer");
+            
             while (result.next()) {
                 b.addCustomer(result.getString(1), result.getLong(2));
             }
 
         } catch (SQLException ex) {
-            
+            ex.printStackTrace();
         }
         
        
     }
     
     
-    public ArrayList<Account> getAccountList(){
-        ArrayList<Account> accounts = new ArrayList<>();
-        
-        
-        return accounts;
+    public ArrayList<Account> getAccountList(long pnr){
+        ArrayList<Account> arr = new ArrayList<>();
+        try {
+
+            result = myStatement.executeQuery("SELECT accountNr, balance, sav_cred FROM Account WHERE customer_pnr='" + pnr + "'");
+            while (result.next()) {
+                if(result.getBoolean(3)){
+                    arr.add(new SavingsAccount(result.getInt(1), result.getDouble(2)));
+                }else{
+                    arr.add(new CreditAccount(result.getInt(1), result.getDouble(2)));
+                }
+            }
+
+        } catch (SQLException ex) {
+            
+        }
+        return arr;
     } 
     
     public ArrayList<Transaction> getTransactions(){

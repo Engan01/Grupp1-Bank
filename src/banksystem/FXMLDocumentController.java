@@ -215,7 +215,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
         dbt = DBT.getInstance();
-        dbt.getCustomerList();
         
         oList = FXCollections.observableArrayList();
         customersList.setItems(oList);

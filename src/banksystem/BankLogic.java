@@ -210,6 +210,7 @@ public class BankLogic {
             for(Customer c : customersList){ // loppar igenom customerList
             if(pNR == c.getPnr()){  // och hittar matchande pNR
                 int kontoNr = c.addCheckingAccount(0.0); // skapar ett nytt konto på vald kund och får tillbaka en int med kontoNr
+                
            return kontoNr; // returnenrar kontonummret
             }
 

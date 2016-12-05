@@ -18,6 +18,10 @@ public class CreditAccount extends Account {
     public CreditAccount(double balance) { // kunstruktor
         super(balance);
     }
+    
+    public CreditAccount(int accountNr, double balance){
+        super(accountNr, balance);
+    }
 
     @Override
     public double deposit(double amount) { // metod för att sätta in pengar
