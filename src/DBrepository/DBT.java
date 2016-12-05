@@ -100,11 +100,12 @@ public class DBT {
         
           try {
 
-            PreparedStatement editName = myConnection.prepareStatement("UPDATE account SET balance =? WHERE pnr = ?");
-//            
-//            editName.setString(1, name);
-//            editName.setLong(2, pnr);
-//            editName.executeUpdate();
+            PreparedStatement updateBalance = myConnection.prepareStatement("UPDATE account SET balance =? WHERE accountNr = ?");
+            
+            updateBalance.setDouble(1, newBalance);
+            updateBalance.setInt(2, accountNr);
+            
+            updateBalance.executeUpdate();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
