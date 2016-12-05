@@ -127,7 +127,20 @@ public class DBT {
     
     public void deleteAccount(int accountNr){
         
-        
+          try {
+
+            PreparedStatement deleteTrans = myConnection.prepareStatement("DELETE FROM transaction WHERE account_accountNr=?");
+            deleteTrans.setInt(1, accountNr);
+            deleteTrans.executeUpdate();
+            
+            PreparedStatement deleteAcc = myConnection.prepareStatement("DELETE FROM account WHERE accountNr=?");
+            deleteAcc.setInt(1, accountNr);
+            deleteAcc.executeUpdate();
+            
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
         
     }
