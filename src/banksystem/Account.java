@@ -1,5 +1,6 @@
 package banksystem;
 
+import DBrepository.DBT;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ public abstract class Account  {        // abstrakt klass
     private double balance = 0; // tilldelar 0 som startbelopp för på alla konton som skapas
     private ArrayList <Transaction> transaction = new ArrayList<>(); // skapar en lista där som innehåller objekt av klassen Transaction
     private String accountType;
+    private DBT dbt = DBT.getInstance();
    
     
     
@@ -76,6 +78,9 @@ public abstract class Account  {        // abstrakt klass
         transaction.add(new Transaction(b, belopp, saldo, accountNumber)); // lägger till en ny transaction i listan transactions
     }
     
+    public void getAllSqlTransactions(){
+        transaction = dbt.getTransactions(accountNumber);
+    }
    
     /* Abstrakta klasser som Credit Account & Savings Account ärver*/
     public abstract String getAccountName();
