@@ -4,7 +4,6 @@ package DBrepository;
 import banksystem.Account;
 import banksystem.BankLogic;
 import banksystem.CreditAccount;
-import banksystem.Customer;
 import banksystem.SavingsAccount;
 import banksystem.Transaction;
 import java.sql.Connection;
