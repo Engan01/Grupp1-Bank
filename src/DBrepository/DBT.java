@@ -67,8 +67,18 @@ public class DBT {
         
     }
     
-    public void editName(long pnr){
-        
+    public void editName(String name, long pnr){
+                try {
+
+            PreparedStatement editName = myConnection.prepareStatement("UPDATE customer SET name =? WHERE pnr = ?");
+            
+            editName.setString(1, name);
+            editName.setLong(2, pnr);
+            editName.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
         
     }
@@ -88,6 +98,17 @@ public class DBT {
     
     public void updateBalance(int accountNr, double newBalance){
         
+          try {
+
+            PreparedStatement editName = myConnection.prepareStatement("UPDATE account SET balance =? WHERE pnr = ?");
+//            
+//            editName.setString(1, name);
+//            editName.setLong(2, pnr);
+//            editName.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
         
         

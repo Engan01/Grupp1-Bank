@@ -1,6 +1,7 @@
 package banksystem;
 
 
+import DBrepository.DBT;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp3 implements Initializable {
     
     private BankLogic b;
+    private DBT dbt;
     
     @FXML
     private TextField textFieldPop3;
@@ -60,7 +62,8 @@ public class FXMLpopUp3 implements Initializable {
                 }
 
                 boolean b1 = b.changeCustomerName(newName, b.getpNr()); // metod i bankLogic för att byta namn
-
+               
+                dbt.editName(newName, b.getpNr());
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
         }catch(NullPointerException e){}
@@ -76,6 +79,7 @@ public class FXMLpopUp3 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        dbt = DBT.getInstance();
     }
 
 }
