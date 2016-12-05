@@ -1,6 +1,7 @@
 package banksystem;
 
 
+import DBrepository.DBT;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
  */
 public class FXMLpopUp2 implements Initializable {
     
+    private DBT dbt = DBT.getInstance();
+    
     @FXML
     private Label row11, row12, row13, row14, row21, row22, row23, row24, row31, row32, row33, row34, row41, row44;
            
@@ -26,7 +29,11 @@ public class FXMLpopUp2 implements Initializable {
 
     @FXML
     private void confirmPop2(ActionEvent event) { 
+        
+       
         String[] ss = b.removeCustomer(b.getpNr()); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
+        
+        dbt.deleteCustomer(b.getpNr());
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 
