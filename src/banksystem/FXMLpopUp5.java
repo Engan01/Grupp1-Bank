@@ -1,5 +1,6 @@
 package banksystem;
 
+import DBrepository.DBT;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp5 implements Initializable {
     
     private BankLogic b;  
+    private DBT dbt = DBT.getInstance();
 
     @FXML
     private Label balancePop5;
@@ -36,6 +38,7 @@ public class FXMLpopUp5 implements Initializable {
         ArrayList<Customer> arr = b.getCustomerList();//inicierar array "arr" av customer
         for(Customer ss : arr){//för arrayen av objekt
             if(ss.getPnr() == b.getpNr())//kolar på person nr
+                dbt.deleteAccount(b.getAccountNr());
                 ss.closeAccount(b.getAccountNr());//stänger account genom metoden och kör uträkning
         }
         

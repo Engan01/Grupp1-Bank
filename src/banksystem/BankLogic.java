@@ -2,6 +2,7 @@ package banksystem;
 
 // @author Anton
 
+import DBrepository.DBT;
 import java.util.ArrayList;
 
 public class BankLogic {
@@ -9,7 +10,8 @@ public class BankLogic {
     private ArrayList<Customer> customersList = new ArrayList<>(); // Lista med samtliga kunder
     private static BankLogic instance;
     private long pNr; // variabel som vi vid olika tillfällern tilfälligt sparar personNr i
-    private int accountNr; // variabel som vi vid olika tillfällern tilfälligt sparar accountNr i 
+    private int accountNr; // variabel som vi vid olika tillfällern tilfälligt sparar accountNr i
+    
 
     private BankLogic() {      
     }
@@ -239,9 +241,11 @@ public class BankLogic {
                         if ("CreditAccount".equals(customersList.get(i).getAccountList().get(j).getClass().getSimpleName())) { // kontrollerar om kontonummer är ett Kreditkonto
                             double currentBalance = customersList.get(i).getAccountList().get(j).getBalance(); // isf, hämtar belopp på kontot
                             currentBalance = currentBalance - amount; // räknar ut nytt belopp
-                            
                     
-
+                            
+                            
+                            
+                            
                             if (currentBalance >= -5000) { // om det nya beloppet på kontot är mer än -5000
                                 
                                 customersList.get(i).getAccountList().get(j).withdraw(amount);

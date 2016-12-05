@@ -1,5 +1,7 @@
 package banksystem;
 
+import DBrepository.DBT;
+
 /**
  *
  * @author asanilssonenglund
@@ -9,6 +11,7 @@ public class CreditAccount extends Account {
     private final double debtInterest = 0.07;
     private final double debtIncrease = 1.005;
     private static double interest = 0.005;
+    private DBT dbt = DBT.getInstance();
 
     public CreditAccount() {
         super(); // default constructor
@@ -27,6 +30,7 @@ public class CreditAccount extends Account {
     public double deposit(double amount) { // metod för att sätta in pengar
         double balance = super.getBalance(); // hämtar saldo från superklass 
         balance += amount; // läger till belopp
+        dbt.updateBalance(super.getAccountNumber(), super.getBalance());
         super.setBalance(balance); // skickar det nya beloppet till superklassen Account
         return balance; // returnerar det nya beloppet
     }
@@ -35,6 +39,7 @@ public class CreditAccount extends Account {
     public double withdraw(double amount) { // metod för att ta ut pengar
         double balance = super.getBalance(); // hämtar belop från superklass
         balance -= amount; // tar belopp minus det användaren tagit ut
+        dbt.updateBalance(super.getAccountNumber(), super.getBalance());
         super.setBalance(balance); // skickar det nya beloppet till superklassen
         return balance; // returnerar beloppet
 

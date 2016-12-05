@@ -1,5 +1,7 @@
 package banksystem;
 
+import DBrepository.DBT;
+
 /**
  *
  * @author asanilssonenglund
@@ -8,6 +10,7 @@ public class SavingsAccount extends Account {
 
     private int numberOfWithdraw; // kontrollvariabel för veta antallet uttag
     private static double interest = 0.01; // 1% ränta
+    private DBT dbt = DBT.getInstance();
 
 
     public SavingsAccount() {
@@ -28,6 +31,7 @@ public class SavingsAccount extends Account {
         double b = super.getBalance(); // hämtar balans på konto
                 b += amount;    // adderar amount
                 super.setBalance(b); // tilldelar nytt belopp
+                dbt.updateBalance(super.getAccountNumber(), super.getBalance()); // uppdaterar balans i databas
         return b; // returnerar nya beloppet
     }
 
@@ -37,11 +41,13 @@ public class SavingsAccount extends Account {
             double d = super.getBalance(); // i så fall, hämta balans, addera och tilldela ny balans
                    d -= amount;
                    super.setBalance(d);
+                   dbt.updateBalance(super.getAccountNumber(), super.getBalance()); // uppdaterar balans i databas
             numberOfWithdraw++; // tilldela nytt värde på antal uttag
         } else {                    // ifall tidigare uttag gjorts
             double balance = super.getBalance();
             amount = amount * 0.02 + amount; // utagsränta efter första utaget = 2%
             balance -= amount;      // hämta balans, addera och tilldela ny balans
+            dbt.updateBalance(super.getAccountNumber(), super.getBalance());
             numberOfWithdraw++;
             super.setBalance(balance);
         }
