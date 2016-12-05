@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 public class FXMLpopUp1 implements Initializable {
 
     private BankLogic b; // bankLogic
+    private DBT dbt;
 
     @FXML
     private TextField labelNamePop1, labelSsnPop1;
@@ -114,6 +115,8 @@ public class FXMLpopUp1 implements Initializable {
             if(!b1){ // om det inte gick finns kunden redan
                 error.setText("Customer already exists!");
                 throw new NullPointerException();
+            }else{
+                dbt.addCustomer(n, l);
             }
             
             Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -135,6 +138,7 @@ public class FXMLpopUp1 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        dbt = DBT.getInstance();
 
     }
 

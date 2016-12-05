@@ -3,6 +3,7 @@ package banksystem;
 // @author Anton
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,7 +38,18 @@ public class DBT {
     }
     
     public void addCustomer(String name, long pnr){
-        
+        try {
+
+            PreparedStatement addCustomer = myConnection.prepareStatement("INSERT INTO Customer (name, pnr) VALUES (?, ?)");
+
+            addCustomer.setString(1, name);
+            addCustomer.setLong(2, pnr);
+            
+            addCustomer.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
         
         
@@ -78,6 +90,7 @@ public class DBT {
     
     public ArrayList<Customer> getCustomerList(){
         ArrayList<Customer> cus = new ArrayList<>();
+        
         
         
         return cus;
