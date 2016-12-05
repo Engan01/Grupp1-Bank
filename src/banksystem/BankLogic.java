@@ -68,6 +68,13 @@ public class BankLogic {
             c.account();
         }
     }
+    
+    public void getAllSqlTransactions(){
+        for(Customer c : customersList){
+            for(Account a : c.getAccountList())
+                a.getAllSqlTransactions();
+        }
+    }
 
     public boolean searchCustomer(long pNr) { // metod för att söka efter kunder med personnumer
 

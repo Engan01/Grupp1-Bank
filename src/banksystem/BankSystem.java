@@ -26,6 +26,7 @@ public class BankSystem extends Application {
         b = BankLogic.getInstance();
         dbt.getCustomerList();
         b.accountList();
+        b.getAllSqlTransactions();
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
