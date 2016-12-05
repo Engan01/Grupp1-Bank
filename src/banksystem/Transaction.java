@@ -52,4 +52,8 @@ public class Transaction {
         return s; // returnerar Stringen s
     }
     
+    public boolean getB(){
+        return b;
+    }
+    
 }

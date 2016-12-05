@@ -1,6 +1,7 @@
 package banksystem;
 
 import DBrepository.DBT;
+import java.util.ArrayList;
 
 /**
  *
@@ -61,6 +62,16 @@ public class SavingsAccount extends Account {
     
     public void setnumberOfWithdraw(){ // tilldela nytt värde för uttagsnummer
         numberOfWithdraw++;
+    }
+    
+    public void setNumberOfWithdraAtStart(){
+        ArrayList<Transaction> tran = super.getTransaction();
+        if(!tran.isEmpty()){
+        for(Transaction t : tran){
+            if(t.getB())
+                numberOfWithdraw++;
+        }
+        }
     }
 
     @Override

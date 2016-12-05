@@ -27,6 +27,7 @@ public class BankSystem extends Application {
         dbt.getCustomerList();
         b.accountList();
         b.getAllSqlTransactions();
+        b.setNumberWithdraAtStart();
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         

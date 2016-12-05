@@ -75,6 +75,17 @@ public class BankLogic {
                 a.getAllSqlTransactions();
         }
     }
+    
+    public void setNumberWithdraAtStart(){
+        for(Customer c : customersList){
+            for(Account a : c.getAccountList()){
+                 if (a.getAccountName().equals("Saving Account")){
+                    SavingsAccount sa = (SavingsAccount) a;
+                    sa.setNumberOfWithdraAtStart();
+                }
+            }
+        }
+    }
 
     public boolean searchCustomer(long pNr) { // metod för att söka efter kunder med personnumer
 
