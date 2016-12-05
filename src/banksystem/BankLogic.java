@@ -60,6 +60,12 @@ public class BankLogic {
         return true;
 
     }
+    
+    public void accountList(){
+        for(Customer c : customersList){
+            c.account();
+        }
+    }
 
     public boolean searchCustomer(long pNr) { // metod för att söka efter kunder med personnumer
 

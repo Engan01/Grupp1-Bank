@@ -29,6 +29,7 @@ public abstract class Account  {        // abstrakt klass
     public Account(int accountNr, double balance){
         this.accountNumber=accountNr;
         this.balance=balance;
+        if(accountNr >= accountNumberAll)
         accountNumberAll = accountNr+1;      
     }
     

@@ -16,13 +16,16 @@ import javafx.stage.WindowEvent;
 public class BankSystem extends Application {
     
     private DBT dbt;
+    private BankLogic b;
     
 
     
     @Override
     public void start(Stage stage) throws Exception {
         dbt = DBT.getInstance();
+        b = BankLogic.getInstance();
         dbt.getCustomerList();
+        b.accountList();
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         

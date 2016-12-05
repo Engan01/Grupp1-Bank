@@ -69,4 +69,8 @@ public class Customer {
     public void closeAccount(int aNr){ // metod för att avsluta ett konto
         accounts.remove(getSelectedAccount(aNr)); 
     }
+    
+    public void account(){
+        accounts = dbt.getAccountList(pNr);
+    }
 }
