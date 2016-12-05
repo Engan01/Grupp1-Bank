@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -201,9 +200,25 @@ public class DBT {
         return arr;
     } 
     
-    public ArrayList<Transaction> getTransactions(){
+    public ArrayList<Transaction> getTransactions(int accountNr){
         ArrayList<Transaction> trans = new ArrayList<>();
-        
+        try {
+
+            result = myStatement.executeQuery("SELECT date, amount, type, balance FROM Transaction WHERE account_accountNr='" + accountNr + "'");
+            
+            while (result.next()) {
+
+                String d = result.getString(1);
+                d = d.replace(" ", "T");
+                LocalDateTime dateTime = LocalDateTime.parse(d);
+                
+                trans.add(new Transaction(dateTime, result.getDouble(2), result.getBoolean(3), result.getDouble(4), accountNr));
+                
+            }
+
+        } catch (SQLException ex) {
+            
+        }        
         
         return trans;
     }     
