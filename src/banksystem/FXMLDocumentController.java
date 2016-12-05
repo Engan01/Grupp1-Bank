@@ -34,6 +34,7 @@ import javafx.stage.WindowEvent;
 public class FXMLDocumentController implements Initializable {
     
     private BankLogic b; // Singelton class
+    private DBT dbt;
     
     private ObservableList<String> oList;
     
@@ -212,6 +213,8 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         b = BankLogic.getInstance();
+        dbt = DBT.getInstance();
+        dbt.getCustomerList();
         
         oList = FXCollections.observableArrayList();
         customersList.setItems(oList);

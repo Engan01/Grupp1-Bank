@@ -11,7 +11,7 @@ public class BankLogic {
     private long pNr; // variabel som vi vid olika tillfällern tilfälligt sparar personNr i
     private int accountNr; // variabel som vi vid olika tillfällern tilfälligt sparar accountNr i 
 
-    private BankLogic() {
+    private BankLogic() {      
     }
 
     public static BankLogic getInstance() { 

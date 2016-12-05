@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class DBT {
 
     private static DBT instance;
+    
+    private BankLogic b = BankLogic.getInstance();
 
     private Connection myConnection;
     private Statement myStatement;
@@ -88,12 +90,20 @@ public class DBT {
         
     }
     
-    public ArrayList<Customer> getCustomerList(){
-        ArrayList<Customer> cus = new ArrayList<>();
+    public void getCustomerList(){
         
+        try {
+
+            result = myStatement.executeQuery("SELECT name, pnr FROM Customer");
+            while (result.next()) {
+                b.addCustomer(result.getString(1), result.getLong(2));
+            }
+
+        } catch (SQLException ex) {
+            
+        }
         
-        
-        return cus;
+       
     }
     
     
