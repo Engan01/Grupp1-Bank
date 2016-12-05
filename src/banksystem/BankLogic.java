@@ -2,7 +2,6 @@ package banksystem;
 
 // @author Anton
 
-import DBrepository.DBT;
 import java.util.ArrayList;
 
 public class BankLogic {

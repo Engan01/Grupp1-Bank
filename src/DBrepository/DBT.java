@@ -69,9 +69,9 @@ public class DBT {
             PreparedStatement addTransaction = myConnection.prepareStatement("INSERT INTO Transaction (date, amount, type, balance, account_accountNr) VALUES (?, ?, ?, ?, ?)");
 
             addTransaction.setString(1, dateTime);
-            addTransaction.setDouble(2, amount);
+            addTransaction.setDouble(2, balance);
             addTransaction.setBoolean(3, type);
-            addTransaction.setDouble(4, balance);
+            addTransaction.setDouble(4, amount);
             addTransaction.setInt(5, accountNr);
 
             addTransaction.executeUpdate();
@@ -224,7 +224,7 @@ public class DBT {
                 d = d.replace(" ", "T");
                 LocalDateTime dateTime = LocalDateTime.parse(d);
 
-                trans.add(new Transaction(dateTime, result.getDouble(2), result.getBoolean(3), result.getDouble(4), accountNr));
+                trans.add(new Transaction(dateTime, result.getDouble(4), result.getBoolean(3), result.getDouble(2), accountNr));
 
             }
 

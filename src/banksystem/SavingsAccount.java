@@ -48,9 +48,10 @@ public class SavingsAccount extends Account {
             double balance = super.getBalance();
             amount = amount * 0.02 + amount; // utagsränta efter första utaget = 2%
             balance -= amount;      // hämta balans, addera och tilldela ny balans
+            super.setBalance(balance);
             dbt.updateBalance(super.getAccountNumber(), super.getBalance());
             numberOfWithdraw++;
-            super.setBalance(balance);
+            
         }
         return super.getBalance();
 
