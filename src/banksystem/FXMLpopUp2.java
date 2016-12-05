@@ -30,10 +30,11 @@ public class FXMLpopUp2 implements Initializable {
     @FXML
     private void confirmPop2(ActionEvent event) { 
         
-       
+        int[] i = b.getSelectedCustomer(b.getpNr()).getAccountNumbers();
+        long p = b.getpNr();
         String[] ss = b.removeCustomer(b.getpNr()); // tar bort kunden samt tar emot en lista med information om kunden enligt projetet
         
-        dbt.deleteCustomer(b.getpNr());
+        dbt.deleteCustomer(p, i);
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stg.close();
 

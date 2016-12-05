@@ -40,6 +40,20 @@ public class Customer {
         return accounts;
     } 
     
+    public int[] getAccountNumbers(){
+        int[] nr;
+        if(!accounts.isEmpty()){
+        nr = new int[accounts.size()];
+        int i = 0;
+        for(Account a : accounts){
+            nr[i] = a.getAccountNumber();
+            i++;
+        }
+        }else
+            nr = null;
+        return nr;
+    }
+    
     public int addSavingAccount(double balance){ //  metod för att skapa en savings account som tar emot saldo som är av typen double
         SavingsAccount sA = new SavingsAccount(balance);// skapar ett nytt objekt sA av typen SavingsAccount
         int nr = sA.getAccountNumber();// För att hämta kontonummer

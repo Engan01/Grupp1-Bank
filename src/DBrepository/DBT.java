@@ -83,30 +83,22 @@ public class DBT {
 
     }
 
-    public void deleteCustomer(long pNr) {
+    public void deleteCustomer(long pNr, int[] i) {
 
         try {
 
-            Customer c = b.getSelectedCustomer(pNr);
-            ArrayList<Account> arr = c.getAccountList();
-
-            for (Account a : arr) {
-                int accountNr = a.getAccountNumber();
+            for (int j = 0; j < i.length; j++) {
+                int accountNr = i[j];
 
                 PreparedStatement deleteTrans = myConnection.prepareStatement("DELETE FROM transaction WHERE account_accountNr=?");
                 deleteTrans.setInt(1, accountNr);
                 deleteTrans.executeUpdate();
             }
-                    
-                 for (Account a : arr) {
-                int accountNr = a.getAccountNumber();   
-                
-                PreparedStatement deleteAcc = myConnection.prepareStatement("DELETE FROM account WHERE customer_pnr=?");
-                deleteAcc.setInt(1, accountNr);
-                deleteAcc.executeUpdate();
-                 }
 
-//            
+            PreparedStatement deleteAcc = myConnection.prepareStatement("DELETE FROM account WHERE customer_pnr=?");
+            deleteAcc.setLong(1, pNr);
+            deleteAcc.executeUpdate();
+
             PreparedStatement deleteCust = myConnection.prepareStatement("DELETE FROM customer WHERE pnr=?");
             deleteCust.setLong(1, pNr);
             deleteCust.executeUpdate();
