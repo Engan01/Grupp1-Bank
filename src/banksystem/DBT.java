@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DBT {
 
@@ -34,7 +35,69 @@ public class DBT {
         }
         return instance;
     }
-
+    
+    public void addCustomer(String name, long pnr){
+        
+        
+        
+        
+    }
+    
+    public void deleteCustomer(long pnr){
+        
+        
+        
+        
+    }
+    
+    public void editName(long pnr){
+        
+        
+        
+    }
+    
+    public void newAccount(long pnr){
+        
+        
+        
+    }
+    
+    public void deleteAccount(int accountNr){
+        
+        
+        
+        
+    }
+    
+    public void updateBalance(int accountNr, double newBalance){
+        
+        
+        
+        
+    }
+    
+    public ArrayList<Customer> getCustomerList(){
+        ArrayList<Customer> cus = new ArrayList<>();
+        
+        
+        return cus;
+    }
+    
+    
+    public ArrayList<Account> getAccountList(){
+        ArrayList<Account> accounts = new ArrayList<>();
+        
+        
+        return accounts;
+    } 
+    
+    public ArrayList<Transaction> getTransactions(){
+        ArrayList<Transaction> trans = new ArrayList<>();
+        
+        
+        return trans;
+    }     
+    
     public void closeConn() { // metod som körs när programet stängs för att stoppa alla connections till databasen
         
 
