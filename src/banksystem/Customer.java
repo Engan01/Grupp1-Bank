@@ -15,10 +15,7 @@ public class Customer {
     
     public Customer(String name, long pNr){ // Konstruktor som tar in namn och personnummer som parameter
         this.name = name;
-        this.pNr = pNr; 
-        accounts = dbt.getAccountList(pNr);
-        
-        
+        this.pNr = pNr;     
     }
 
     public String getName() {
