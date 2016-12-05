@@ -73,7 +73,7 @@ public abstract class Account  {        // abstrakt klass
     }
     
     public void addTransaction(boolean b, double belopp, double saldo){
-        transaction.add(new Transaction(b, belopp, saldo)); // lägger till en ny transaction i listan transactions
+        transaction.add(new Transaction(b, belopp, saldo, accountNumber)); // lägger till en ny transaction i listan transactions
     }
     
    

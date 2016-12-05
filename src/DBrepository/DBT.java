@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class DBT {
@@ -56,9 +58,28 @@ public class DBT {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        
-        
+        }      
+    }
+    
+    public void addTransaction(LocalDateTime date, double amount, boolean type, double balance, int accountNr){
+        String dateTime = date.toString();
+        dateTime = dateTime.replace("T", " ");
+       
+        try {
+
+            PreparedStatement addTransaction = myConnection.prepareStatement("INSERT INTO Transaction (date, amount, type, balance, account_accountNr) VALUES (?, ?, ?, ?, ?)");
+
+            addTransaction.setString(1, dateTime);
+            addTransaction.setDouble(2, amount);
+            addTransaction.setBoolean(3, type);
+            addTransaction.setDouble(4, balance);
+            addTransaction.setInt(5, accountNr);
+            
+            addTransaction.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }        
         
     }
     
@@ -175,7 +196,6 @@ public class DBT {
     }     
     
     public void closeConn() { // metod som körs när programet stängs för att stoppa alla connections till databasen
-        
 
         try {
             if(myConnection != null)

@@ -1,5 +1,6 @@
 package banksystem;
 
+import DBrepository.DBT;
 import java.time.LocalDateTime;
 
 /**
@@ -12,12 +13,24 @@ public class Transaction {
     private final boolean b; // true = in ------ false = out
     private final double belopp;
     private final double saldo;
+    private final int accountNr;
+    private DBT dbt = DBT.getInstance();
     
-    public Transaction(boolean b, double belopp, double saldo){ // konstruktor
+    public Transaction(boolean b, double belopp, double saldo, int accountNr){ // konstruktor
         this.date = LocalDateTime.now(); // sätter date till nu
         this.b = b; 
         this.belopp = belopp;
         this.saldo = saldo;
+        this.accountNr=accountNr;
+        dbt.addTransaction(date, saldo, b, belopp, accountNr);
+    }
+    
+    public Transaction(LocalDateTime date, double saldo, boolean b, double belopp, int accountNr){ // konstruktor för SQL
+        this.date = date; // sätter date till nu
+        this.b = b; 
+        this.belopp = belopp;
+        this.saldo = saldo;
+        this.accountNr=accountNr;
     }
     
     
