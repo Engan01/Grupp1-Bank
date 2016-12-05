@@ -339,6 +339,16 @@ public class BankLogic {
         } // första for sats
         return false;
     } // slut på metod
+    
+    public Customer getSelectedCustomer(long pNr){
+        Customer cc = null;
+        for(Customer c : customersList){
+            if(c.getPnr()==pNr)
+                cc = c;
+        }
+        return cc;
+        
+    }
 
 
 }
