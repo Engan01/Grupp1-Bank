@@ -4,7 +4,8 @@ package banksystem;
 
 import java.util.ArrayList;
 
-public class BankLogic {
+public class BankLogic { //dsadsasadasdasdsdaas
+    //sdadsadasdDasa
 
     private ArrayList<Customer> customersList = new ArrayList<>(); // Lista med samtliga kunder
     private static BankLogic instance;
