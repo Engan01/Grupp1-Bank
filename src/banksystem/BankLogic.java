@@ -340,13 +340,13 @@ public class BankLogic {
         return false;
     } // slut på metod
     
-    public Customer getSelectedCustomer(long pNr){
+    public Customer getSelectedCustomer(long pNr){ // metod som returnerar ett objekt av Customer
         Customer cc = null;
         for(Customer c : customersList){
             if(c.getPnr()==pNr)
                 cc = c;
         }
-        return cc;
+        return cc; 
         
     }
 
