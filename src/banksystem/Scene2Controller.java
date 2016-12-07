@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -180,11 +181,15 @@ public class Scene2Controller implements Initializable {
                 exportStatus.setText("No transactions to export."); // om det inte finns några transactions
                 throw new NullPointerException();
             }
+            
+            String todayDate = LocalDateTime.now().toString();
+            todayDate = todayDate.replaceAll("T", " ");
+            todayDate = todayDate.substring(0, 19);
 
             if (aa.getAccountName().equals("Credit Account")) { // om det är ett credit account skrivs detta ut som första rad
-                writer.write("Customer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nCredit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
+                writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nCredit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
             } else { // om det är ett savings account skrivs detta ut som första rad
-                writer.write("Customer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
+                writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nTodays date: " + todayDate + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
 
             for (Transaction t1 : t) { // Skriver ut varje transaction 

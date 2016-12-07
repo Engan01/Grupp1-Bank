@@ -38,7 +38,12 @@ public class Transaction {
     public String toString(){ // metod för att skriva ut denna transaktion
         String s = "";
         String datum = date.toString(); // datumet för denna transaction
-        String tid = datum.substring(11, 19); // tar ut tiden med substring
+        String tid;
+        try{ // try catch då databasen inte läser in de sista 00 då tiden blir tillexempel 12:00:00
+        tid = datum.substring(11, 19); // tar ut tiden med substring
+        }catch(IndexOutOfBoundsException e){
+             tid = datum.substring(11, 16) + ":00";
+        }
         datum = datum.substring(0, 10); // tar ut datumet med substring
         
         String saldoFormat = String.format("%.2f", saldo); // sätter till 2 decimaler
