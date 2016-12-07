@@ -191,7 +191,7 @@ public class Scene2Controller implements Initializable {
             if (aa.getAccountName().equals("Credit Account")) { // om det är ett credit account skrivs detta ut som första rad
                 writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nCredit Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + "\n");
             } else { // om det är ett savings account skrivs detta ut som första rad
-                writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nTodays date: " + todayDate + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
+                writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
 
             ArrayList<Transaction> reverse = new ArrayList<>();
