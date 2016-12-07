@@ -114,12 +114,14 @@ public class Scene2Controller implements Initializable {
             if (selectedAccount.isEmpty()) { // om man ej valt ett konto kastas ett exception
                 throw new NullPointerException();
             }
-            
+
             int acountNR = Integer.parseInt(selectedAccount.replaceAll("[A-Öa-ö ]", "").trim()); // konverterar String acount# till int
 
             double amount2 = Double.parseDouble(amount.getText());  // konverterar String amount till double amount
-            if(amount2 < 1) // kan ej ta ut 0 eller minusvärde
+            if (amount2 < 1) // kan ej ta ut 0 eller minusvärde
+            {
                 throw new NumberFormatException();
+            }
 
             if (b.withdraw(c.getPnr(), acountNR, amount2) == true) { // om det går bra att ta ut
 
@@ -181,7 +183,7 @@ public class Scene2Controller implements Initializable {
                 exportStatus.setText("No transactions to export."); // om det inte finns några transactions
                 throw new NullPointerException();
             }
-            
+
             String todayDate = LocalDateTime.now().toString();
             todayDate = todayDate.replaceAll("T", " ");
             todayDate = todayDate.substring(0, 19);
@@ -192,15 +194,20 @@ public class Scene2Controller implements Initializable {
                 writer.write("Date and time of export: " + todayDate + "\n\nCustomer: " + c.getName() + "\nSocial security number: " + c.getPnr() + "\nTodays date: " + todayDate + "\nSaving Account " + aa.getAccountNumber() + " Balance: " + String.format("%.2f", aa.getBalance()) + " Interest: 1% \n");
             }
 
-            for (Transaction t1 : t) { // Skriver ut varje transaction 
+            ArrayList<Transaction> reverse = new ArrayList<>();
+
+            for (int i = t.size() - 1; i >= 0; i--) { // skriver ut med nyast först
+                reverse.add(t.get(i));
+            }
+
+            for (Transaction t1 : reverse) { // Skriver ut varje transaction 
                 writer.newLine();
                 writer.write(t1.toString()); // finns en metod i klassen Transaction som heter toString - Override toString
                 writer.newLine();
                 writer.newLine();
             }
-                exportStatus.setTextFill(Color.GREEN);
-                exportStatus.setText("Transactionslist successfully exported to file"); // om allt gick bra
-           
+            exportStatus.setTextFill(Color.GREEN);
+            exportStatus.setText("Transactionslist successfully exported to file"); // om allt gick bra
 
         } catch (NullPointerException e) {
         } catch (IOException e) {
@@ -225,11 +232,10 @@ public class Scene2Controller implements Initializable {
         mainStatus.setText("");
         transferStatus.setTextFill(Color.RED);
         try {
-            
+
             Customer c = getThisObject(); // kallar på befintlig kund
             int selectedFromAccountNr = Integer.parseInt(transferFrom.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", "")); // konto från
-                accountNr.setText(Integer.toString(selectedFromAccountNr)); // ändrar label accountNr till detta accounts nr
-            
+            accountNr.setText(Integer.toString(selectedFromAccountNr)); // ändrar label accountNr till detta accounts nr
 
             int selectedToAccountNr = Integer.parseInt(transferTo.getSelectionModel().getSelectedItem().toString().replaceAll("[^\\d.]", "")); // hämtar account nr som man ska överföra till
 
@@ -246,7 +252,7 @@ public class Scene2Controller implements Initializable {
             else if ("CreditAccount".equals(c.getSelectedAccount(selectedFromAccountNr).getClass().getSimpleName())) { // om det konto man vill överföra ifrån är ett Credit Account
                 if (c.getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount >= -5000) { // om saldot på kontot ej överstigen -5000
 
-                    double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount; 
+                    double newBalanceFromAccount = getThisObject().getSelectedAccount(selectedFromAccountNr).getBalance() - transferAmount;
                     getThisObject().getSelectedAccount(selectedFromAccountNr).setBalance(newBalanceFromAccount); // sätter det nya saldot på kontot från
 
                     c.getSelectedAccount(selectedFromAccountNr).addTransaction(false, transferAmount, c.getSelectedAccount(selectedFromAccountNr).getBalance()); // lägger till en transaction på kontot från
@@ -311,7 +317,7 @@ public class Scene2Controller implements Initializable {
                 }
 
                 setTransactions(); // metod för att uppdatera transactions list
-                    //Visa användaren att det gick att överföra pengar
+                //Visa användaren att det gick att överföra pengar
                 transferStatus.setTextFill(Color.GREEN);
                 transferStatus.setText("Transfer successful!");
             }
@@ -344,7 +350,7 @@ public class Scene2Controller implements Initializable {
             stage.close();
         });
         stage.showAndWait(); // popUp startar och nuvarande scen väntar
-        
+
         name.setText(getThisObject().getName()); // sätter labelen name till namnet på vald kund uppdaterat eller ej - uppdateras labelen
     }
 
@@ -370,7 +376,6 @@ public class Scene2Controller implements Initializable {
         stage.showAndWait(); // öppnar upp en popUp och denna scenen väntar
         setListView(); // Uppdaterar konto llista 
     }
-    
 
     @FXML
     private void deleteAccountEvent(ActionEvent e) throws IOException { // metod för att ta bort ett konto
@@ -385,8 +390,8 @@ public class Scene2Controller implements Initializable {
 
             b.setAccountNr(Integer.parseInt(s1.replaceAll("[A-Öa-ö ]", "").trim())); // sparar kontonr till bankLogic för att ta med det till popUpen
             b.setpNr(getThisObject().getPnr()); // sparr personNr på vald kund för att ta med det till popupen
-            
-            Stage stage; 
+
+            Stage stage;
             Parent root;
 
             stage = new Stage();
@@ -400,10 +405,9 @@ public class Scene2Controller implements Initializable {
                 stage.close();
             });
             stage.showAndWait(); // öppnar popUpen och låter denna scen vänta i bakgrunden
-            
+
             setListView(); // uppdaterar konto och transactionslist
             setTransactions();
-
 
         } catch (NullPointerException ex) {
             mainStatus.setText("You have to select an account!");
@@ -493,43 +497,52 @@ public class Scene2Controller implements Initializable {
     }
 
     private void setTransactions() { // Metod för att uppdatera transactions list med transactions för valt konto
-        try{
-        transactionObservable.clear();     // börjar med att tömma listan
-        String str = accountNr.getText().trim(); // hämtar valt konto
-        if(str.isEmpty())  // om man ännu inte valt ett konto
-            throw new NullPointerException();
-
-        if (getThisObject().getSelectedAccount(Integer.parseInt(str)).getAccountName().equals("Saving Account")) { // om det är ett savingsaccount
-            SavingsAccount sA = (SavingsAccount) getThisObject().getSelectedAccount(Integer.parseInt(str));
-            int i = sA.getnumberOfWithdraw(); // hämatr tidigare utag
-            if (i > 0) { // om man tagit ut pengar tidigare sätts räntan till 2%
-                rate.setText("2%");
-            } else { // annars 0%
-                rate.setText("0%");
+        try {
+            transactionObservable.clear();     // börjar med att tömma listan
+            String str = accountNr.getText().trim(); // hämtar valt konto
+            if (str.isEmpty()) // om man ännu inte valt ett konto
+            {
+                throw new NullPointerException();
             }
 
-        } else {
-            rate.setText("0%"); // om det är ett creditAccount är uttagsräntan alltid 0%
-        }
-        
-        int aNr = Integer.parseInt(str);
+            if (getThisObject().getSelectedAccount(Integer.parseInt(str)).getAccountName().equals("Saving Account")) { // om det är ett savingsaccount
+                SavingsAccount sA = (SavingsAccount) getThisObject().getSelectedAccount(Integer.parseInt(str));
+                int i = sA.getnumberOfWithdraw(); // hämatr tidigare utag
+                if (i > 0) { // om man tagit ut pengar tidigare sätts räntan till 2%
+                    rate.setText("2%");
+                } else { // annars 0%
+                    rate.setText("0%");
+                }
 
-        Customer c = getThisObject();
-
-        ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
-        String d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance());
-
-        transactionObservable.add("Account number: " + aNr + "\t Balance: " + d); // lägger till valt konto och balance överst i listan
-
-        if (!arr.isEmpty()) { // om transactionslist inte är tom
-
-            for (Transaction t : arr) { // fyller listan med alla transactions
-                transactionObservable.add(t.toString());
+            } else {
+                rate.setText("0%"); // om det är ett creditAccount är uttagsräntan alltid 0%
             }
+
+            int aNr = Integer.parseInt(str);
+
+            Customer c = getThisObject();
+
+            ArrayList<Transaction> arr = c.getSelectedAccount(aNr).getTransaction();
+            ArrayList<Transaction> reverse = new ArrayList<>();
+
+            for (int i = arr.size() - 1; i >= 0; i--) { // skriver ut med nyast först
+                reverse.add(arr.get(i));
+            }
+
+            String d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance());
+
+            transactionObservable.add("Account number: " + aNr + "\t Balance: " + d); // lägger till valt konto och balance överst i listan
+
+            if (!arr.isEmpty()) { // om transactionslist inte är tom
+
+                for (Transaction t : reverse) { // fyller listan med alla transactions
+                    transactionObservable.add(t.toString());
+                }
+            }
+            d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance()); // hämtar balance och sätter till 2 decimaler
+            balance.setText(d); // uppdaterar label balance med den sista balance
+        } catch (NullPointerException e) {
         }
-        d = String.format("%.2f", c.getSelectedAccount(aNr).getBalance()); // hämtar balance och sätter till 2 decimaler
-        balance.setText(d); // uppdaterar label balance med den sista balance
-        }catch(NullPointerException e){}
 
     }
 
