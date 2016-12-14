@@ -25,6 +25,7 @@ public class Customer {
         String newName = name.replaceAll("[^A-Öa-ö ]", "").trim();// man ska kunna ändra namnet och replaceAll tar bort allt som inte är bokstäver
         this.name = newName;
     }
+    
 
     public long getPnr() {
         return pNr;
