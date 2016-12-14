@@ -42,7 +42,7 @@ public class FXMLpopUp2 implements Initializable {
     @FXML
     private void cancelPop2(ActionEvent event) { // avbryter borttagning av kund, återgår till föregeånde fönster
         Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
-
+        stg.close();
     }
 
 
